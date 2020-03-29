@@ -1,0 +1,6 @@
+.vscode
+__pycache__
+data/probing_data/*
+data/training_data/*
+data/outputs/*
+data/layer_data/plots/*
