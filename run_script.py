@@ -6,7 +6,7 @@ from knowledge_probing.models.lightning.decoder import Decoder
 from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
 from knowledge_probing.training.training import training
 from knowledge_probing.models.models_helper import get_model
-from knowledge_probing.probing import probing
+from knowledge_probing.probing.probing import probing
 from knowledge_probing.config.config_helper import handle_config
 import sys
 
@@ -15,8 +15,6 @@ def main(args):
 
     # Compute the missing args ##########################################################################
     args = handle_config(args)
-    print('Args AFTER')
-    print(args)
 
     # Set up bert-config and model ###########################################################################
     decoder = get_model(args)

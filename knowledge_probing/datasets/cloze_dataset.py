@@ -10,15 +10,17 @@ from knowledge_probing.file_utils import load_file
 
 class ClozeDataset(Dataset):
     def __init__(self, tokenizer: PreTrainedTokenizer, args, vocab, block_size=512, output_debug_info=False):
-        if not os.path.isfile(args.probe.relation_args.dataset_filename):
+        if not os.path.isfile(args.relation_args.dataset_filename):
             print("Could not create features from dataset %s. File not found",
-                  args.probe.relation_args.dataset_filename)
+                  args.relation_args.dataset_filename)
             return
-        assert os.path.isfile(args.probe.relation_args.dataset_filename)
+        assert os.path.isfile(args.relation_args.dataset_filename)
         print("Creating features from dataset file at %s",
-              args.probe.relation_args.dataset_filename) if output_debug_info else None
+              args.relation_args.dataset_filename) if output_debug_info else None
 
-        samples = load_file(args.probe.relation_args.dataset_filename)
+        self.samples = []
+
+        samples = load_file(args.relation_args.dataset_filename)
         print('number samples: {}'.format(len(samples))
               ) if output_debug_info else None
 
@@ -33,13 +35,13 @@ class ClozeDataset(Dataset):
         # Filter samples
         print('filtering the samples') if output_debug_info else None
         samples, msg = filter_samples(
-            samples, tokenizer, vocab, args.probe.relation_args.template)
+            samples, tokenizer, vocab, args.relation_args.template)
         print('number filtered samples: {}'.format(
             len(samples))) if output_debug_info else None
         # print(msg)
 
         # Make sure every sub/obj pair is only used once
-        if args.probe.relation_args.template and args.probe.relation_args.template != "":
+        if args.relation_args.template and args.relation_args.template != "":
             facts = []
             for sample in samples:
                 # print(sample)
@@ -64,7 +66,7 @@ class ClozeDataset(Dataset):
 
                 # substitute all sentences with a standard template
                 sample["masked_sentences"] = parse_template(
-                    args.probe.relation_args.template.strip(
+                    args.relation_args.template.strip(
                     ), sample["sub_label"].strip(), tokenizer.mask_token
                 )
                 all_samples.append(sample)

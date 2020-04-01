@@ -8,19 +8,15 @@ import os
 def handle_config(args):
     # Load the config:
     config = load_config(args.config_path)
-    # print('Config: ', config)
-    # print('Args: ', args)
     args = DotMap(vars(args))
-    # print('Dotmap args: ', args)
+
     args = add_config_to_args(config, args)
-    print('Added to args: ', args)
 
     # The idea is to load the config and set all necessary implications (e.g. lowercase True/False from bert_model_type)
     args.device = torch.device("cuda" if torch.cuda.is_available() else 'cpu')
     args.run_identifier = build_run_identifier(args)
 
     # Data dir
-    print(os.getcwd())
     assert os.path.exists(args.data_dir)
 
     # Output dir
@@ -43,6 +39,7 @@ def handle_config(args):
     if 'uncased' in args.bert_model_type:
         args.lowercase = True
 
+    # Choose the correct training dataset
     if args.do_training:
         if args.training_dataset == 'wikitext-2':
             args.train_data_file = args.wiki2_train_data_file
@@ -54,6 +51,9 @@ def handle_config(args):
             args.test_data_file = args.wiki103_test_data_file
         else:
             print('If you can read this, you have probabily added a new training dataset. Please make sure to add the path to the dataset files in the config.yaml and the config_helper.py')
+
+    # Fix the type of learning_rate
+    args.learning_rate = float(args.learning_rate)
 
     return args
 

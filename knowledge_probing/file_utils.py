@@ -31,9 +31,9 @@ def stringify_dotmap(args):
 # Write args to args.execution_log
 
 
-def write_to_execution_log(text, append_newlines=False):
+def write_to_execution_log(text, path, append_newlines=False):
     # print("Saving args into file %s", args.execution_log)
-    with open(args.execution_log, "a") as handle:
+    with open(path, "a") as handle:
         handle.write(text)
         handle.write('\n\n') if append_newlines else None
 
@@ -41,7 +41,7 @@ def write_to_execution_log(text, append_newlines=False):
 def load_vocab(path):
     assert os.path.exists(path)
 
-    with open(path, "r") as f:
+    with open(path, "r", encoding='utf8') as f:
         lines = f.readlines()
     vocab = [x.strip() for x in lines]
     return vocab

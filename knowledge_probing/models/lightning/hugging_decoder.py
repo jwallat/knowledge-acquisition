@@ -1,10 +1,12 @@
 from knowledge_probing.models.lightning.decoder import Decoder
+from knowledge_probing.datasets.text_data_utils import collate
 from transformers import BertForMaskedLM, AutoTokenizer
 from torch.nn import CrossEntropyLoss
+import functools
 
 
 class HuggingDecoder(Decoder):
-    def __init__(self):
+    def __init__(self, args, bert, config):
         super(Decoder, self).__init__()
         print('Using the huggingface pre-trained decoder...')
         self.decoder = BertForMaskedLM.from_pretrained(
@@ -20,17 +22,19 @@ class HuggingDecoder(Decoder):
         self.config = config
         self.args = args
 
+        self.collate = functools.partial(collate, tokenizer=self.tokenizer)
+
     def forward(self, inputs, masked_lm_labels, attention_mask=None, lm_label=None, layer=None, all_layers=False):
         # get attention mask
         if attention_mask == None:
             attention_mask = inputs.clone()
-            attention_mask[attention_mask != tokenizer.pad_token_id] = 1
-            attention_mask[attention_mask == tokenizer.pad_token_id] = 0
+            attention_mask[attention_mask != self.tokenizer.pad_token_id] = 1
+            attention_mask[attention_mask == self.tokenizer.pad_token_id] = 0
 
         # get Berts embeddings
         bert_outputs = self.bert(inputs, attention_mask=attention_mask)
         if not all_layers:
-            if layer == None:
+            if layer == 12:
                 embeddings = bert_outputs[0]
             else:
                 embeddings = bert_outputs[2][layer]

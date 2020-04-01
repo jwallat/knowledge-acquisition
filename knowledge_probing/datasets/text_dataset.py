@@ -10,6 +10,7 @@ from knowledge_probing.datasets.text_data_utils import chunks
 
 class TextDataset(Dataset):
     def __init__(self, tokenizer: AutoTokenizer, args, file_path: str, block_size=512):
+        print(file_path)
         assert os.path.isfile(file_path)
 
         block_size = block_size - \

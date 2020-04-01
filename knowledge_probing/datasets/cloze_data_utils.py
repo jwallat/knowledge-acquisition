@@ -1,6 +1,7 @@
 from torch.nn.utils.rnn import pad_sequence
 from transformers import BertTokenizer
 import torch
+import functools
 
 
 def predicted_sentence(scores, tokenizer):
@@ -10,7 +11,7 @@ def predicted_sentence(scores, tokenizer):
     return predicted_tokens
 
 
-def topk(prediction_scores, token_index, k=10):
+def topk(prediction_scores, token_index, k=10, tokenizer=None):
     # Get the ids for the masked index:
     prediction_for_masked = prediction_scores[0][token_index]
     tops_values, tops_indices = torch.topk(input=prediction_for_masked, k=k)
@@ -113,7 +114,7 @@ def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
     return new_samples, msg
 
 
-def collate(examples):
+def collate(examples, tokenizer):
     ''' 
     This is a function that makes sure all entries in the batch are padded 
     to the correct length.

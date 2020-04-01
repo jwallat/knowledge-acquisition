@@ -6,7 +6,7 @@ from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
 def get_model(args):
     # Get config for Decoder
     config = BertConfig.from_pretrained(args.bert_model_type)
-    # if args.probe.probing_layer != 12:
+    # if args.probing_layer != 12:
     config.output_hidden_states = True
 
     tokenizer = AutoTokenizer.from_pretrained(
@@ -27,10 +27,10 @@ def get_model(args):
 
     # Get the right decoder
     # TODO: Get bert and information into the lightning models
-    if args.train.training_decoder == "Decoder":
-        decoder = Decoder()
+    if args.training_decoder == "Decoder":
+        decoder = Decoder(args=args, bert=bert, config=config)
     else:
-        decoder = HuggingDecoder()
+        decoder = HuggingDecoder(args=args, bert=bert, config=config)
 
     # print(decoder.bert.config.output_hidden_states)
 

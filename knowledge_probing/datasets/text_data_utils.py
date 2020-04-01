@@ -1,6 +1,8 @@
 import torch
 from typing import Tuple, List
 from transformers import AutoTokenizer
+import functools
+from torch.nn.utils.rnn import pad_sequence
 
 
 def chunks(lst, n):
@@ -15,8 +17,8 @@ def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[t
     labels = inputs.clone()
     # print('Inputs device: {}'.format(inputs.device))
     # print('labels type: {}'.format(labels.type()))
-    # We sample a few tokens in each sequence for masked-LM training (with probability args.train.mlm_probability defaults to 0.15 in Bert/RoBERTa)
-    probability_matrix = torch.full(labels.shape, args.train.mlm_probability)
+    # We sample a few tokens in each sequence for masked-LM training (with probability args.mlm_probability defaults to 0.15 in Bert/RoBERTa)
+    probability_matrix = torch.full(labels.shape, args.mlm_probability)
     probability_matrix = probability_matrix.to(inputs.device)
 
     special_tokens_mask = [
@@ -64,3 +66,7 @@ def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[t
 
     # The rest of the time (10% of the time) we keep the masked input tokens unchanged
     return inputs, labels
+
+
+def collate(examples, tokenizer=None):
+    return pad_sequence(examples, batch_first=True, padding_value=tokenizer.pad_token_id)

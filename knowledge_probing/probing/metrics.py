@@ -1,7 +1,7 @@
 from knowledge_probing.datasets.cloze_data_utils import topk
 
 
-def calculate_metrics(batch, index, prediction_scores, precision_at_k, total_top_k_words=1000):
+def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer=None, total_top_k_words=1000):
     metrics_element = {}
 
     # print(batch)
@@ -22,7 +22,7 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, total_top
 
     # get topk predictions
     topk_tokens = topk(prediction_scores,
-                       batch['mask_index'][index], k=total_top_k_words)
+                       batch['mask_index'][index], k=total_top_k_words, tokenizer=tokenizer)
     # print(topk_tokens)
     metrics_element['top_k_tokens'] = topk_tokens
 
