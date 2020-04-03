@@ -24,12 +24,10 @@ def probing(args, decoder):
 
     # Dataset choosings
     dataset_args = []
-    # dataset_args.append(('Google_RE', build_args('Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    dataset_args.append(('TREx', build_args(
-        'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    # dataset_args.append(('ConceptNet', build_args('ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    # dataset_args.append(('Squad', build_args(
-    # 'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('Google_RE', build_args('Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('TREx', build_args('TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('ConceptNet', build_args('ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('Squad', build_args('Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
 
     # Probing
     if args.probe_all_layers:
@@ -158,12 +156,12 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
     if len(google_re_metrices) > 0:
         write_to_execution_log(
             '\n\nGoogle_RE: ' + mean_precisions(google_re_metrices), append_newlines=True, path=args.execution_log)
-        layer_data[ds_name]['means'].append(
+        layer_data['Google_RE']['means'].append(
             mean_precisions(google_re_metrices))
     if len(trex_metrices) > 0:
         write_to_execution_log(
             'Trex: ' + mean_precisions(trex_metrices), append_newlines=True, path=args.execution_log)
-        layer_data[ds_name]['means'].append(mean_precisions(trex_metrices))
+        layer_data['TREx']['means'].append(mean_precisions(trex_metrices))
     write_to_execution_log(
         220 * '-', append_newlines=True, path=args.execution_log)
 
@@ -263,12 +261,12 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
         if len(google_re_metrices[layer]) > 0:
             write_to_execution_log('\n\nGoogle_RE \t Layer {}: '.format(
                 layer + 1) + mean_precisions(google_re_metrices[layer]), append_newlines=True, path=args.execution_log)
-            data[ds_name]['means'].append(
+            data['Google_RE']['means'].append(
                 mean_precisions(google_re_metrices[layer]))
         if len(trex_metrices[layer]) > 0:
             write_to_execution_log('Trex \t Layer {}: '.format(
                 layer + 1) + mean_precisions(trex_metrices[layer]), append_newlines=True, path=args.execution_log)
-            data[ds_name]['means'].append(
+            data['TREx']['means'].append(
                 mean_precisions(trex_metrices[layer]))
     write_to_execution_log(
         220 * '-', append_newlines=True, path=args.execution_log)
