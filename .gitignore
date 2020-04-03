@@ -5,6 +5,7 @@ data/training_data/*
 data/models/qa-bert/*
 data/outputs/*
 data/layer_data/naive/plots/*
+data/layer_data/classifier_per_layer/plots/*
 vocab.txt
 
 condor_out/*
