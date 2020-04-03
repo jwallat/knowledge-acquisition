@@ -6,3 +6,8 @@ data/models/qa-bert/*
 data/outputs/*
 data/layer_data/plots/*
 vocab.txt
+
+condor_out/*
+condor_out
+
+*/desktop.ini
