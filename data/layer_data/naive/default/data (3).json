@@ -1,0 +1,5020 @@
+{
+    "TREx": {
+        "means": [
+            "Mean P@1,10,k: 0.0, 0.00010286325142715363, 0.012847194131346036",
+            "Mean P@1,10,k: 2.6169789594891657e-05, 0.0023946412067792043, 0.05115262504133916",
+            "Mean P@1,10,k: 0.0024278483028928573, 0.008682251555169933, 0.062445031505697295",
+            "Mean P@1,10,k: 0.004956188072464394, 0.019420027662609838, 0.08963412316716941",
+            "Mean P@1,10,k: 0.005787231344094236, 0.038601007168547107, 0.14673364653820886",
+            "Mean P@1,10,k: 0.009535202717450309, 0.04772699524555406, 0.1946221389470104",
+            "Mean P@1,10,k: 0.008843614851649414, 0.06875818253224487, 0.25576146071998085",
+            "Mean P@1,10,k: 0.011935734568191412, 0.12050465314317196, 0.3591128503995761",
+            "Mean P@1,10,k: 0.022006222761411207, 0.14577994108320225, 0.444320307038472",
+            "Mean P@1,10,k: 0.08847430646298533, 0.3332156567597463, 0.6632055028423012",
+            "Mean P@1,10,k: 0.22681920056800914, 0.5329047509151383, 0.8102943224174345",
+            "Mean P@1,10,k: 0.2947909420081577, 0.5809698650999793, 0.8375201296525365"
+        ],
+        "P19": [
+            {
+                "MRR": 0.0008485836793508115,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.03283898305084746,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0034225844427971373,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.00423728813559322,
+                "P_AT_K": 0.07838983050847458,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004784590784822788,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001059322033898305,
+                "P_AT_K": 0.11864406779661017,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.027930064616758024,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.012711864406779662,
+                "P_AT_10": 0.059322033898305086,
+                "P_AT_K": 0.17266949152542374,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01988335937431046,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05084745762711865,
+                "P_AT_10": 0.0836864406779661,
+                "P_AT_K": 0.2055084745762712,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03935660964109925,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.048728813559322036,
+                "P_AT_10": 0.09957627118644068,
+                "P_AT_K": 0.2309322033898305,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05670298687420802,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.025423728813559324,
+                "P_AT_10": 0.09851694915254237,
+                "P_AT_K": 0.2605932203389831,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05628577719877059,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.026483050847457626,
+                "P_AT_10": 0.10699152542372882,
+                "P_AT_K": 0.375,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07145022171471713,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0031779661016949155,
+                "P_AT_10": 0.1048728813559322,
+                "P_AT_K": 0.3961864406779661,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06550869494527381,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0614406779661017,
+                "P_AT_10": 0.2341101694915254,
+                "P_AT_K": 0.6038135593220338,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12918533486434547,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.1673728813559322,
+                "P_AT_10": 0.4470338983050847,
+                "P_AT_K": 0.7595338983050848,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.14414774742189326,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2097457627118644,
+                "P_AT_10": 0.4978813559322034,
+                "P_AT_K": 0.8072033898305084,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P20": [
+            {
+                "MRR": 0.001776574675647795,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.06925498426023086,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004534538800714333,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.16684155299055614,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0038571654930607186,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.14690451206715635,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.006180163894766695,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002098635886673662,
+                "P_AT_K": 0.1825813221406086,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.006947546724324354,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.005246589716684155,
+                "P_AT_K": 0.20146904512067157,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005054351069387133,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.1248688352570829,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0070014301023499075,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0062959076600209865,
+                "P_AT_K": 0.19097586568730326,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08447295327754317,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.023084994753410283,
+                "P_AT_10": 0.20356768100734524,
+                "P_AT_K": 0.4616998950682057,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0526255646800939,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0031479538300104933,
+                "P_AT_10": 0.11122770199370409,
+                "P_AT_K": 0.45855194123819515,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09755307576337509,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0944386149003148,
+                "P_AT_10": 0.2675760755508919,
+                "P_AT_K": 0.6159496327387198,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17735181565575178,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.1259181532004197,
+                "P_AT_10": 0.4795383001049318,
+                "P_AT_K": 0.789087093389297,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17872561671666376,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2518363064008394,
+                "P_AT_10": 0.6096537250786989,
+                "P_AT_K": 0.8415529905561385,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P279": [
+            {
+                "MRR": 0.0015892577727254426,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001037344398340249,
+                "P_AT_K": 0.022821576763485476,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0019169176099423568,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001037344398340249,
+                "P_AT_K": 0.03630705394190872,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0008366057066844519,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.014522821576763486,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0015654230397261482,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001037344398340249,
+                "P_AT_K": 0.021784232365145227,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0027324497787676915,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002074688796680498,
+                "P_AT_K": 0.03319502074688797,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004040384279213377,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.005186721991701245,
+                "P_AT_K": 0.0508298755186722,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00600840143650746,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.01970954356846473,
+                "P_AT_K": 0.08713692946058091,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008425015091775014,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.002074688796680498,
+                "P_AT_10": 0.025933609958506226,
+                "P_AT_K": 0.11721991701244813,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.029360093912912354,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.01970954356846473,
+                "P_AT_10": 0.07883817427385892,
+                "P_AT_K": 0.25622406639004147,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17107886341903225,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.10995850622406639,
+                "P_AT_10": 0.45643153526970953,
+                "P_AT_K": 0.6473029045643154,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2592252001564712,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2800829875518672,
+                "P_AT_10": 0.6732365145228216,
+                "P_AT_K": 0.7676348547717843,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.24834045471545196,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.31950207468879666,
+                "P_AT_10": 0.700207468879668,
+                "P_AT_K": 0.803941908713693,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P37": [
+            {
+                "MRR": 0.00025318074234280673,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010351966873706005,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.323371638738827e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 9.202863066870968e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00010240056591034933,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010351966873706005,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0007668513269988385,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002070393374741201,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004937182409540286,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.003105590062111801,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.012437151719633598,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.018633540372670808,
+                "P_AT_K": 0.17805383022774326,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01267439166456705,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.018633540372670808,
+                "P_AT_K": 0.19875776397515527,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07796433013446298,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.18322981366459629,
+                "P_AT_K": 0.4409937888198758,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11329951400760696,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.16770186335403728,
+                "P_AT_10": 0.40165631469979296,
+                "P_AT_K": 0.922360248447205,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.3513367008989015,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2505175983436853,
+                "P_AT_10": 0.8291925465838509,
+                "P_AT_K": 0.9968944099378882,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.24689822986346585,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.5175983436853002,
+                "P_AT_10": 0.9089026915113871,
+                "P_AT_K": 0.9989648033126294,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P413": [
+            {
+                "MRR": 6.454592491983869e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 6.028930997854321e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.336970762131945e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 1.3518921081946292e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.83733410900135e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00014010920223074183,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.001815742557851178,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004798308254091596,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.148109243697479,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.011817970484464065,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.44537815126050423,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11129849940272948,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.3634453781512605,
+                "P_AT_K": 0.8340336134453782,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.19443075873793947,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.015756302521008403,
+                "P_AT_10": 0.45588235294117646,
+                "P_AT_K": 0.9044117647058824,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04345311071758296,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.11764705882352941,
+                "P_AT_K": 0.7815126050420168,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P449": [
+            {
+                "MRR": 6.77131976371496e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.001152364218348e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.706281523774076e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0016995501451938138,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0011363636363636363,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008556905437670055,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.3181818181818182,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.017579573271843497,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0011363636363636363,
+                "P_AT_K": 0.5988636363636364,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0539943962846217,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.2056818181818182,
+                "P_AT_K": 0.6193181818181818,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13420662001633518,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.6829545454545455,
+                "P_AT_K": 0.8647727272727272,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.23002476390663693,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.6590909090909091,
+                "P_AT_K": 0.8613636363636363,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.31726672169026465,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.09659090909090909,
+                "P_AT_10": 0.6897727272727273,
+                "P_AT_K": 0.9511363636363637,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2451343695720699,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.32840909090909093,
+                "P_AT_10": 0.7761363636363636,
+                "P_AT_K": 0.9727272727272728,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2514238301561216,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.3568181818181818,
+                "P_AT_10": 0.8681818181818182,
+                "P_AT_K": 0.9829545454545454,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P47": [
+            {
+                "MRR": 0.00016327516073616052,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002173913043478261,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00021806811240132805,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010869565217391304,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0006739932468637022,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.017391304347826087,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002316589406170419,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.057608695652173914,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.013443892216906696,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.02608695652173913,
+                "P_AT_K": 0.2141304347826087,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.020122622056627123,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0010869565217391304,
+                "P_AT_10": 0.04782608695652174,
+                "P_AT_K": 0.2608695652173913,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.023853934015620415,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.009782608695652175,
+                "P_AT_10": 0.06304347826086956,
+                "P_AT_K": 0.3173913043478261,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03302146504921836,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.009782608695652175,
+                "P_AT_10": 0.08586956521739131,
+                "P_AT_K": 0.4141304347826087,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03433740685705597,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.005434782608695652,
+                "P_AT_10": 0.07391304347826087,
+                "P_AT_K": 0.42282608695652174,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03953934877250163,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.017391304347826087,
+                "P_AT_10": 0.10760869565217392,
+                "P_AT_K": 0.5510869565217391,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.14537841762429404,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.043478260869565216,
+                "P_AT_10": 0.40217391304347827,
+                "P_AT_K": 0.7695652173913043,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.20080550199345742,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.10760869565217392,
+                "P_AT_10": 0.5554347826086956,
+                "P_AT_K": 0.8217391304347826,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P138": [
+            {
+                "MRR": 0.00034945101224533715,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.006230529595015576,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004326252929795697,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.00778816199376947,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009692214848988593,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001557632398753894,
+                "P_AT_K": 0.012461059190031152,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0016141166878852736,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.04205607476635514,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004236658316434718,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.004672897196261682,
+                "P_AT_K": 0.102803738317757,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0036116944534499685,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001557632398753894,
+                "P_AT_K": 0.08722741433021806,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0021336524800400106,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001557632398753894,
+                "P_AT_K": 0.05763239875389408,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0014564116737403453,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.029595015576323987,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009045914059044734,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.017133956386292833,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005302879024927387,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.010903426791277258,
+                "P_AT_K": 0.1059190031152648,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08195457066437797,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.3068535825545171,
+                "P_AT_K": 0.5700934579439252,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.27615324683542775,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.5763239875389408,
+                "P_AT_K": 0.778816199376947,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P364": [
+            {
+                "MRR": 0.0001759006249168871,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002336448598130841,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.616962033658541e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 1.6202833551531493e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00025426339595057594,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 6.141911851997567e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002225764241623098,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0630841121495327,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004160429859256312,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.12733644859813084,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08703915540801935,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.009345794392523364,
+                "P_AT_10": 0.2102803738317757,
+                "P_AT_K": 0.45210280373831774,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12545443456318486,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2266355140186916,
+                "P_AT_10": 0.47313084112149534,
+                "P_AT_K": 0.9264018691588785,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.22404424131052755,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.3002336448598131,
+                "P_AT_10": 0.7242990654205608,
+                "P_AT_K": 0.9836448598130841,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.19296244283093802,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.4147196261682243,
+                "P_AT_10": 0.7780373831775701,
+                "P_AT_K": 0.9813084112149533,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P463": [
+            {
+                "MRR": 0.0002554112554112554,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0044444444444444444,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00013618485535957288,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.008888888888888889,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 7.748384882937253e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00013438427104351858,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0032323729825214577,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.04,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007989826095356483,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0044444444444444444,
+                "P_AT_K": 0.27111111111111114,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0660739986081544,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.23555555555555555,
+                "P_AT_K": 0.5644444444444444,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.4674707553006536,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0044444444444444444,
+                "P_AT_10": 0.5733333333333334,
+                "P_AT_K": 0.7244444444444444,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.22955949496690511,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.3422222222222222,
+                "P_AT_10": 0.6977777777777778,
+                "P_AT_K": 0.7866666666666666,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1451336194689084,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.5377777777777778,
+                "P_AT_10": 0.7822222222222223,
+                "P_AT_K": 0.8088888888888889,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2825238149386102,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.4666666666666667,
+                "P_AT_10": 0.8088888888888889,
+                "P_AT_K": 0.8444444444444444,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.3168411715651384,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.4622222222222222,
+                "P_AT_10": 0.84,
+                "P_AT_K": 0.8444444444444444,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P101": [
+            {
+                "MRR": 0.00023975632024408848,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.005747126436781609,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0005108177482824105,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0014367816091954023,
+                "P_AT_K": 0.008620689655172414,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009548064784499725,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.008620689655172414,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004951190083799353,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0014367816091954023,
+                "P_AT_10": 0.005747126436781609,
+                "P_AT_K": 0.07471264367816093,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008810262056277909,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.007183908045977011,
+                "P_AT_K": 0.14224137931034483,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.009945838136898012,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.007183908045977011,
+                "P_AT_K": 0.3290229885057471,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03159053977740536,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.05028735632183908,
+                "P_AT_K": 0.514367816091954,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09513500088272427,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.2471264367816092,
+                "P_AT_K": 0.6192528735632183,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08435150329895684,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.2514367816091954,
+                "P_AT_K": 0.6896551724137931,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08870385355954338,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05747126436781609,
+                "P_AT_10": 0.375,
+                "P_AT_K": 0.7255747126436781,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13705325966434628,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08764367816091954,
+                "P_AT_10": 0.41810344827586204,
+                "P_AT_K": 0.7916666666666666,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15686523414176803,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.11063218390804598,
+                "P_AT_10": 0.47988505747126436,
+                "P_AT_K": 0.8620689655172413,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P106": [
+            {
+                "MRR": 0.00036048656269385834,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0020876826722338203,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004117376020388648,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.010438413361169102,
+                "P_AT_K": 0.061586638830897704,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004869722403465191,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.007306889352818371,
+                "P_AT_K": 0.09603340292275574,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0022719209244048792,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.06471816283924843,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.016311139524098826,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.054279749478079335,
+                "P_AT_K": 0.2244258872651357,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.013261888000881931,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0511482254697286,
+                "P_AT_10": 0.06784968684759916,
+                "P_AT_K": 0.2578288100208768,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03765599709671103,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0511482254697286,
+                "P_AT_10": 0.20146137787056367,
+                "P_AT_K": 0.42379958246346555,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07290918161475395,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.005219206680584551,
+                "P_AT_10": 0.19937369519832984,
+                "P_AT_K": 0.4091858037578288,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04021826700139419,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.04592901878914405,
+                "P_AT_10": 0.18162839248434237,
+                "P_AT_K": 0.4791231732776618,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.048496654029941536,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.006263048016701462,
+                "P_AT_10": 0.08037578288100208,
+                "P_AT_K": 0.5396659707724426,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06553286085761896,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.005219206680584551,
+                "P_AT_10": 0.1826722338204593,
+                "P_AT_K": 0.6189979123173278,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06339888155310103,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.011482254697286013,
+                "P_AT_10": 0.1847599164926931,
+                "P_AT_K": 0.6524008350730689,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P527": [
+            {
+                "MRR": 0.0003167548076652287,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.006147540983606557,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.001720803521882096,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.04610655737704918,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.000756525193881382,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.012295081967213115,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0006472523854104801,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0010245901639344263,
+                "P_AT_K": 0.010245901639344262,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002429374572466355,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0030737704918032786,
+                "P_AT_K": 0.045081967213114756,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00448834167967151,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.004098360655737705,
+                "P_AT_K": 0.08196721311475409,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005153526904237225,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.005122950819672131,
+                "P_AT_K": 0.13217213114754098,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004813952837893816,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0030737704918032786,
+                "P_AT_K": 0.11168032786885246,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004697407194189071,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0030737704918032786,
+                "P_AT_K": 0.0942622950819672,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0172470010267398,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0010245901639344263,
+                "P_AT_10": 0.042008196721311473,
+                "P_AT_K": 0.26536885245901637,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.074082938046689,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02459016393442623,
+                "P_AT_10": 0.16188524590163936,
+                "P_AT_K": 0.5040983606557377,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09972930723942959,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08196721311475409,
+                "P_AT_10": 0.2899590163934426,
+                "P_AT_K": 0.6557377049180327,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P530": [
+            {
+                "MRR": 0.00042889464623575884,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.01606425702811245,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0015427871004268226,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.010040160642570281,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0057919547097640784,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.2700803212851406,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.015769238147676782,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.012048192771084338,
+                "P_AT_K": 0.44879518072289154,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.042948913153717495,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.11847389558232932,
+                "P_AT_K": 0.5903614457831325,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07901073389985425,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.002008032128514056,
+                "P_AT_10": 0.2640562248995984,
+                "P_AT_K": 0.6586345381526104,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11816855037929039,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05220883534136546,
+                "P_AT_10": 0.29116465863453816,
+                "P_AT_K": 0.7168674698795181,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.16087690681335948,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.06526104417670683,
+                "P_AT_10": 0.4026104417670683,
+                "P_AT_K": 0.7650602409638554,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13664362647038095,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.029116465863453816,
+                "P_AT_10": 0.3614457831325301,
+                "P_AT_K": 0.7269076305220884,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11400141727312034,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02108433734939759,
+                "P_AT_10": 0.3885542168674699,
+                "P_AT_K": 0.8333333333333334,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11024842857060302,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.024096385542168676,
+                "P_AT_10": 0.3614457831325301,
+                "P_AT_K": 0.8945783132530121,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10251358882523129,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02610441767068273,
+                "P_AT_10": 0.26104417670682734,
+                "P_AT_K": 0.928714859437751,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P176": [
+            {
+                "MRR": 0.00010537836853261073,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.851445178757423e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.278884868612967e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00032871880584831167,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0020554984583761563,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009274121668200447,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.019527235354573486,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0012461471522926654,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.02158273381294964,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00254722795554332,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.041109969167523124,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.012285246916164267,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.018499486125385406,
+                "P_AT_K": 0.30832476875642345,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01058157946642085,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.024665981500513873,
+                "P_AT_K": 0.24152106885919836,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.24720426508389437,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.263103802672148,
+                "P_AT_10": 0.6341212744090442,
+                "P_AT_K": 0.8396711202466598,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.049817730560095634,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.7944501541623844,
+                "P_AT_10": 0.8828365878725591,
+                "P_AT_K": 0.9496402877697842,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.040800707955230525,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.8561151079136691,
+                "P_AT_10": 0.9280575539568345,
+                "P_AT_K": 0.9630010277492291,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P27": [
+            {
+                "MRR": 9.9700266639031e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 1.3037741654541567e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 5.502327157033784e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.723959256061457e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.037615793487572e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 5.159629737300548e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.126352621788792e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 7.350924852800021e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00011544815359668912,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009308090282143202,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002070393374741201,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00394235292192507,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.09730848861283643,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.027441659909962487,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.06935817805383022,
+                "P_AT_K": 0.5113871635610766,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P407": [
+            {
+                "MRR": 0.0010276676247947575,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.006036364586455494,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.2120866590649943,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0009596472498454707,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0011402508551881414,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002107551909949768,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0028197634837710014,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.012542759407069556,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0017380049318702958,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002347281334614915,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0068415051311288486,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004644129458654248,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.13340935005701254,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04103106671283854,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0034207525655644243,
+                "P_AT_10": 0.09692132269099202,
+                "P_AT_K": 0.5781071835803877,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1573353932521051,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.15849486887115166,
+                "P_AT_10": 0.5165336374002281,
+                "P_AT_K": 0.7491448118586089,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.19918401893672139,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.47776510832383123,
+                "P_AT_10": 0.8289623717217788,
+                "P_AT_K": 0.9783352337514253,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1487301209001835,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.6077537058152793,
+                "P_AT_10": 0.8814139110604333,
+                "P_AT_K": 0.9897377423033067,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P30": [
+            {
+                "MRR": 0.0008905813025669051,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.019487179487179488,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.011811145669286746,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.041025641025641026,
+                "P_AT_K": 0.14461538461538462,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.019131909838316582,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.09641025641025641,
+                "P_AT_10": 0.11794871794871795,
+                "P_AT_K": 0.17025641025641025,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.060098566756205264,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.07179487179487179,
+                "P_AT_10": 0.16512820512820514,
+                "P_AT_K": 0.19384615384615383,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05453191712927366,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.048205128205128206,
+                "P_AT_10": 0.12923076923076923,
+                "P_AT_K": 0.30974358974358973,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.045079738959491564,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0010256410256410256,
+                "P_AT_10": 0.0882051282051282,
+                "P_AT_K": 0.1712820512820513,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09656808159519721,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.11794871794871795,
+                "P_AT_K": 0.28717948717948716,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12932036782587736,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.3425641025641026,
+                "P_AT_K": 0.9579487179487179,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10002180283356028,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.008205128205128205,
+                "P_AT_10": 0.2964102564102564,
+                "P_AT_K": 0.9220512820512821,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.3394954146147739,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.06769230769230769,
+                "P_AT_10": 0.6553846153846153,
+                "P_AT_K": 0.961025641025641,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2350120345868306,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.3364102564102564,
+                "P_AT_10": 0.7569230769230769,
+                "P_AT_K": 0.9548717948717949,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.16553173852141995,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.36923076923076925,
+                "P_AT_10": 0.7097435897435898,
+                "P_AT_K": 0.9241025641025641,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P178": [
+            {
+                "MRR": 1.781102502449016e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.0632412907181924e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0010819449211799414,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0025109846136182256,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.06937394247038917,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005945421156178669,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.008460236886632826,
+                "P_AT_K": 0.11336717428087986,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.009211535276561754,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.018612521150592216,
+                "P_AT_K": 0.11505922165820642,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.02460935946446195,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.07614213197969544,
+                "P_AT_K": 0.3197969543147208,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.027668918643347105,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.08460236886632826,
+                "P_AT_K": 0.3993231810490694,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.14759787481110248,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.16074450084602368,
+                "P_AT_10": 0.4230118443316413,
+                "P_AT_K": 0.739424703891709,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.143167385433044,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.5702199661590525,
+                "P_AT_10": 0.7969543147208121,
+                "P_AT_K": 0.9543147208121827,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11637693295721098,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.6835871404399323,
+                "P_AT_10": 0.9272419627749577,
+                "P_AT_K": 0.9898477157360406,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P1376": [
+            {
+                "MRR": 0.00031792830442462536,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.004291845493562232,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0014178739610787331,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.017167381974248927,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002837978524248816,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.004291845493562232,
+                "P_AT_K": 0.060085836909871244,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.016118013458183485,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.017167381974248927,
+                "P_AT_10": 0.06866952789699571,
+                "P_AT_K": 0.21030042918454936,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.024123666588568984,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.017167381974248927,
+                "P_AT_10": 0.06437768240343347,
+                "P_AT_K": 0.26609442060085836,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.027643567536415118,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.008583690987124463,
+                "P_AT_10": 0.07296137339055794,
+                "P_AT_K": 0.3218884120171674,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.02881331377136402,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.008583690987124463,
+                "P_AT_10": 0.06437768240343347,
+                "P_AT_K": 0.33047210300429186,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03631819548612487,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.004291845493562232,
+                "P_AT_10": 0.07296137339055794,
+                "P_AT_K": 0.39914163090128757,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04620545568841541,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02575107296137339,
+                "P_AT_10": 0.09012875536480687,
+                "P_AT_K": 0.4248927038626609,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.14891796815068814,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.23605150214592274,
+                "P_AT_10": 0.5450643776824035,
+                "P_AT_K": 0.7939914163090128,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12209027923894561,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.6781115879828327,
+                "P_AT_10": 0.8884120171673819,
+                "P_AT_K": 0.9484978540772532,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09504530171031758,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.7639484978540773,
+                "P_AT_10": 0.9184549356223176,
+                "P_AT_K": 0.9699570815450643,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P131": [
+            {
+                "MRR": 0.0004338408167295355,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.00340522133938706,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003234068740886033,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.00681044267877412,
+                "P_AT_K": 0.04086265607264472,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0022160619757228377,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.00340522133938706,
+                "P_AT_K": 0.039727582292849034,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007908973313332086,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011350737797956867,
+                "P_AT_10": 0.015891032917139614,
+                "P_AT_K": 0.12372304199772985,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.019111881254034842,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.004540295119182747,
+                "P_AT_10": 0.046538024971623154,
+                "P_AT_K": 0.21679909194097616,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.033339176867867984,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011350737797956867,
+                "P_AT_10": 0.08172531214528944,
+                "P_AT_K": 0.42224744608399545,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03778408689545726,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011350737797956867,
+                "P_AT_10": 0.09534619750283768,
+                "P_AT_K": 0.489216799091941,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.060609035824233944,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.00681044267877412,
+                "P_AT_10": 0.1452894438138479,
+                "P_AT_K": 0.601589103291714,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05787732254169512,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.01021566401816118,
+                "P_AT_10": 0.13507377979568672,
+                "P_AT_K": 0.5482406356413166,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10162844128973386,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.04880817253121453,
+                "P_AT_10": 0.2883087400681044,
+                "P_AT_K": 0.7309875141884222,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.18474997344896107,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.21793416572077184,
+                "P_AT_10": 0.5618615209988649,
+                "P_AT_K": 0.8308740068104427,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17795217795601537,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.246311010215664,
+                "P_AT_10": 0.5788876276958003,
+                "P_AT_K": 0.8444948921679909,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P1412": [
+            {
+                "MRR": 0.00041514559805036234,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010319917440660474,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0018382802852848228,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0196078431372549,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004004917905820361,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0016105295971190195,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0041279669762641896,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0024650707373836253,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.017543859649122806,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0025593391181822174,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.015479876160990712,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0020906721390098943,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.013415892672858616,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.001738310588671017,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0022267831628847413,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0020639834881320948,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06399262124434561,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.21981424148606812,
+                "P_AT_K": 0.5510835913312694,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1315838616005503,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.42208462332301344,
+                "P_AT_10": 0.6542827657378741,
+                "P_AT_K": 0.934984520123839,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13894725396981134,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.6563467492260062,
+                "P_AT_10": 0.8937048503611971,
+                "P_AT_K": 0.9793601651186791,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P108": [
+            {
+                "MRR": 0.0002545271010412397,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.534366731429616e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.755954271370581e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00014581502484910383,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0026109660574412533,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00045808255134818657,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.005221932114882507,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0012568326685999285,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0026109660574412533,
+                "P_AT_K": 0.007832898172323759,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0012820272642586105,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.020887728459530026,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0038619547434733353,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.07049608355091384,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.013687516048930646,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.005221932114882507,
+                "P_AT_K": 0.5248041775456919,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07577990904743986,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.26631853785900783,
+                "P_AT_K": 0.7702349869451697,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15311627795570737,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.018276762402088774,
+                "P_AT_10": 0.42297650130548303,
+                "P_AT_K": 0.8459530026109661,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12500217384196527,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02349869451697128,
+                "P_AT_10": 0.4177545691906005,
+                "P_AT_K": 0.8537859007832899,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P136": [
+            {
+                "MRR": 0.0003625847160655829,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.00322234156820623,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.974805706995782e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004792384134329272,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.5637456660234906e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.000777885244870983,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0020796938054761646,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.00322234156820623,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004859053255416264,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.1288936627282492,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005387994106267345,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.14500537056928034,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004474956465396553,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.05370569280343716,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01492789892662014,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.6240601503759399,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06406300745586743,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.00322234156820623,
+                "P_AT_10": 0.200859291084855,
+                "P_AT_K": 0.790547798066595,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.056228892388841274,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.00322234156820623,
+                "P_AT_10": 0.16004296455424274,
+                "P_AT_K": 0.7540279269602578,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P17": [
+            {
+                "MRR": 0.002355418407762007,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.06666666666666667,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.015705362825275702,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.01935483870967742,
+                "P_AT_K": 0.33763440860215055,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.056657395350346806,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.12365591397849462,
+                "P_AT_K": 0.3860215053763441,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05134192550561751,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05591397849462366,
+                "P_AT_10": 0.16881720430107527,
+                "P_AT_K": 0.5559139784946237,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10826828867501644,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05268817204301075,
+                "P_AT_10": 0.3172043010752688,
+                "P_AT_K": 0.6064516129032258,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08525295962912079,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08279569892473118,
+                "P_AT_10": 0.2946236559139785,
+                "P_AT_K": 0.7268817204301076,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09121732813119429,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.07204301075268817,
+                "P_AT_10": 0.3021505376344086,
+                "P_AT_K": 0.7516129032258064,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1401423763426107,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.024731182795698924,
+                "P_AT_10": 0.26881720430107525,
+                "P_AT_K": 0.7548387096774194,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11167577140492986,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.01827956989247312,
+                "P_AT_10": 0.26881720430107525,
+                "P_AT_K": 0.7096774193548387,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17802790353552175,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.03870967741935484,
+                "P_AT_10": 0.4397849462365591,
+                "P_AT_K": 0.8247311827956989,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.24570632891272365,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2075268817204301,
+                "P_AT_10": 0.6709677419354839,
+                "P_AT_K": 0.9021505376344086,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.2415167964728542,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2591397849462366,
+                "P_AT_10": 0.7032258064516129,
+                "P_AT_K": 0.9193548387096774,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P39": [
+            {
+                "MRR": 5.137318394800852e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.9890394998587515e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0011210762331838565,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.491827344396976e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0011210762331838565,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00026796261254683433,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0011210762331838565,
+                "P_AT_K": 0.0011210762331838565,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0025640147285016053,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011210762331838565,
+                "P_AT_10": 0.0011210762331838565,
+                "P_AT_K": 0.0795964125560538,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00653425837123445,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011210762331838565,
+                "P_AT_10": 0.0033632286995515697,
+                "P_AT_K": 0.17040358744394618,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.026761349463360434,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0011210762331838565,
+                "P_AT_10": 0.061659192825112105,
+                "P_AT_K": 0.44506726457399104,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.041207630995916046,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.12219730941704036,
+                "P_AT_K": 0.5246636771300448,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05796930823315283,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.002242152466367713,
+                "P_AT_10": 0.08632286995515695,
+                "P_AT_K": 0.5896860986547086,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.052571867740575616,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.004484304932735426,
+                "P_AT_10": 0.14349775784753363,
+                "P_AT_K": 0.6502242152466368,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10765121323280023,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.04484304932735426,
+                "P_AT_10": 0.26345291479820626,
+                "P_AT_K": 0.8609865470852018,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1632942599530172,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.11210762331838565,
+                "P_AT_10": 0.4798206278026906,
+                "P_AT_K": 0.8912556053811659,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P264": [
+            {
+                "MRR": 5.1981074259297356e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 2.2208554677344682e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 6.2446890463025415e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00036364181384660084,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00047862915412099293,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004917421920651951,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0030310150024634402,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.1561771561771562,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.014796950703372,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.02564102564102564,
+                "P_AT_K": 0.21212121212121213,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07189902222946355,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.030303030303030304,
+                "P_AT_10": 0.20512820512820512,
+                "P_AT_K": 0.21212121212121213,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004895121329238506,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.2097902097902098,
+                "P_AT_10": 0.21212121212121213,
+                "P_AT_K": 0.2494172494172494,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.025744267007070255,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.21212121212121213,
+                "P_AT_10": 0.2680652680652681,
+                "P_AT_K": 0.696969696969697,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.02948839804015764,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.20512820512820512,
+                "P_AT_10": 0.2540792540792541,
+                "P_AT_K": 0.6386946386946387,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P276": [
+            {
+                "MRR": 0.0007944616472395971,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.016701461377870562,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002723072383991205,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0010438413361169101,
+                "P_AT_K": 0.06471816283924843,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008787861044923876,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.003131524008350731,
+                "P_AT_10": 0.019832985386221295,
+                "P_AT_K": 0.10542797494780794,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.022106647248079498,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.013569937369519834,
+                "P_AT_10": 0.07515657620041753,
+                "P_AT_K": 0.18058455114822547,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0419344920114079,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.024008350730688934,
+                "P_AT_10": 0.10542797494780794,
+                "P_AT_K": 0.2359081419624217,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.039762319445564014,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.013569937369519834,
+                "P_AT_10": 0.09081419624217119,
+                "P_AT_K": 0.28914405010438415,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.041085831408781755,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.025052192066805846,
+                "P_AT_10": 0.09394572025052192,
+                "P_AT_K": 0.35908141962421714,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03558577572660226,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.027139874739039668,
+                "P_AT_10": 0.09394572025052192,
+                "P_AT_K": 0.40292275574112735,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.032183426877231004,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.03444676409185804,
+                "P_AT_10": 0.08977035490605428,
+                "P_AT_K": 0.3987473903966597,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13991028376718742,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.07933194154488518,
+                "P_AT_10": 0.3663883089770355,
+                "P_AT_K": 0.6878914405010439,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13656828038920873,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.37265135699373697,
+                "P_AT_10": 0.6022964509394572,
+                "P_AT_K": 0.8037578288100209,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13553026456842474,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.42171189979123175,
+                "P_AT_10": 0.6461377870563675,
+                "P_AT_K": 0.8329853862212944,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P937": [
+            {
+                "MRR": 0.0008543456302259481,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0031446540880503146,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0037801936530205585,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.10482180293501048,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005939990351510542,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0010482180293501049,
+                "P_AT_K": 0.20545073375262055,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05493304582303114,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.02410901467505241,
+                "P_AT_10": 0.16037735849056603,
+                "P_AT_K": 0.37631027253668764,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09593977968915807,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0010482180293501049,
+                "P_AT_10": 0.2222222222222222,
+                "P_AT_K": 0.3228511530398323,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04852545866888229,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0429769392033543,
+                "P_AT_10": 0.1530398322851153,
+                "P_AT_K": 0.44758909853249473,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09810341630460093,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.03773584905660377,
+                "P_AT_10": 0.2190775681341719,
+                "P_AT_K": 0.5,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.061423810977001114,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.1278825995807128,
+                "P_AT_10": 0.2631027253668763,
+                "P_AT_K": 0.5786163522012578,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05064484780362018,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.13417190775681342,
+                "P_AT_10": 0.2620545073375262,
+                "P_AT_K": 0.5681341719077568,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10172566968365232,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.1530398322851153,
+                "P_AT_10": 0.3710691823899371,
+                "P_AT_K": 0.6310272536687631,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11380779062140321,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.29559748427672955,
+                "P_AT_10": 0.5618448637316562,
+                "P_AT_K": 0.8658280922431866,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17964360151713782,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.32075471698113206,
+                "P_AT_10": 0.6415094339622641,
+                "P_AT_K": 0.9025157232704403,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P140": [
+            {
+                "MRR": 0.0,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 2.469818814091798e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 3.80872527863627e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 5.370263712991063e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00016059924648317576,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.006342494714587738,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0013806891091490317,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.006342494714587738,
+                "P_AT_K": 0.006342494714587738,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007494321020218031,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.006342494714587738,
+                "P_AT_K": 0.006342494714587738,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008549786939966029,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.006342494714587738,
+                "P_AT_K": 0.03171247357293869,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.021434725050487324,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.006342494714587738,
+                "P_AT_K": 0.5179704016913319,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1289164847409176,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.47568710359408034,
+                "P_AT_K": 0.8985200845665962,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15097357723163365,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.5285412262156448,
+                "P_AT_K": 0.9915433403805497,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0964298919773749,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.5179704016913319,
+                "P_AT_K": 0.8773784355179705,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P1303": [
+            {
+                "MRR": 0.0004282134578790987,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.007376185458377239,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00015717589479348143,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 4.529059123867382e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0004673218187366795,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0018129971914772093,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.029504741833508957,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005351993687600686,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.003161222339304531,
+                "P_AT_K": 0.12961011591148577,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007975787890514017,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.006322444678609062,
+                "P_AT_K": 0.19388830347734456,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.018319617602720956,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.023182297154899896,
+                "P_AT_K": 0.458377239199157,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04113599934830595,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.003161222339304531,
+                "P_AT_10": 0.101159114857745,
+                "P_AT_K": 0.41517386722866173,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10257628541703458,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.04741833508956796,
+                "P_AT_10": 0.291886195995785,
+                "P_AT_K": 0.6965226554267651,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15790658065882845,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.026343519494204427,
+                "P_AT_10": 0.4088514225500527,
+                "P_AT_K": 0.8314014752370916,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1326233592339625,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05584826132771338,
+                "P_AT_10": 0.38461538461538464,
+                "P_AT_K": 0.7839831401475237,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P127": [
+            {
+                "MRR": 0.0007844116392355222,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002911208151382824,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.001274934296917824,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.07132459970887918,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002960297456596282,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.08442503639010189,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004004493621011396,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002911208151382824,
+                "P_AT_K": 0.08733624454148471,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.006367876953381418,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.00727802037845706,
+                "P_AT_K": 0.12663755458515283,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008254918101940175,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.004366812227074236,
+                "P_AT_K": 0.14264919941775836,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.013228166627589327,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.07278020378457059,
+                "P_AT_K": 0.13100436681222707,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.02506166917366867,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.08442503639010189,
+                "P_AT_K": 0.22416302765647744,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.027143469482879837,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.11644832605531295,
+                "P_AT_K": 0.24890829694323144,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06055387448999213,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.16593886462882096,
+                "P_AT_10": 0.2838427947598253,
+                "P_AT_K": 0.48180494905385735,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09641396015792293,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.31149927219796214,
+                "P_AT_10": 0.5021834061135371,
+                "P_AT_K": 0.7248908296943232,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15349497584467858,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.29839883551673946,
+                "P_AT_10": 0.5705967976710334,
+                "P_AT_K": 0.7583697234352256,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P103": [
+            {
+                "MRR": 0.0005423310568419478,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.017400204708290685,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 8.445726151478104e-05,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 1.3665439965672413e-06,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00011447716423126035,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00011587655916541132,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.006983194938475194,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.3193449334698055,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007678297143201181,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0040941658137154556,
+                "P_AT_K": 0.09416581371545547,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.056351555972828656,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.062436028659160696,
+                "P_AT_K": 0.7758444216990789,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.21394505129485117,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05424769703172978,
+                "P_AT_10": 0.6775844421699079,
+                "P_AT_K": 0.9928352098259979,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.467045271853114,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.24872057318321392,
+                "P_AT_10": 0.9375639713408394,
+                "P_AT_K": 0.9989764585465711,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.12215556978785674,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.7349027635619243,
+                "P_AT_10": 0.9529170931422722,
+                "P_AT_K": 1.0,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P190": [
+            {
+                "MRR": 0.00016454938810443027,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010080645161290322,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00015755259786590783,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010080645161290322,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00011437068855565594,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0010080645161290322,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0002819152939315444,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.004032258064516129,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0027015911911708675,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.007056451612903226,
+                "P_AT_K": 0.04435483870967742,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005862493972821876,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.010080645161290322,
+                "P_AT_K": 0.07358870967741936,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0092645017307004,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.011088709677419355,
+                "P_AT_K": 0.14213709677419356,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.012616954466389217,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.02217741935483871,
+                "P_AT_K": 0.22379032258064516,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.018968152890760075,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0030241935483870967,
+                "P_AT_10": 0.03024193548387097,
+                "P_AT_K": 0.3034274193548387,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.05092515965313325,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.012096774193548387,
+                "P_AT_10": 0.10584677419354839,
+                "P_AT_K": 0.5534274193548387,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06631660868204656,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.018145161290322582,
+                "P_AT_10": 0.16834677419354838,
+                "P_AT_K": 0.6310483870967742,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06655183524953116,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.019153225806451613,
+                "P_AT_10": 0.17338709677419356,
+                "P_AT_K": 0.5735887096774194,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P1001": [
+            {
+                "MRR": 0.002544134141473033,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.10128388017118402,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.004987851354488989,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.17403708987161198,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.015324274107372837,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.025677603423680456,
+                "P_AT_K": 0.23823109843081314,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01319780319654223,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.025677603423680456,
+                "P_AT_K": 0.20970042796005706,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03887733731290651,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.08273894436519258,
+                "P_AT_K": 0.33238231098430815,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1161750907565554,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.028530670470756064,
+                "P_AT_10": 0.26390870185449355,
+                "P_AT_K": 0.44365192582025675,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.088458781092882,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.052781740370898715,
+                "P_AT_10": 0.26676176890156916,
+                "P_AT_K": 0.5463623395149786,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0867456930923651,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.05563480741797432,
+                "P_AT_10": 0.26676176890156916,
+                "P_AT_K": 0.6847360912981455,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10778041916945992,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0456490727532097,
+                "P_AT_10": 0.25962910128388017,
+                "P_AT_K": 0.644793152639087,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11341645871073118,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.04850213980028531,
+                "P_AT_10": 0.2781740370898716,
+                "P_AT_K": 0.7275320970042796,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.369575630279164,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.39229671897289586,
+                "P_AT_10": 0.9015691868758916,
+                "P_AT_K": 0.9714693295292439,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1523904606581019,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.7132667617689016,
+                "P_AT_10": 0.9358059914407989,
+                "P_AT_K": 0.9800285306704708,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P31": [
+            {
+                "MRR": 0.0012465887111015779,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.009761388286334056,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0031150067244634792,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0021691973969631237,
+                "P_AT_K": 0.06182212581344902,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003786921713941282,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.005422993492407809,
+                "P_AT_K": 0.06182212581344902,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00968031933467637,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.010845986984815618,
+                "P_AT_K": 0.1984815618221258,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07692555776793235,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.027114967462039046,
+                "P_AT_10": 0.20932754880694143,
+                "P_AT_K": 0.3926247288503254,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.057159909631838236,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0878524945770065,
+                "P_AT_10": 0.18546637744034708,
+                "P_AT_K": 0.4002169197396963,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0594268661510607,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.01193058568329718,
+                "P_AT_10": 0.11822125813449023,
+                "P_AT_K": 0.31344902386117135,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.021386442469194546,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0032537960954446853,
+                "P_AT_10": 0.04338394793926247,
+                "P_AT_K": 0.289587852494577,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03865557375255493,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0032537960954446853,
+                "P_AT_10": 0.11605206073752712,
+                "P_AT_K": 0.37093275488069416,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.16078617282848615,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.09652928416485901,
+                "P_AT_10": 0.33947939262472887,
+                "P_AT_K": 0.5650759219088937,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15000988117955896,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.28633405639913234,
+                "P_AT_10": 0.5531453362255966,
+                "P_AT_K": 0.7147505422993492,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.13146525066779158,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.34490238611713664,
+                "P_AT_10": 0.5921908893709328,
+                "P_AT_K": 0.7364425162689805,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P495": [
+            {
+                "MRR": 0.0015755691767236643,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0407040704070407,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.007902396085626736,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0011001100110011,
+                "P_AT_K": 0.24312431243124313,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.014038985586666138,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0319031903190319,
+                "P_AT_K": 0.23982398239823982,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0056570795526369845,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.1342134213421342,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008851921952976956,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0044004400440044,
+                "P_AT_K": 0.31573157315731576,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03357838744258491,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.006600660066006601,
+                "P_AT_10": 0.07590759075907591,
+                "P_AT_K": 0.5390539053905391,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.016055489259643008,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0033003300330033004,
+                "P_AT_10": 0.022002200220022004,
+                "P_AT_K": 0.4158415841584158,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.08139392655723988,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.014301430143014302,
+                "P_AT_10": 0.24202420242024203,
+                "P_AT_K": 0.7216721672167217,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.10698084298936603,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.025302530253025302,
+                "P_AT_10": 0.3102310231023102,
+                "P_AT_K": 0.7293729372937293,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0863254526574566,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.041804180418041806,
+                "P_AT_10": 0.27722772277227725,
+                "P_AT_K": 0.7183718371837183,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.14282532502048387,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.1397139713971397,
+                "P_AT_10": 0.47964796479647964,
+                "P_AT_K": 0.834983498349835,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1930719217880533,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.25412541254125415,
+                "P_AT_10": 0.6182618261826183,
+                "P_AT_K": 0.8888888888888888,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P159": [
+            {
+                "MRR": 0.00106071711611132,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001034126163391934,
+                "P_AT_K": 0.017580144777662874,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.002753647864352956,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0031023784901758012,
+                "P_AT_K": 0.05894519131334023,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003269610781174291,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.10548086866597725,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003613744717066833,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.001034126163391934,
+                "P_AT_K": 0.10237849017580145,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.017601071501973726,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.005170630816959669,
+                "P_AT_10": 0.04446742502585315,
+                "P_AT_K": 0.17580144777662876,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.022023890022892942,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.004136504653567736,
+                "P_AT_10": 0.07135470527404343,
+                "P_AT_K": 0.29162357807652534,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07658710745100938,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.010341261633919338,
+                "P_AT_10": 0.11789038262668046,
+                "P_AT_K": 0.4301964839710445,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04136543265524535,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08790072388831438,
+                "P_AT_10": 0.18510858324715615,
+                "P_AT_K": 0.49948293691830403,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.04860144737492698,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08996897621509824,
+                "P_AT_10": 0.18510858324715615,
+                "P_AT_K": 0.5367114788004137,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11592295057985615,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.11168562564632885,
+                "P_AT_10": 0.3846949327817994,
+                "P_AT_K": 0.7383660806618407,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1113452646531543,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.3133402275077559,
+                "P_AT_10": 0.5294725956566702,
+                "P_AT_K": 0.8035160289555325,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11197025219382666,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.35263702171664946,
+                "P_AT_10": 0.5532574974146846,
+                "P_AT_K": 0.7859358841778697,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P36": [
+            {
+                "MRR": 0.0003781861152236957,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.008547008547008548,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00023557830180710002,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.004273504273504274,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.000283749419099051,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.002849002849002849,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.00026485957003094133,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.004273504273504274,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0006230710393786051,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.008547008547008548,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.001015318989323654,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.019943019943019943,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0021300848674243263,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002849002849002849,
+                "P_AT_K": 0.03561253561253561,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01221327061583469,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.021367521367521368,
+                "P_AT_K": 0.19230769230769232,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.03366781499118307,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0014245014245014246,
+                "P_AT_10": 0.07122507122507123,
+                "P_AT_K": 0.2962962962962963,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1327301397634143,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.19373219373219372,
+                "P_AT_10": 0.46438746438746437,
+                "P_AT_K": 0.7122507122507122,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11733313829609031,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.5626780626780626,
+                "P_AT_10": 0.7521367521367521,
+                "P_AT_K": 0.8532763532763533,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.1300834535763154,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.5925925925925926,
+                "P_AT_10": 0.782051282051282,
+                "P_AT_K": 0.8632478632478633,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P740": [
+            {
+                "MRR": 0.0007436422455064435,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.0202991452991453,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003319256790887456,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.003205128205128205,
+                "P_AT_K": 0.0876068376068376,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005259913104658604,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.003205128205128205,
+                "P_AT_K": 0.12179487179487179,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.003411807861755013,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.1014957264957265,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.005816708219024229,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002136752136752137,
+                "P_AT_K": 0.14423076923076922,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.008907038470676,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.003205128205128205,
+                "P_AT_10": 0.01282051282051282,
+                "P_AT_K": 0.12179487179487179,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0031391727504250766,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.0,
+                "P_AT_K": 0.03311965811965812,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01701577922176494,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0010683760683760685,
+                "P_AT_10": 0.02564102564102564,
+                "P_AT_K": 0.35683760683760685,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.06353074678805719,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.003205128205128205,
+                "P_AT_10": 0.11217948717948718,
+                "P_AT_K": 0.45085470085470086,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0669027795598037,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.021367521367521368,
+                "P_AT_10": 0.13568376068376067,
+                "P_AT_K": 0.530982905982906,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.09029524487206839,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.06944444444444445,
+                "P_AT_10": 0.24358974358974358,
+                "P_AT_K": 0.6217948717948718,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.11269625083009298,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.08867521367521368,
+                "P_AT_10": 0.3034188034188034,
+                "P_AT_K": 0.6399572649572649,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ],
+        "P361": [
+            {
+                "MRR": 0.001283472554296207,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.002145922746781116,
+                "P_AT_K": 0.01072961373390558,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0016071226832145976,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.001072961373390558,
+                "P_AT_10": 0.003218884120171674,
+                "P_AT_K": 0.02682403433476395,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.0049727978569560575,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.009656652360515022,
+                "P_AT_K": 0.03862660944206009,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.010107335177551162,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.00536480686695279,
+                "P_AT_10": 0.019313304721030045,
+                "P_AT_K": 0.10515021459227468,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.015489252892049403,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.00536480686695279,
+                "P_AT_10": 0.034334763948497854,
+                "P_AT_K": 0.15879828326180256,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.009816911994247243,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.006437768240343348,
+                "P_AT_10": 0.02467811158798283,
+                "P_AT_K": 0.14484978540772533,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.01403278229382641,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.02467811158798283,
+                "P_AT_K": 0.148068669527897,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.016756998006025238,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.0,
+                "P_AT_10": 0.03755364806866953,
+                "P_AT_K": 0.17167381974248927,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.020176677964354094,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.002145922746781116,
+                "P_AT_10": 0.043991416309012876,
+                "P_AT_K": 0.22639484978540772,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.07907074762988009,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.016094420600858368,
+                "P_AT_10": 0.19313304721030042,
+                "P_AT_K": 0.43991416309012876,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.15078675859254573,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.15987124463519314,
+                "P_AT_10": 0.4560085836909871,
+                "P_AT_K": 0.6620171673819742,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            },
+            {
+                "MRR": 0.17936449597027013,
+                "MRR_negative": 0.0,
+                "MRR_positive": 0.0,
+                "P_AT_1": 0.23283261802575106,
+                "P_AT_10": 0.5579399141630901,
+                "P_AT_K": 0.7446351931330472,
+                "P_AT_K_positive": 0.0,
+                "P_AT_K_negative": 0.0
+            }
+        ]
+    }
+}

@@ -4,10 +4,11 @@ data/probing_data/*
 data/training_data/*
 data/models/qa-bert/*
 data/outputs/*
-data/layer_data/plots/*
+data/layer_data/naive/plots/*
 vocab.txt
 
 condor_out/*
 condor_out
 
-*/desktop.ini
+*.submit
+*.ini
