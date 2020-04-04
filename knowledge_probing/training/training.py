@@ -36,7 +36,7 @@ def training(args, decoder):
     elif args.device == torch.device('cuda'):
         print('Training is using GPU')
         trainer = Trainer(gpus=1, max_epochs=args.training_epochs, checkpoint_callback=checkpoint_callback, val_check_interval=args.val_check_interval,
-                          early_stop_callback=early_stop_callback, logger=logger, row_log_interval=args.row_log_interval, log_save_interval=args.log_save_interval)
+                          early_stop_callback=early_stop_callback, logger=logger, row_log_interval=args.row_log_interval, log_save_interval=args.log_save_interval, progress_bar_refresh_rate=args.progress_bar_refresh_rate)
 
         # early stop
         # trainer = Trainer(gpus=1, fast_dev_run=False, checkpoint_callback=checkpoint_callback, val_check_interval=args.val_check_interval, early_stop_callback=early_stop_callback)
@@ -50,13 +50,3 @@ def training(args, decoder):
     trainer.fit(decoder)
 
     trainer.test()
-
-
-def save_training_logs(logs_dir, path):
-    # TODO: Implement save training logs
-    raise NotImplementedError
-
-
-def save_model(model, path):
-    # TODO: Implement save model
-    raise NotImplementedError
