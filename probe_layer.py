@@ -14,8 +14,9 @@ import os
 
 def main(args):
     args.run_name = 'probe_layer_{}'.format(args.probing_layer)
-    args.training_decoder = 'Huggingface_pretrained_decoder'
-    args.probing_model = 'Huggingface_pretrained_decoder'
+    args.training_decoder = args.decoder
+    args.probing_model = args.decoder
+    # Start with default
     args.bert_type = 'default'
     args.do_training = True
     args.do_probing = True
@@ -53,21 +54,24 @@ if __name__ == '__main__':
     parser.add_argument('--num_nodes', required='--distribution_strategy' in sys.argv, type=int,
                         help='Please set the number of gpus to per node and specify the number of nodes when doing multi gpu training')
 
-    parser.add_argument('--training_early_stop_delta', default=0.02, type=int,
+    parser.add_argument('--training_early_stop_delta', default=0.01, type=int,
                         help='The minimum validation-loss-delta between #patience iterations that has to happen for the computation not to stop')
 
-    parser.add_argument('--training_early_stop_patience', default=12, type=int,
+    parser.add_argument('--training_early_stop_patience', default=15, type=int,
                         help='The patience for the models validation loss to improve by [training_early_stop_delta] for the computation not to stop')
 
     # General BERT
     parser.add_argument('--bert_model_type', default='bert-base-uncased',
                         choices=['bert-base-uncased', 'bert-base-cased'],)
 
+    parser.add_argument('--decoder', required=True,
+                        choices=['Huggingface_pretrained_decoder', 'Decoder'],)
+
     # Training
     parser.add_argument('--training_dataset', default='wikitext-2',
                         choices=['wikitext-2', 'wikitext-103'],)
 
-    parser.add_argument('--training_epochs', default=1,
+    parser.add_argument('--training_epochs', default=100,
                         required='--do_training' in sys.argv, type=int)
 
     # Probing

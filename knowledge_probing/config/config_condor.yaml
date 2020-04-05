@@ -32,7 +32,7 @@ learning_rate: 5e-5
 row_log_interval: 50 
 log_save_interval: 500
 
-progress_bar_refresh_rate: 100
+progress_bar_refresh_rate: 500
 
 
 ################### Probing
