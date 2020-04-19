@@ -8,3 +8,4 @@ pandas
 plotly
 tqdm
 pyyaml
+sklearn
