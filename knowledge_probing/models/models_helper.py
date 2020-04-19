@@ -26,13 +26,10 @@ def get_model(args):
     bert.to(args.device)
 
     # Get the right decoder
-    # TODO: Get bert and information into the lightning models
     if args.training_decoder == "Decoder":
         decoder = Decoder(args=args, bert=bert, config=config)
     else:
         decoder = HuggingDecoder(args=args, bert=bert, config=config)
-
-    # print(decoder.bert.config.output_hidden_states)
 
     # TODO: Add option to load a trained decoder from checkpoint
     # decoder = Decoder.load_from_checkpoint(checkpoint_path)

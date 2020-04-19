@@ -18,7 +18,7 @@ class TextDataset(Dataset):
 
         directory, filename = os.path.split(file_path)
         cached_features_file = os.path.join(
-            directory, args.model_type_postfix +
+            directory, args.bert_model_type +
             "_cached_lm_" + str(block_size) + "_" + filename
         )
 
@@ -32,7 +32,7 @@ class TextDataset(Dataset):
             # Get the faster tokenizer from tokenizers package
             tokenizer.save_vocabulary(vocab_path='.')
             fast_tokenizer = BertWordPieceTokenizer(
-                "vocab.txt", lowercase=True)
+                "vocab.txt", lowercase=args.lowercase)
             fast_tokenizer.enable_truncation(tokenizer.max_len)
 
             self.examples = []
