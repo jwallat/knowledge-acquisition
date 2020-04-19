@@ -55,6 +55,12 @@ if __name__ == '__main__':
     parser.add_argument('--training_decoder', required='--do_training' in sys.argv,
                         choices=['Huggingface_pretrained_decoder', 'Decoder'],)
 
+    parser.add_argument('--training_early_stop_delta', default=0.01, type=int,
+                        help='The minimum validation-loss-delta between #patience iterations that has to happen for the computation not to stop')
+
+    parser.add_argument('--training_early_stop_patience', default=15, type=int,
+                        help='The patience for the models validation loss to improve by [training_early_stop_delta] for the computation not to stop')
+
     # Probing
     parser.add_argument('--do_probing', default=False, action='store_true')
 
