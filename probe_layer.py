@@ -16,16 +16,18 @@ def main(args):
     args.run_name = 'probe_layer_{}'.format(args.probing_layer)
     args.training_decoder = args.decoder
     args.probing_model = args.decoder
+
+    model_selection = ['qa'] if args.use_only_qa_model else ['default', 'qa'] 
     # Start with default
-    args.bert_type = 'default'
+    args.bert_type = model_selection[0]
     args.do_training = True
     args.do_probing = True
 
     # Compute the missing args ##########################################################################
     args = handle_config(args)
-    # print(args)
+    print(args.output_dir)
 
-    for bert_type in ['default', 'qa']:
+    for bert_type in model_selection:
         print('************************     Using model type: {}'.format(bert_type))
         args.bert_type = bert_type
 
@@ -84,6 +86,8 @@ if __name__ == '__main__':
 
     parser.add_argument('--output_base_dir', default='/data/outputs/',
                         help='Path to the output dir that will contain the logs and trained models')
+
+    parser.add_argument('--use_only_qa_model', default=False, action='store_true')
 
     args = parser.parse_args()
 

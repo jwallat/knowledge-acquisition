@@ -2,7 +2,7 @@
 __pycache__
 data/probing_data/*
 data/training_data/*
-data/models/qa-bert/*
+data/models/*
 data/outputs/*
 data/layer_data/naive/plots/*
 data/layer_data/classifier_per_layer/plots/*
