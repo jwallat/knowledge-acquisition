@@ -26,16 +26,16 @@ def probing(args, decoder):
     dataset_args = []
     dataset_args.append(('Google_RE', build_args(
         'Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    dataset_args.append(('Google_RE_UHN', build_args(
-        'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    # dataset_args.append(('TREx', build_args(
-    #     'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    # dataset_args.append(('Google_RE_UHN', build_args(
+    #     'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
+    dataset_args.append(('TREx', build_args(
+        'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('TREx_UHN', build_args(
     #     'TREx_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    # dataset_args.append(('ConceptNet', build_args(
-    #     'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    # dataset_args.append(('Squad', build_args(
-    #     'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('ConceptNet', build_args(
+        'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('Squad', build_args(
+        'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
 
     # Probing
     if args.probe_all_layers:
