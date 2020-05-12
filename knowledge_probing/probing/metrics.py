@@ -8,7 +8,7 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer
 
     # sample information (masked sentences, obj_label, uuid)
     metrics_element['sample'] = {
-        'masked_sentences': batch['masked_sentences'][index],
+        'masked_sentences': tokenizer.convert_ids_to_tokens(batch['masked_sentences'][index]),
         'obj_label': batch['obj_label'][index],
         'uuid': batch['uuid'][index]
     }
@@ -131,6 +131,7 @@ def aggregate_metrics_elements(metrics_elements):
         'P_AT_K': PrecisionK,
         'P_AT_K_positive': Precision_positive,
         'P_AT_K_negative': Precision_negative,
+        'individual_predictions': metrics_elements
     }
 
     return aggregated
