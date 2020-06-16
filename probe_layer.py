@@ -17,7 +17,7 @@ def main(args):
     args.training_decoder = args.decoder
     args.probing_model = args.decoder
 
-    model_selection = ['qa'] if args.use_only_qa_model else ['default', 'qa'] 
+    model_selection = ['qa'] if args.use_only_qa_model else ['default', 'qa']
     # Start with default
     args.bert_type = model_selection[0]
     args.do_training = True
@@ -39,8 +39,10 @@ def main(args):
         # Set up bert-config and model ###########################################################################
         decoder = get_model(args)
 
+        print(args.skip_training)
         # Training: #########################################################################################
-        training(args, decoder)
+        if not args.skip_training:
+            training(args, decoder)
 
         # Probing ###########################################################################################
         probing(args, decoder)
@@ -70,8 +72,10 @@ if __name__ == '__main__':
                         choices=['Huggingface_pretrained_decoder', 'Decoder'],)
 
     # Training
+    parser.add_argument('--skip_training',
+                        action='store_true', default=False)
     parser.add_argument('--training_dataset', default='wikitext-2',
-                        choices=['wikitext-2', 'wikitext-103'],)
+                        choices=['wikitext-2', 'wikitext-103'], required='--do_training' in sys.argv)
 
     parser.add_argument('--training_epochs', default=100,
                         required='--do_training' in sys.argv, type=int)
@@ -87,7 +91,8 @@ if __name__ == '__main__':
     parser.add_argument('--output_base_dir', default='/data/outputs/',
                         help='Path to the output dir that will contain the logs and trained models')
 
-    parser.add_argument('--use_only_qa_model', default=False, action='store_true')
+    parser.add_argument('--use_only_qa_model',
+                        default=False, action='store_true')
 
     args = parser.parse_args()
 
