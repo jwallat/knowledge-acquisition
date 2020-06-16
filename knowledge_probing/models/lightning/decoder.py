@@ -11,17 +11,16 @@ from knowledge_probing.datasets.text_data_utils import mask_tokens, collate
 
 
 class Decoder(LightningModule):
-    def __init__(self, args, bert, config):
+    def __init__(self, hparams, bert, config):
         super(Decoder, self).__init__()
         self.decoder = MyDecoderHead(config)
 
         self.bert = bert
         self.bert.eval()
         self.bert.requires_grad = False
-        # Get tokenizer, args
         self.tokenizer = AutoTokenizer.from_pretrained(
-            args.bert_model_type, use_fast=False)
-        self.args = args
+            hparams.bert_model_type, use_fast=False)
+        self.hparams = hparams
 
         self.collate = functools.partial(collate, tokenizer=self.tokenizer)
 
@@ -68,43 +67,43 @@ class Decoder(LightningModule):
 
     def prepare_data(self):
         self.train_dataset = TextDataset(
-            self.tokenizer, self.args, file_path=self.args.train_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.train_data_file, block_size=self.tokenizer.max_len)
         self.eval_dataset = TextDataset(
-            self.tokenizer, self.args, file_path=self.args.eval_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.eval_data_file, block_size=self.tokenizer.max_len)
         self.test_dataset = TextDataset(
-            self.tokenizer, self.args, file_path=self.args.test_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.test_data_file, block_size=self.tokenizer.max_len)
 
     def train_dataloader(self):
-        self.args.train_batch_size = self.args.per_gpu_train_batch_size * 1
+        self.hparams.train_batch_size = self.hparams.per_gpu_train_batch_size * 1
 
         train_dataloader = DataLoader(
-            self.train_dataset, batch_size=self.args.train_batch_size, collate_fn=self.collate)
+            self.train_dataset, batch_size=self.hparams.train_batch_size, collate_fn=self.collate)
 
         return train_dataloader
 
     def val_dataloader(self):
-        self.args.eval_batch_size = self.args.per_gpu_eval_batch_size * 1
+        self.hparams.eval_batch_size = self.hparams.per_gpu_eval_batch_size * 1
 
         eval_dataloader = DataLoader(
-            self.eval_dataset, batch_size=self.args.eval_batch_size, collate_fn=self.collate)
+            self.eval_dataset, batch_size=self.hparams.eval_batch_size, collate_fn=self.collate)
 
         return eval_dataloader
 
     def test_dataloader(self):
-        self.args.test_batch_size = self.args.per_gpu_test_batch_size * 1
+        self.hparams.test_batch_size = self.hparams.per_gpu_test_batch_size * 1
 
         test_dataloader = DataLoader(
-            self.test_dataset, batch_size=self.args.test_batch_size, collate_fn=self.collate)
+            self.test_dataset, batch_size=self.hparams.test_batch_size, collate_fn=self.collate)
 
         return test_dataloader
 
     def configure_optimizers(self):
-        # adam = torch.optim.Adam([p for p in self.decoder.parameters() if p.requires_grad], lr=self.args.learning_rate, eps=1e-08)
+        # adam = torch.optim.Adam([p for p in self.decoder.parameters() if p.requires_grad], lr=self.hparams.learning_rate, eps=1e-08)
         adam = AdamW([p for p in self.decoder.parameters(
-        ) if p.requires_grad], lr=self.args.learning_rate, eps=1e-08)
+        ) if p.requires_grad], lr=self.hparams.learning_rate, eps=1e-08)
 
         # scheduler = get_linear_schedule_with_warmup(
-        #     adam, num_warmup_steps=args.warmup_steps, num_training_steps=(args.training_epochs * 100)
+        #     adam, num_warmup_steps=hparams.warmup_steps, num_training_steps=(hparams.training_epochs * 100)
         # )
 
         scheduler = ReduceLROnPlateau(adam, mode='min')
@@ -112,19 +111,19 @@ class Decoder(LightningModule):
         return [adam], [scheduler]
 
     def training_step(self, batch, batch_idx):
-        inputs, labels = mask_tokens(batch, self.tokenizer, self.args)
+        inputs, labels = mask_tokens(batch, self.tokenizer, self.hparams)
 
         loss = self.forward(inputs, masked_lm_labels=labels,
-                            layer=self.args.probing_layer)[0]
+                            layer=self.hparams.probing_layer)[0]
 
         tensorboard_logs = {'training_loss': loss}
         return {'loss': loss, 'log': tensorboard_logs}
 
     def test_step(self, batch, batch_idx):
-        inputs, labels = mask_tokens(batch, self.tokenizer, self.args)
+        inputs, labels = mask_tokens(batch, self.tokenizer, self.hparams)
 
         loss = self.forward(inputs, masked_lm_labels=labels,
-                            layer=self.args.probing_layer)[0]
+                            layer=self.hparams.probing_layer)[0]
         return {"test_loss": loss}
 
     def test_epoch_end(self, outputs):
@@ -136,10 +135,10 @@ class Decoder(LightningModule):
         return {"avg_test_loss": avg_loss, 'perplexity': perplexity, "log": tensorboard_logs, 'progress_bar': tensorboard_logs}
 
     def validation_step(self, batch, batch_idx):
-        inputs, labels = mask_tokens(batch, self.tokenizer, self.args)
+        inputs, labels = mask_tokens(batch, self.tokenizer, self.hparams)
 
         loss = self.forward(inputs, masked_lm_labels=labels,
-                            layer=self.args.probing_layer)[0]
+                            layer=self.hparams.probing_layer)[0]
         return {"val_loss": loss}
 
     def validation_epoch_end(self, outputs):

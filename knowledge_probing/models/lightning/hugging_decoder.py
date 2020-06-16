@@ -6,21 +6,20 @@ import functools
 
 
 class HuggingDecoder(Decoder):
-    def __init__(self, args, bert, config):
+    def __init__(self, hparams, bert, config):
         super(Decoder, self).__init__()
         print('Using the huggingface pre-trained decoder...')
         self.decoder = BertForMaskedLM.from_pretrained(
-            args.bert_model_type, config=config).cls
+            hparams.bert_model_type, config=config).cls
         self.decoder.train()
 
         self.bert = bert
         self.bert.eval()
         self.bert.requires_grad = False
-        # Get tokenizer, args
         self.tokenizer = AutoTokenizer.from_pretrained(
-            args.bert_model_type, use_fast=False)
+            hparams.bert_model_type, use_fast=False)
         self.config = config
-        self.args = args
+        self.hparams = hparams
 
         self.collate = functools.partial(collate, tokenizer=self.tokenizer)
 

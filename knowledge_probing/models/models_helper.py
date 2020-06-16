@@ -27,11 +27,8 @@ def get_model(args):
 
     # Get the right decoder
     if args.training_decoder == "Decoder":
-        decoder = Decoder(args=args, bert=bert, config=config)
+        decoder = Decoder(hparams=args, bert=bert, config=config)
     else:
-        decoder = HuggingDecoder(args=args, bert=bert, config=config)
-
-    # TODO: Add option to load a trained decoder from checkpoint
-    # decoder = Decoder.load_from_checkpoint(checkpoint_path)
+        decoder = HuggingDecoder(hparams=args, bert=bert, config=config)
 
     return decoder
