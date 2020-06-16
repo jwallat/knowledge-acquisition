@@ -146,7 +146,7 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
 
             print('Number metrics elements: {}'.format(len(metrics_elements)))
             aggregated_metrics = aggregate_metrics_elements(metrics_elements)
-            print('Aggregated: {}'.format(aggregated_metrics))
+            print('Aggregated: {}'.format(aggregated_metrics['P_AT_1']))
 
             if ds_name == 'Google_RE':
                 google_re_metrices.append(aggregated_metrics)
@@ -158,7 +158,7 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
             # write_metrics(args.run_identifier, ds_name,
             #               args.relation_args.relation, args.output_dir, aggregated_metrics)
             write_to_execution_log(ds_name + ': ' + args.relation_args.relation +
-                                   '\t' + str(aggregated_metrics), append_newlines=True, path=args.execution_log)
+                                   '\t' + str(aggregated_metrics['P_AT_1']), append_newlines=True, path=args.execution_log)
 
     # Write results to logfile
     if len(google_re_metrices) > 0:
@@ -252,7 +252,8 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
             for layer in range(12):
                 aggregated_metrics = aggregate_metrics_elements(
                     metrics_elements[layer])
-                print('Layer {} - Aggregated: {}'.format(layer + 1, aggregated_metrics))
+                print('Layer {} - Aggregated: {}'.format(layer +
+                                                         1, aggregated_metrics['P_AT_1']))
                 data[ds_name][args.relation_args.relation].append(
                     aggregated_metrics)
 
@@ -262,7 +263,7 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
                     trex_metrices[layer].append(aggregated_metrics)
 
                 write_to_execution_log(ds_name + ': ' + args.relation_args.relation +
-                                       '\t Layer {}\t\n\n\n\n\n\n\n'.format(layer + 1) + str(aggregated_metrics), append_newlines=True, path=args.execution_log)
+                                       '\t Layer {}\t\n\n\n\n\n\n\n'.format(layer + 1) + str(aggregated_metrics['P_AT_1']), append_newlines=True, path=args.execution_log)
 
     # Write results to logfile
     for layer in range(12):
