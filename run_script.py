@@ -1,4 +1,4 @@
-from pytorch_lightning import Trainer
+from pytorch_lightning import Trainer, seed_everything
 from argparse import ArgumentParser
 from dotmap import DotMap
 from transformers import BertConfig, AutoTokenizer, BertModel
@@ -9,9 +9,13 @@ from knowledge_probing.models.models_helper import get_model
 from knowledge_probing.probing.probing import probing
 from knowledge_probing.config.config_helper import handle_config
 import sys
+from knockknock import telegram_sender
 
 
+@telegram_sender(token="1108631403:AAFSNa2QDLMoxwx--JB9iNfLL8aDKVjNl-0", chat_id=1163370166)
 def main(args):
+
+    seed_everything(args.seed)
 
     # Compute the missing args ##########################################################################
     args = handle_config(args)
@@ -33,7 +37,6 @@ def main(args):
 if __name__ == '__main__':
     parser = ArgumentParser()
 
-    # TODO: Other PL informations?
     parser.add_argument('--gpus', default=1, type=int)
 
     # General BERT
@@ -86,6 +89,18 @@ if __name__ == '__main__':
 
     parser.add_argument('--output_base_dir', default='/data/outputs/',
                         help='Path to the output dir that will contain the logs and trained models')
+
+    # Wandb
+    parser.add_argument('--use_wandb_logging', default=False, action='store_true',
+                        help='Use this flag to use wandb logging. Otherwise we will use the pytorch-lightning tensorboard logger')
+
+    parser.add_argument('--wandb_project_name', required='--use_wandb_logging' in sys.argv, type=str,
+                        help='Name of wandb project')
+
+    parser.add_argument('--python_executable', required='--use_wandb_logging' in sys.argv, type=str,
+                        help='Some cluster environments might require to set the sys.executable for wandb to work')
+
+    parser.add_argument('--seed', default=42, type=int)
 
     args = parser.parse_args()
 

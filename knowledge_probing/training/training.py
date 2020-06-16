@@ -1,9 +1,11 @@
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pytorch_lightning.profiler import AdvancedProfiler
-from pytorch_lightning.loggers import TensorBoardLogger
+from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 import torch
 from knowledge_probing.file_utils import write_to_execution_log, stringify_dotmap
+import wandb
+import sys
 
 
 def training(args, decoder):
@@ -24,7 +26,11 @@ def training(args, decoder):
         mode='min'
     )
 
-    logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
+    if args.use_wandb_logging:
+        sys.executable = args.python_executable
+        logger = WandbLogger(project=args.wandb_project_name)
+    else:
+        logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
     # profiler = AdvancedProfiler(output_filename='performance_logs')
 
