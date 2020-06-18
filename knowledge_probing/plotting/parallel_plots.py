@@ -31,13 +31,9 @@ def parallel_plots():
     layer_range = range(0, 12)
     # layer_range = range(4, 12)
 
-    compare_all_precisions = False
-
     # Pick one arbitrary file to get all the datasets and relations
     data_example = get_file_data(default_file_name, layer_range[-1], data_dir)
     datasets = data_example.keys()
-
-    clustering_data = []
 
     for dataset in datasets:
         for metric in metrics:

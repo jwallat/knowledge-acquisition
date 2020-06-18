@@ -5,6 +5,7 @@ data/training_data/*
 data/models/*
 data/outputs/*
 data/outputs.tar.gz
+data/plots.tar.gz
 data/layer_data/naive/plots/*
 data/layer_data/classifier_per_layer/plots/*
 *.png
