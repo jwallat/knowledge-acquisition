@@ -21,6 +21,8 @@ class HuggingDecoder(Decoder):
         self.config = config
         self.hparams = hparams
 
+        self.total_num_training_steps = 0
+
         self.collate = functools.partial(collate, tokenizer=self.tokenizer)
 
     def forward(self, inputs, masked_lm_labels, attention_mask=None, lm_label=None, layer=None, all_layers=False):

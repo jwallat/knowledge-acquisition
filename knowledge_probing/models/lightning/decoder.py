@@ -8,11 +8,14 @@ from transformers import AdamW, get_linear_schedule_with_warmup, AutoTokenizer
 from knowledge_probing.models.decoder_head import MyDecoderHead
 from knowledge_probing.datasets.text_dataset import TextDataset
 from knowledge_probing.datasets.text_data_utils import mask_tokens, collate
+from argparse import ArgumentParser
+import sys
 
 
 class Decoder(LightningModule):
     def __init__(self, hparams, bert, config):
         super(Decoder, self).__init__()
+
         self.decoder = MyDecoderHead(config)
 
         self.bert = bert
@@ -21,6 +24,8 @@ class Decoder(LightningModule):
         self.tokenizer = AutoTokenizer.from_pretrained(
             hparams.bert_model_type, use_fast=False)
         self.hparams = hparams
+
+        self.total_num_training_steps = 0
 
         self.collate = functools.partial(collate, tokenizer=self.tokenizer)
 
@@ -67,46 +72,47 @@ class Decoder(LightningModule):
 
     def prepare_data(self):
         self.train_dataset = TextDataset(
-            self.tokenizer, self.hparams, file_path=self.hparams.train_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.train_file, block_size=self.tokenizer.max_len)
         self.eval_dataset = TextDataset(
-            self.tokenizer, self.hparams, file_path=self.hparams.eval_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.valid_file, block_size=self.tokenizer.max_len)
         self.test_dataset = TextDataset(
-            self.tokenizer, self.hparams, file_path=self.hparams.test_data_file, block_size=self.tokenizer.max_len)
+            self.tokenizer, self.hparams, file_path=self.hparams.test_file, block_size=self.tokenizer.max_len)
 
     def train_dataloader(self):
-        self.hparams.train_batch_size = self.hparams.per_gpu_train_batch_size * 1
-
         train_dataloader = DataLoader(
-            self.train_dataset, batch_size=self.hparams.train_batch_size, collate_fn=self.collate)
+            self.train_dataset, batch_size=self.hparams.batch_size, collate_fn=self.collate, pin_memory=False)
+
+        self.total_num_training_steps = self.hparams.max_epochs * \
+            len(train_dataloader)
+        print('Total number steps: ', self.total_num_training_steps)
+        self.configure_optimizers()
 
         return train_dataloader
 
     def val_dataloader(self):
-        self.hparams.eval_batch_size = self.hparams.per_gpu_eval_batch_size * 1
-
         eval_dataloader = DataLoader(
-            self.eval_dataset, batch_size=self.hparams.eval_batch_size, collate_fn=self.collate)
+            self.eval_dataset, batch_size=self.hparams.batch_size, collate_fn=self.collate, pin_memory=False)
 
         return eval_dataloader
 
     def test_dataloader(self):
-        self.hparams.test_batch_size = self.hparams.per_gpu_test_batch_size * 1
-
         test_dataloader = DataLoader(
-            self.test_dataset, batch_size=self.hparams.test_batch_size, collate_fn=self.collate)
+            self.test_dataset, batch_size=self.hparams.batch_size, collate_fn=self.collate, pin_memory=False)
 
         return test_dataloader
 
     def configure_optimizers(self):
         # adam = torch.optim.Adam([p for p in self.decoder.parameters() if p.requires_grad], lr=self.hparams.learning_rate, eps=1e-08)
         adam = AdamW([p for p in self.decoder.parameters(
-        ) if p.requires_grad], lr=self.hparams.learning_rate, eps=1e-08)
+        ) if p.requires_grad], lr=self.hparams.lr, eps=1e-08)
 
-        # scheduler = get_linear_schedule_with_warmup(
-        #     adam, num_warmup_steps=hparams.warmup_steps, num_training_steps=(hparams.training_epochs * 100)
-        # )
+        print('Configuring optimizer, total number steps: ',
+              self.total_num_training_steps)
+        scheduler = get_linear_schedule_with_warmup(
+            adam, num_warmup_steps=(self.total_num_training_steps * 0.1), num_training_steps=self.total_num_training_steps
+        )
 
-        scheduler = ReduceLROnPlateau(adam, mode='min')
+        # scheduler = ReduceLROnPlateau(adam, mode='min')
 
         return [adam], [scheduler]
 
@@ -148,3 +154,36 @@ class Decoder(LightningModule):
 
         tensorboard_logs = {'avg_val_loss': avg_loss, 'perplexity': perplexity}
         return {"val_loss": avg_loss, 'perplexity': perplexity, "log": tensorboard_logs}
+
+    @staticmethod
+    def add_model_specific_args(parent_parser):
+        """
+        Specify the hyperparams for this LightningModule
+        """
+        # MODEL specific
+        parser = ArgumentParser(parents=[parent_parser], add_help=False)
+        parser.add_argument('--lr', default=0.02, type=float)
+        parser.add_argument('--batch_size', default=8, type=int)
+
+        parser.add_argument('--mlm_probability', default=0.15, type=float)
+
+        parser.add_argument('--use_model_from_dir',
+                            default=False, action='store_true')
+        parser.add_argument(
+            '--model_dir', required='--use_model_from_dir' in sys.argv)
+        parser.add_argument('--bert_model_type', default='bert-base-uncased',
+                            choices=['bert-base-uncased', 'bert-base-cased'],)
+
+        parser.add_argument(
+            '--train_file', default="data/training_data/wikitext-2-raw/wiki.train.raw")
+        parser.add_argument(
+            '--valid_file', default="data/training_data/wikitext-2-raw/wiki.valid.raw")
+        parser.add_argument(
+            '--test_file', default="data/training_data/wikitext-2-raw/wiki.test.raw")
+
+        parser.add_argument('--probing_data_dir', default="data/probing_data/")
+        parser.add_argument('--probing_batch_size', default=16, type=int)
+        parser.add_argument('--precision_at_k', default=100, type=int,
+                            help='When probing, we compute precision at 1, 10, and k. Feel free to set the k here')
+
+        return parser
