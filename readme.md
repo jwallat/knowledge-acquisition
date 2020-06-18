@@ -1,7 +1,11 @@
+Inspired by https://github.com/facebookresearch/LAMA
+
+
 Setup that is required to run the script: 
 - Create conda env and install requirements
-- Fill in the paths in the config file
-- run the run_script.py with the desired arguments
+- Fill in the paths in the config file (in knowledge_probing/config/)
+- For a flexible and highly configurable experiment, run the run_script.py with the desired arguments
+- To probe single layers, use probe_layer.py with the desired arguments
 
 
 For creating the plots:
