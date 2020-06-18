@@ -20,6 +20,7 @@ def probing(args, decoder):
     probing_model, tokenizer = get_probing_model(args, decoder)
 
     # vocab
+    # TODO: Compute the shared vocab between models with different vocabs (e.g. for comparison of BERT and ELECTRA)
     vocab = get_vocab(args.bert_model_type)
 
     # Dataset choosings
@@ -28,21 +29,20 @@ def probing(args, decoder):
         'Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('Google_RE_UHN', build_args(
     #     'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    dataset_args.append(('TREx', build_args(
-        'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    # dataset_args.append(('TREx', build_args(
+    #     'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('TREx_UHN', build_args(
     #     'TREx_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    dataset_args.append(('ConceptNet', build_args(
-        'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    dataset_args.append(('Squad', build_args(
-        'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    # dataset_args.append(('ConceptNet', build_args(
+    #     'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    # dataset_args.append(('Squad', build_args(
+    #     'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
 
     # Probing
     if args.probe_all_layers:
         data = probe_all_layers(args, probing_model,
                                 tokenizer, dataset_args, vocab)
     else:
-        print(args.probin)
         data = probe(args, probing_model, tokenizer,
                      dataset_args, layer=args.probing_layer, vocab=vocab)
 
@@ -53,12 +53,8 @@ def probing(args, decoder):
 
 def get_probing_model(args, decoder):
     # Tokenizer and model
-    tokenizer = BertTokenizer.from_pretrained(args.bert_model_type)
-
-    if args.probing_model == 'BertForMaskedLM':
-        probing_model = BertForMaskedLM.from_pretrained(args.bert_model_type)
-    elif args.probing_model == 'Decoder' or args.probing_model == 'Huggingface_pretrained_decoder':
-        probing_model = decoder
+    tokenizer = decoder.tokenizer
+    probing_model = decoder
 
     probing_model.to(args.device)
     probing_model.zero_grad()
@@ -78,8 +74,8 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
 
     my_collate = functools.partial(collate, tokenizer=tokenizer)
 
-    print('$$$$$$$$$$$$$$$$$$$$$$$     {}-{}      $$$$$$$$$$$$$$$$$$$$$$$$'.format(
-        args.bert_type, args.bert_model_type))
+    print('$$$$$$$$$$$$$$$$$$$$$$$    Probing model of type: {}      $$$$$$$$$$$$$$$$$$$$$$$$'.format(
+        args.bert_model_type))
     for ele in dataset_args:
         ds_name, relation_args_list = ele
 
@@ -119,14 +115,8 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
                 attention_mask_batch = attention_mask_batch.to(args.device)
 
                 # Get predictions from models
-                if args.probing_model == 'BertForMaskedLM':
-                    # No layer-wise analysis
-                    outputs = probing_model(
-                        input_ids_batch, masked_lm_labels=input_ids_batch, attention_mask=attention_mask_batch)
-                else:
-                    # Probing for the specified layer (layer 12 = default (last layer))
-                    outputs = probing_model(
-                        input_ids_batch, masked_lm_labels=input_ids_batch, attention_mask=attention_mask_batch, layer=layer)
+                outputs = probing_model(
+                    input_ids_batch, masked_lm_labels=input_ids_batch, attention_mask=attention_mask_batch, layer=layer)
 
                 batch_prediction_scores = outputs[1]
 
@@ -138,10 +128,10 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
                     metrics_elements.append(metrics_element)
 
                 # Reset vars and clear memory - avoid crashes
-                input_ids_batch = None
-                outputs = None
-                batch_prediction_scores = None
-                prediction_scores = None
+                del input_ids_batch
+                del outputs
+                del batch_prediction_scores
+                del prediction_scores
                 gc.collect()
 
             print('Number metrics elements: {}'.format(len(metrics_elements)))
@@ -184,8 +174,8 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
 
     collate = functools.partial(collate, tokenizer=tokenizer)
 
-    print('$$$$$$$$$$$$$$$$$$$$$$$     {}  {}      $$$$$$$$$$$$$$$$$$$$$$$$'.format(
-        args.bert_type, args.bert_model_type))
+    print('$$$$$$$$$$$$$$$$$$$$$$$     Probing Bert model type:  {}      $$$$$$$$$$$$$$$$$$$$$$$$'.format(
+        args.bert_model_type))
     for ele in dataset_args:
         ds_name, relation_args_list = ele
 
@@ -284,5 +274,5 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
 
 
 def save_probing_data(args, data):
-    with open('{}/{}_data.json'.format(args.output_dir, args.bert_type), 'w') as outfile:
+    with open('{}/{}_data.json'.format(args.output_dir, 'model'), 'w') as outfile:
         json.dump(data, outfile)

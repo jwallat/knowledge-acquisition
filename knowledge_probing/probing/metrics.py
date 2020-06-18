@@ -24,7 +24,7 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer
     topk_tokens = topk(prediction_scores,
                        batch['mask_index'][index], k=total_top_k_words, tokenizer=tokenizer)
     # print(topk_tokens)
-    metrics_element['top_k_tokens'] = topk_tokens
+    metrics_element['top_k_tokens'] = topk_tokens[:precision_at_k]
 
     try:
         # get rank of our expected word
@@ -50,15 +50,11 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer
         # metrics_element['PERPLEXITY'] = perplexity
 
     except:
-        # not a rank found
-        # print('obj_label not in top {} words...'.format(total_top_k_words))
         metrics_element['rank'] = 'not found in top {} words'.format(
             total_top_k_words)
 
     # judgement
     if 'judgments' in batch:
-        # calc stuff and set judgement to 'positive' or negative
-
         num_yes = 0
         num_no = 0
         for judgment_ele in batch['judgments']:
@@ -136,9 +132,8 @@ def aggregate_metrics_elements(metrics_elements):
 
     return aggregated
 
+
 # Calc means for google-re and trex
-
-
 def mean_precisions(data):
     p1s = []
     p10s = []

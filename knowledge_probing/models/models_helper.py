@@ -13,10 +13,10 @@ def get_model(args):
         args.bert_model_type, use_fast=False)
 
     # Load Bert as BertModel which is plain and has no head on top
-    if args.bert_type == 'default':
+    if args.use_model_from_dir:
+        bert = BertModel.from_pretrained(args.model_dir, config=config)
+    else:
         bert = BertModel.from_pretrained(args.bert_model_type, config=config)
-    elif args.bert_type == 'qa':
-        bert = BertModel.from_pretrained(args.qa_model_dir, config=config)
 
     # Make sure the bert model is not trained
     bert.eval()
@@ -26,7 +26,7 @@ def get_model(args):
     bert.to(args.device)
 
     # Get the right decoder
-    if args.training_decoder == "Decoder":
+    if args.decoder_type == "Decoder":
         decoder = Decoder(hparams=args, bert=bert, config=config)
     else:
         decoder = HuggingDecoder(hparams=args, bert=bert, config=config)

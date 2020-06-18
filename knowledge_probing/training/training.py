@@ -3,7 +3,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pytorch_lightning.profiler import AdvancedProfiler
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 import torch
-from knowledge_probing.file_utils import write_to_execution_log, stringify_dotmap
+from knowledge_probing.file_utils import write_to_execution_log
 import wandb
 import sys
 
@@ -27,32 +27,19 @@ def training(args, decoder):
     )
 
     if args.use_wandb_logging:
+        print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
         sys.executable = args.python_executable
-        logger = WandbLogger(project=args.wandb_project_name)
+        logger = WandbLogger(project=args.wandb_project_name,
+                             name=args.wand_run_name)
     else:
         logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
-    # profiler = AdvancedProfiler(output_filename='performance_logs')
-
-    if args.use_tpu:
-        print('Training is using TPU')
-        # log_save_interval=100
-        trainer = Trainer(row_log_interval=10, num_tpu_cores=8, max_epochs=args.training_epochs,
-                          precision=32, checkpoint_callback=checkpoint_callback, early_stop_callback=early_stop_callback)
-    elif args.device == torch.device('cuda'):
-        print('Training is using GPU')
-        trainer = Trainer(gpus=1, max_epochs=args.training_epochs, checkpoint_callback=checkpoint_callback, val_check_interval=args.val_check_interval,
-                          early_stop_callback=early_stop_callback, logger=logger, row_log_interval=args.row_log_interval, log_save_interval=args.log_save_interval, progress_bar_refresh_rate=args.progress_bar_refresh_rate)
-
-        # early stop
-        # trainer = Trainer(gpus=1, fast_dev_run=False, checkpoint_callback=checkpoint_callback, val_check_interval=args.val_check_interval, early_stop_callback=early_stop_callback)
-    else:
-        print('Training is using CPU')
-        trainer = Trainer(max_epochs=args.training_epochs, fast_dev_run=False, checkpoint_callback=checkpoint_callback,
-                          val_check_interval=args.val_check_interval, early_stop_callback=early_stop_callback, logger=logger)
+    trainer = Trainer.from_argparse_args(
+        args, checkpoint_callback=checkpoint_callback, early_stop_callback=early_stop_callback, logger=logger)
 
     write_to_execution_log('Run: {} \nArgs: {}\n'.format(
-        args.run_identifier, stringify_dotmap(args)), path=args.execution_log)
+        args.run_identifier, args), path=args.execution_log)
+
     trainer.fit(decoder)
 
-    trainer.test()
+    trainer.test(decoder)

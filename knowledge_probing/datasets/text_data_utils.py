@@ -12,11 +12,14 @@ def chunks(lst, n):
 
 
 def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[torch.Tensor, torch.Tensor]:
-    """ Prepare masked tokens inputs/labels for masked language modeling: 80% MASK, 10% random, 10% original. """
+    """ 
+        Prepare masked tokens inputs/labels for masked language modeling: 80% MASK, 10% random, 10% original. 
+        This is the standard script used in the huggingface libaray with slight adjustments for pytorch-lightning. 
+        That is only adjusting how tensors are casted to the device (e.g. probability_matrix = probability_matrix.to(inputs.device)).
+    """
 
     labels = inputs.clone()
-    # print('Inputs device: {}'.format(inputs.device))
-    # print('labels type: {}'.format(labels.type()))
+
     # We sample a few tokens in each sequence for masked-LM training (with probability args.mlm_probability defaults to 0.15 in Bert/RoBERTa)
     probability_matrix = torch.full(labels.shape, args.mlm_probability)
     probability_matrix = probability_matrix.to(inputs.device)
@@ -28,7 +31,6 @@ def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[t
         special_tokens_mask, dtype=torch.bool)
     special_tokens_mask_tensor = special_tokens_mask_tensor.to(inputs.device)
 
-    # print(special_tokens_mask_tensor.device)
     probability_matrix.masked_fill_(special_tokens_mask_tensor, value=0.0)
     if tokenizer._pad_token is not None:
         padding_mask = labels.eq(tokenizer.pad_token_id)
@@ -42,8 +44,6 @@ def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[t
     full_tensor = torch.full(labels.shape, 0.8)
     full_tensor = full_tensor.to(inputs.device)
 
-    # print('masked shape: {}'.format(masked_indices.shape))
-    # print('full tensor shape: {}'.format(full_tensor.shape))
     indices_replaced = torch.bernoulli(full_tensor).bool() & masked_indices
     indices_replaced = indices_replaced.to(inputs.device)
 
