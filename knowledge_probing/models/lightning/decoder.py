@@ -15,15 +15,18 @@ import sys
 class Decoder(LightningModule):
     def __init__(self, hparams, bert, config):
         super(Decoder, self).__init__()
-
         self.decoder = MyDecoderHead(config)
 
+        self.hparams = hparams
         self.bert = bert
+        self.config = config
+
         self.bert.eval()
         self.bert.requires_grad = False
         self.tokenizer = AutoTokenizer.from_pretrained(
-            hparams.bert_model_type, use_fast=False)
-        self.hparams = hparams
+            self.hparams.bert_model_type, use_fast=False)
+
+        print('Model is using LR {}'.format(self.hparams.lr))
 
         self.total_num_training_steps = 0
 
@@ -84,8 +87,8 @@ class Decoder(LightningModule):
 
         self.total_num_training_steps = self.hparams.max_epochs * \
             len(train_dataloader)
-        print('Total number steps: ', self.total_num_training_steps)
-        self.configure_optimizers()
+        # print('Total number steps: ', self.total_num_training_steps)
+        # self.configure_optimizers()
 
         return train_dataloader
 
@@ -102,19 +105,17 @@ class Decoder(LightningModule):
         return test_dataloader
 
     def configure_optimizers(self):
-        # adam = torch.optim.Adam([p for p in self.decoder.parameters() if p.requires_grad], lr=self.hparams.learning_rate, eps=1e-08)
         adam = AdamW([p for p in self.decoder.parameters(
         ) if p.requires_grad], lr=self.hparams.lr, eps=1e-08)
 
         print('Configuring optimizer, total number steps: ',
               self.total_num_training_steps)
         scheduler = get_linear_schedule_with_warmup(
-            adam, num_warmup_steps=(self.total_num_training_steps * 0.1), num_training_steps=self.total_num_training_steps
-        )
+            adam, num_warmup_steps=self.hparams.warmup_steps, num_training_steps=self.hparams.total_steps)
 
         # scheduler = ReduceLROnPlateau(adam, mode='min')
 
-        return [adam], [scheduler]
+        return [adam], [{"scheduler": scheduler, "interval": "step"}]
 
     def training_step(self, batch, batch_idx):
         inputs, labels = mask_tokens(batch, self.tokenizer, self.hparams)
@@ -164,6 +165,10 @@ class Decoder(LightningModule):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
         parser.add_argument('--lr', default=0.02, type=float)
         parser.add_argument('--batch_size', default=8, type=int)
+        parser.add_argument('--warmup_steps', default=5000, type=int,
+                            help='Number of steps that is used for the linear warumup')
+        parser.add_argument('--total_steps', default=60000, type=int,
+                            help='Number of steps that is used for the decay after the warumup')
 
         parser.add_argument('--mlm_probability', default=0.15, type=float)
 
