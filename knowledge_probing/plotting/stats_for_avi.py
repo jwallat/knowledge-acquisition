@@ -359,7 +359,9 @@ def do_wide_bar_chart(plot_datas):
     # Change the bar mode
     fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', legend=dict(x=0, y=1), autosize=False,
                       width=1500,
-                      height=650,)
+                      height=650,
+                      font=dict(size=15)
+                      )
     fig.update_xaxes(showline=True, linewidth=1,
                      linecolor='black', showgrid=True, gridcolor='rgba(200,200,200,0.4)', nticks=6)
     fig.update_yaxes(showline=True, linewidth=1,
@@ -389,7 +391,7 @@ if __name__ == "__main__":
     # plot_datas.append(stats_for_avi(model_data, 'Default'))
 
     default = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/default_last_layer_untrained/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/bert/',
         'name': 'BERT'
     }
 
@@ -407,7 +409,7 @@ if __name__ == "__main__":
     gc.collect()
 
     squad_uncased = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_uncased/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_1/',
         'name': 'QA-SQUAD-1'
     }
     model_data = smart_load_data(squad_uncased['data_dir'])
@@ -417,7 +419,7 @@ if __name__ == "__main__":
     gc.collect()
 
     squad_2_uncased = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_2_uncased/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_2/',
         'name': 'QA-SQUAD-2'
     }
     model_data = smart_load_data(squad_2_uncased['data_dir'])
@@ -427,7 +429,7 @@ if __name__ == "__main__":
     gc.collect()
 
     squad_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_mlm_uncased/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_mlm_lens/10/',
         'name': 'MLM-SQUAD'
     }
     model_data = smart_load_data(squad_mlm['data_dir'])
@@ -437,7 +439,7 @@ if __name__ == "__main__":
     gc.collect()
 
     msmarco_ranking = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/msmarco_ranking/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_rank/',
         'name': ' RANK-MSMARCO'
     }
     model_data = smart_load_data(msmarco_ranking['data_dir'])
@@ -447,7 +449,7 @@ if __name__ == "__main__":
     gc.collect()
 
     msmarco_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/msmarco_long_mlm/',
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_mlm/',
         'name': 'MLM-MSMARCO'
     }
     model_data = smart_load_data(msmarco_mlm['data_dir'])
