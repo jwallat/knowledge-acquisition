@@ -76,6 +76,14 @@ def load_file(filename):
     return data
 
 
+def load_model_config(filename):
+    assert os.path.exists(filename)
+    with open(filename, 'r') as f:
+        data = f.read()
+
+    return data
+
+
 def write_metrics(run_identifier, dataset, relation, dir, metrics):
     metrics_file = os.path.join(
         dir, dataset + "_" + relation + "_" + run_identifier
@@ -83,3 +91,10 @@ def write_metrics(run_identifier, dataset, relation, dir, metrics):
     # print("Saving metrics into file %s", metrics_file)
     with open(metrics_file, "w") as handle:
         handle.write('Results: {}'.format(metrics))
+
+
+def find_checkpoint_in_dir(dir):
+    for file in os.listdir(dir):
+        if file.endswith(".ckpt"):
+            checkpoint = os.path.join(dir, file)
+            return checkpoint

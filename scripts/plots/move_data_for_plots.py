@@ -3,6 +3,8 @@ from argparse import ArgumentParser
 import shutil
 
 
+# move_data_for_plots.py --data_dir /home/wallat/knowledge-probing/data/outputs/msmarco_long_mlm/
+
 def main(data_dir):
     assert os.path.isdir(data_dir)
 

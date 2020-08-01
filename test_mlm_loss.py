@@ -1,37 +1,36 @@
-from pytorch_lightning import Trainer, seed_everything
-from argparse import ArgumentParser
-from dotmap import DotMap
-from transformers import BertConfig, AutoTokenizer, BertModel
+import sys
+from pytorch_lightning import Trainer
 from knowledge_probing.models.lightning.decoder import Decoder
 from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
-from knowledge_probing.training.training import training
-from knowledge_probing.models.models_helper import get_model
-from knowledge_probing.probing.probing import probing
-from knowledge_probing.config.config_helper import handle_config
-import sys
-from knockknock import telegram_sender
+from transformers import BertConfig, AutoTokenizer, BertForMaskedLM
+from argparse import ArgumentParser
 
 
-@telegram_sender(token="1108631403:AAFSNa2QDLMoxwx--JB9iNfLL8aDKVjNl-0", chat_id=1163370166)
 def main(args):
+    print('Peter')
 
-    seed_everything(args.seed)
+    # model_dir = '/home/wallat/msmarco-models/models/mlm/stable/step_scheduler/'
+    # model_dir = '/home/wallat/squad_mlm/models/mlm_stable/training_lens/11/'
+    # model_dir = '/home/wallat/msmarco-models/models/mlm/4_epochs/test_save/'  # old marco mlm
+    model_dir = '/home/wallat/squad_mlm/models/mlm/'  # old squad mlm
 
-    print('Learning rate {}'.format(args.lr))
+    # get the right decoder
+    config = BertConfig.from_pretrained(args.bert_model_type)
 
-    args = handle_config(args)
-    decoder = get_model(args)
+    trained_lm = BertForMaskedLM.from_pretrained(model_dir, config=config)
+    # trained_lm = BertForMaskedLM.from_pretrained(
+    #     'bert-base-uncased', config=config)
+    decoder = HuggingDecoder(
+        hparams=args, bert=trained_lm.bert, config=config, decoder=trained_lm.cls)
 
-    if args.do_training:
-        training(args, decoder)
+    # decoder = HuggingDecoder(
+    #     hparams=args, bert=trained_lm.bert, config=config)
 
-    if args.do_probing:
-        probing(args, decoder)
-
-    return args.run_name
+    trainer = Trainer.from_argparse_args(args)
+    trainer.test(decoder)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = ArgumentParser(add_help=False)
 
     parser = Decoder.add_model_specific_args(parser)

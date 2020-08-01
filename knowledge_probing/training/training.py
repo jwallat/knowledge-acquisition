@@ -4,6 +4,7 @@ from pytorch_lightning.profiler import AdvancedProfiler
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 import torch
 from knowledge_probing.file_utils import write_to_execution_log
+from knowledge_probing.models.models_helper import load_best_model_checkpoint
 import wandb
 import sys
 
@@ -30,7 +31,7 @@ def training(args, decoder):
         print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
         sys.executable = args.python_executable
         logger = WandbLogger(project=args.wandb_project_name,
-                             name=args.wand_run_name)
+                             name=args.wandb_run_name)
     else:
         logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
@@ -41,5 +42,7 @@ def training(args, decoder):
         args.run_identifier, args), path=args.execution_log)
 
     trainer.fit(decoder)
+
+    decoder = load_best_model_checkpoint(decoder, args)
 
     trainer.test(decoder)

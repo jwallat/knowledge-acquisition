@@ -2,6 +2,7 @@ from knowledge_probing.datasets.cloze_data_utils import collate
 from knowledge_probing.datasets.cloze_dataset import ClozeDataset
 from knowledge_probing.probing.metrics import calculate_metrics, mean_precisions, aggregate_metrics_elements
 from knowledge_probing.probing.probing_args import build_args
+from knowledge_probing.plotting.plots import handle_mean_values_string
 from knowledge_probing.file_utils import write_metrics, write_to_execution_log, stringify_dotmap, get_vocab
 from transformers import BertTokenizer, BertForMaskedLM
 from dotmap import DotMap
@@ -11,6 +12,7 @@ import gc
 import os
 import json
 import functools
+import wandb
 
 
 def probing(args, decoder):
@@ -29,14 +31,14 @@ def probing(args, decoder):
         'Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('Google_RE_UHN', build_args(
     #     'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    # dataset_args.append(('TREx', build_args(
-    #     'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('TREx', build_args(
+        'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('TREx_UHN', build_args(
     #     'TREx_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
-    # dataset_args.append(('ConceptNet', build_args(
-    #     'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
-    # dataset_args.append(('Squad', build_args(
-    #     'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('ConceptNet', build_args(
+        'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
+    dataset_args.append(('Squad', build_args(
+        'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
 
     # Probing
     if args.probe_all_layers:
@@ -163,6 +165,10 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
     write_to_execution_log(
         220 * '-', append_newlines=True, path=args.execution_log)
 
+    if args.use_wandb_logging:
+        wandb.init(name=args.wandb_run_name, project=args.wandb_project_name)
+        wandb_log_metrics(layer_data, layer)
+
     return layer_data
 
 
@@ -276,3 +282,21 @@ def probe_all_layers(args, probing_model, tokenizer, dataset_args, vocab):
 def save_probing_data(args, data):
     with open('{}/{}_data.json'.format(args.output_dir, 'model'), 'w') as outfile:
         json.dump(data, outfile)
+
+
+def wandb_log_metrics(layer_data, layer):
+
+    # log datasets with just one relation
+    wandb.log(
+        {'layer': layer, 'ConceptNet P@1': layer_data['ConceptNet']['test'][0]['P_AT_1']})
+    wandb.log(
+        {'layer': layer, 'Squad P@1': layer_data['Squad']['test'][0]['P_AT_1']})
+
+    # log dataset with messy means
+    # Google_RE
+    p1 = handle_mean_values_string(layer_data['Google_RE']['means'][0])[0]
+    wandb.log({'layer': layer, 'Google_RE P@1': p1})
+
+    # TREx
+    p1 = handle_mean_values_string(layer_data['TREx']['means'][0])[0]
+    wandb.log({'layer': layer, 'TREx P@1': p1})
