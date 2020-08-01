@@ -9,7 +9,6 @@ data/plots.tar.gz
 data/plots/
 data/layer_data/naive/plots/*
 data/layer_data/classifier_per_layer/plots/*
-*.png
 vocab.txt
 
 condor_out/*
