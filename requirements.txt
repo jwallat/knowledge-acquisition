@@ -1,12 +1,11 @@
 # torch==1.5.0
 pytorch-lightning==0.8.1
-# !pip install git+https://github.com/PytorchLightning/pytorch-lightning.git@master --upgrade
 transformers==2.5.1
 tokenizers==0.5.2
 dotmap
 pandas
 plotly
 tqdm
-pyyaml
 sklearn
 knockknock
+streamlit 
