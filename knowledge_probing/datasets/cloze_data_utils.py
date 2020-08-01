@@ -14,7 +14,7 @@ def predicted_sentence(scores, tokenizer):
 def topk(prediction_scores, token_index, k=10, tokenizer=None):
     # Get the ids for the masked index:
     prediction_for_masked = prediction_scores[0][token_index]
-    tops_values, tops_indices = torch.topk(input=prediction_for_masked, k=k)
+    _, tops_indices = torch.topk(input=prediction_for_masked, k=k)
     top_words = tokenizer.convert_ids_to_tokens(tops_indices)
     # print(top_words)
     return top_words
