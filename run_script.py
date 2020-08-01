@@ -54,8 +54,6 @@ if __name__ == '__main__':
     parser.add_argument('--do_probing', default=False, action='store_true')
     parser.add_argument('--probing_layer', default=12,
                         choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], type=int)
-    parser.add_argument('--probe_all_layers',
-                        default=False, action='store_true')
 
     # Other
     parser.add_argument('--run_name', default='',
