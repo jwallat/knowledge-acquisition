@@ -20,6 +20,7 @@ def topk(prediction_scores, token_index, k=10, tokenizer=None):
     return top_words
 
 
+# The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
 def lowercase_samples(samples, mask, use_negated_probes=False):
     new_samples = []
     for sample in samples:
@@ -46,6 +47,7 @@ def lowercase_samples(samples, mask, use_negated_probes=False):
     return new_samples
 
 
+# The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
 def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
     msg = ""
     new_samples = []
@@ -126,11 +128,9 @@ def collate(examples, tokenizer):
 
     padded_sentences = pad_sequence(
         masked_sentences, batch_first=True, padding_value=tokenizer.pad_token_id)
-    # print(padded_sentences)
     attention_mask = padded_sentences.clone()
     attention_mask[attention_mask != tokenizer.pad_token_id] = 1
     attention_mask[attention_mask == tokenizer.pad_token_id] = 0
-    # print(attention_mask)
 
     examples_batch = {
         "masked_sentences": padded_sentences,

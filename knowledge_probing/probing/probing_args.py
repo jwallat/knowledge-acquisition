@@ -1,5 +1,7 @@
 from knowledge_probing.file_utils import load_file
 
+# The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
+
 
 def build_args(dataset_name, lowercase, data_dir, k, bert_model_type='bert-base-uncased'):
     relations, data_path_pre, data_path_post = '', '', ''

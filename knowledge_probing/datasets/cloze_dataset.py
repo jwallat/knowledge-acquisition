@@ -7,6 +7,8 @@ import torch
 from knowledge_probing.datasets.cloze_data_utils import lowercase_samples, filter_samples, get_index_for_mask, parse_template
 from knowledge_probing.file_utils import load_file
 
+# The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
+
 
 class ClozeDataset(Dataset):
     def __init__(self, tokenizer: PreTrainedTokenizer, args, vocab, block_size=512, output_debug_info=False):
@@ -24,9 +26,6 @@ class ClozeDataset(Dataset):
         print('number samples: {}'.format(len(samples))
               ) if output_debug_info else None
 
-        # self.examples = tokenizer.batch_encode_plus(lines, add_special_tokens=True, max_length=block_size)["input_ids"]
-        # self.samples = samples
-
         # Lowercase if needed
         if args.lowercase:
             print("lowercasing all samples...") if output_debug_info else None
@@ -34,17 +33,15 @@ class ClozeDataset(Dataset):
 
         # Filter samples
         print('filtering the samples') if output_debug_info else None
-        samples, msg = filter_samples(
+        samples, _ = filter_samples(
             samples, tokenizer, vocab, args.relation_args.template)
         print('number filtered samples: {}'.format(
             len(samples))) if output_debug_info else None
-        # print(msg)
 
         # Make sure every sub/obj pair is only used once
         if args.relation_args.template and args.relation_args.template != "":
             facts = []
             for sample in samples:
-                # print(sample)
                 sub = sample["sub_label"]
                 obj = sample["obj_label"]
                 if 'judgments' in sample and ((sub, obj) not in facts):
@@ -79,24 +76,17 @@ class ClozeDataset(Dataset):
                 sample["uuid"] = i
             i += 1
 
-        # print(samples[0])
-
         # Encode sentences and object label
-        # tokenizer.padding_side = 'left'
         encoded_samples = []
         for sample in samples:
             encoded_sample = {}
-            # print(sample['masked_sentences'][0])
             encoded_sample['masked_sentences'] = tokenizer.encode_plus(sample['masked_sentences'][0], add_special_tokens=True, return_tensors='pt')[
-                'input_ids'][0]  # return_tensors='pt' pad_to_max_length=True,
-            # print(encoded_sample)
-            # Since we are only funnelling masked_sentences into bert #tokenizer.encode_plus(sample['obj_label'], add_special_tokens=False, pad_to_max_length=True, return_tensors='pt')['input_ids']
+                'input_ids'][0]
             encoded_sample['obj_label'] = sample['obj_label']
             encoded_sample['mask_index'] = get_index_for_mask(
                 encoded_sample['masked_sentences'], tokenizer.mask_token_id)
             encoded_sample['uuid'] = sample["uuid"]
             if 'judgments' in sample:
-                # print('judgments in sample')
                 encoded_sample['judgments'] = sample['judgments']
             encoded_samples.append(encoded_sample)
 
