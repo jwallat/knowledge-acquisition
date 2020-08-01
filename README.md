@@ -85,7 +85,7 @@ To probe own models, make sure to set the according flag when running the scirpt
 
 Upon probing termination, all results will be written to a json file. Logged metrices such as precision, as well as individual predictions for each fact will be grouped for each relation and each dataset: 
 
-```json
+```
 {  
 "Google_RE": {
 	...,
