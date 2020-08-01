@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir test_dir
-python run_script.py \
+python run_probing.py \
         --decoder_type=Huggingface_pretrained_decoder \
         --do_training --max_epochs=100 \
         --train_file data/training_data/wikitext-2-raw/wiki.train.raw \
