@@ -40,11 +40,11 @@ def training(args, decoder: BaseDecoder):
 
     decoder.set_to_train()
 
-    # try:
     trainer.fit(decoder)
-
     decoder = decoder.load_best_model_checkpoint(hparams=args)
+    # try:
+    #     trainer.fit(decoder)
     # except:
-    # print('Skipped training')
+    #     print('Training failed for some reason')
 
     trainer.test(decoder)
