@@ -54,10 +54,10 @@ layer_range = range(1, 13)
 
 font_size_wide_plots = 30
 # font_size_wide_plots = 20
-font_size_legend_text = 32
+font_size_legend_text = 27  # 32
 # font_size_legend_text = 20
 # output_dir = '/home/jonas/git/knowledge-probing/data/plots/new/default_font/default/'
-output_dir = '/home/jonas/git/knowledge-probing/data/plots/new_vs_old_mlm_marco_large_font/'
+output_dir = '/home/jonas/git/knowledge-probing/data/plots/poster_new_parallel_plot/'
 # output_dir = '/home/jonas/git/knowledge-probing/data/plots/mlm_vs_mlm_long/'
 
 
@@ -141,11 +141,9 @@ def do_parallel_plots(models):
                             size=12
                         )))
 
-                fig.update_layout(legend=dict(
-                    bgcolor="rgba(255,255,255,0)",
-                ))
+                fig.update_layout(legend=dict(bgcolor="rgba(255,255,255,0)"))
 
-                fig.update_yaxes(range=[0, 80])
+                fig.update_yaxes(range=[0, 90])
 
                 # fig.update_layout(title='{}  -  {}'.format(dataset, metric),
                 #                   xaxis_title='Layer',
@@ -563,17 +561,17 @@ def get_json_data_file_for_layer(dir, layer):
 def select_model_for_comparison():
     selected_models = []
 
-    # default = {
-    #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/bert/',
-    #     'name': 'BERT',
-    #     'marker': 'circle',
-    #     'color': 'black'
-    # }
-    # selected_models.append(default)
+    default = {
+        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/bert/',
+        'name': 'BERT',
+        'marker': 'circle',
+        'color': 'black'
+    }
+    selected_models.append(default)
 
     # squad_uncased = {
     #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_1/',
-    #     'name': 'QA-SQUAD-1',
+    #     'name': 'QA-SQuAD-1',
     #     'marker': 'triangle-down',
     #     'color': 'coral'
     # }
@@ -581,7 +579,7 @@ def select_model_for_comparison():
 
     # squad_2_uncased = {
     #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_2/',
-    #     'name': 'QA-SQUAD-2',
+    #     'name': 'QA-SQuAD-2',
     #     'marker': 'triangle-up',
     #     'color': 'red'
     # }
@@ -589,7 +587,7 @@ def select_model_for_comparison():
 
     # squad_mlm = {
     #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_mlm_lens/10/',
-    #     'name': 'MLM-SQUAD',
+    #     'name': 'MLM-SQuAD',
     #     'marker': 'diamond',
     #     'color': 'darkred'
     # }
@@ -597,23 +595,23 @@ def select_model_for_comparison():
 
     # msmarco_ranking = {
     #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_rank/',
-    #     'name': 'RANK-MSMARCO',
+    #     'name': 'RANK-MSMarco',
     #     'marker': 'star',
     #     'color': 'blue'
     # }
     # selected_models.append(msmarco_ranking)
 
-    msmarco_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_mlm/',
-        'name': 'MLM-MSMARCO',
-        'marker': 'pentagon',
-        'color': 'dodgerblue'
-    }
-    selected_models.append(msmarco_mlm)
+    # msmarco_mlm = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_mlm/',
+    #     'name': 'MLM-MSMarco',
+    #     'marker': 'pentagon',
+    #     'color': 'dodgerblue'
+    # }
+    # selected_models.append(msmarco_mlm)
 
     # ner = {
     #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/ner/',
-    #     'name': 'NER-CONLL',
+    #     'name': 'NER-CoNLL',
     #     'marker': 'cross',
     #     'color': 'darkgreen'
     # }
@@ -701,13 +699,13 @@ def select_model_for_comparison():
     # }
     # selected_models.append(old_squad_mlm)
 
-    old_marco_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/old_marco_mlm/',
-        'name': 'MLM-MSMARCO-OLD',
-        'marker': 'pentagon-open',
-        'color': 'purple'
-    }
-    selected_models.append(old_marco_mlm)
+    # old_marco_mlm = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/old_marco_mlm/',
+    #     'name': 'MLM-MSMARCO-OLD',
+    #     'marker': 'pentagon-open',
+    #     'color': 'purple'
+    # }
+    # selected_models.append(old_marco_mlm)
 
     return selected_models
 

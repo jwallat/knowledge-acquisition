@@ -290,28 +290,28 @@ def get_example_predictions(data_dir, layer, relation, dataset, uuid):
 
 def do_wide_bar_chart(plot_datas):
 
-    datasets = ['Google RE', 'T-REx', 'ConceptNet', 'Squad']
+    datasets = ['Google-RE', 'T-REx', 'ConceptNet', 'Squad']
 
     fig = go.Figure()
 
     model_colors = {
         'BERT': ['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0.45)'],
-        'QA-SQUAD-1': ['rgba(255, 127, 80, 0.6)', 'rgba(255, 127, 80, 0.45)'],
-        'QA-SQUAD-2': ['rgba(255, 0, 0, 0.6)', 'rgba(255, 0, 0, 0.45)'],
-        'MLM-SQUAD': ['rgba(117, 0, 0, 0.6)', 'rgba(117, 0, 0, 0.45)'],
-        'RANK-MSMARCO': ['rgba(0, 0, 255, 0.6)', 'rgba(0, 0, 255, 0.45)'],
-        'MLM-MSMARCO': ['rgba(30, 144,255, 0.6)', 'rgba(30, 144,255, 0.45)'],
-        'NER-CONLL': ['rgba(160,32,240, 0.6)', 'rgba(160,32,240, 0.45)']
+        'QA-SQuAD-1': ['rgba(255, 127, 80, 0.6)', 'rgba(255, 127, 80, 0.45)'],
+        'QA-SQuAD-2': ['rgba(255, 0, 0, 0.6)', 'rgba(255, 0, 0, 0.45)'],
+        'MLM-SQuAD': ['rgba(117, 0, 0, 0.6)', 'rgba(117, 0, 0, 0.45)'],
+        'RANK-MSMarco': ['rgba(0, 0, 255, 0.6)', 'rgba(0, 0, 255, 0.45)'],
+        'MLM-MSMarco': ['rgba(30, 144,255, 0.6)', 'rgba(30, 144,255, 0.45)'],
+        'NER-CoNLL': ['rgba(160,32,240, 0.6)', 'rgba(160,32,240, 0.45)']
     }
 
     model_offset_index = {
         'BERT': 1,
-        'QA-SQUAD-1': 2,
-        'QA-SQUAD-2': 3,
-        'MLM-SQUAD': 4,
-        'MLM-MSMARCO': 5,
-        'RANK-MSMARCO': 6,
-        'NER-CONLL': 7
+        'QA-SQuAD-1': 2,
+        'QA-SQuAD-2': 3,
+        'MLM-SQuAD': 4,
+        'MLM-MSMarco': 5,
+        'RANK-MSMarco': 6,
+        'NER-CoNLL': 7
     }
 
     for offsetgroup_index, data in enumerate(plot_datas):
@@ -348,7 +348,12 @@ def do_wide_bar_chart(plot_datas):
                 round(num_correct / total_instances, 2)))
 
         # Plot last layer and union on top of each other
-        last_layer_bar = go.Bar(name=model_name, x=datasets, y=last_layer_values, marker=dict(color=model_color),
+        # last_layer_bar = go.Bar(name=model_name, x=datasets, y=last_layer_values, marker=dict(color=model_color),
+        #                         text=last_layer_labels, textposition='auto', offsetgroup=offsetgroup_index)
+        # union_bar = go.Bar(showlegend=False, name='{} Union'.format(model_name), x=datasets, y=union_values, marker=dict(color=union_color),
+        #                    text=union_labels, textposition='auto', base=last_layer_values, offsetgroup=offsetgroup_index)
+
+        last_layer_bar = go.Bar(name=model_name, x=datasets, y=last_layer_labels, marker=dict(color=model_color),
                                 text=last_layer_labels, textposition='auto', offsetgroup=offsetgroup_index)
         union_bar = go.Bar(showlegend=False, name='{} Union'.format(model_name), x=datasets, y=union_values, marker=dict(color=union_color),
                            text=union_labels, textposition='auto', base=last_layer_values, offsetgroup=offsetgroup_index)
@@ -359,7 +364,7 @@ def do_wide_bar_chart(plot_datas):
     # Change the bar mode
     fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', legend=dict(x=0, y=1), autosize=False,
                       width=1500,
-                      height=650,
+                      height=700,  # standard 650
                       font=dict(size=15)
                       )
     fig.update_xaxes(showline=True, linewidth=1,
@@ -410,60 +415,60 @@ if __name__ == "__main__":
 
     squad_uncased = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_1/',
-        'name': 'QA-SQUAD-1'
+        'name': 'QA-SQuAD-1'
     }
     model_data = smart_load_data(squad_uncased['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'QA-SQUAD-1'))
+    plot_datas.append(stats_for_avi(model_data, 'QA-SQuAD-1'))
 
     del model_data
     gc.collect()
 
     squad_2_uncased = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_2/',
-        'name': 'QA-SQUAD-2'
+        'name': 'QA-SQuAD-2'
     }
     model_data = smart_load_data(squad_2_uncased['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'QA-SQUAD-2'))
+    plot_datas.append(stats_for_avi(model_data, 'QA-SQuAD-2'))
 
     del model_data
     gc.collect()
 
     squad_mlm = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_mlm_lens/10/',
-        'name': 'MLM-SQUAD'
+        'name': 'MLM-SQuAD'
     }
     model_data = smart_load_data(squad_mlm['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'MLM-SQUAD'))
+    plot_datas.append(stats_for_avi(model_data, 'MLM-SQuAD'))
 
     del model_data
     gc.collect()
 
     msmarco_ranking = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_rank/',
-        'name': ' RANK-MSMARCO'
+        'name': ' RANK-MSMarco'
     }
     model_data = smart_load_data(msmarco_ranking['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'RANK-MSMARCO'))
+    plot_datas.append(stats_for_avi(model_data, 'RANK-MSMarco'))
 
     del model_data
     gc.collect()
 
     msmarco_mlm = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_mlm/',
-        'name': 'MLM-MSMARCO'
+        'name': 'MLM-MSMarco'
     }
     model_data = smart_load_data(msmarco_mlm['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'MLM-MSMARCO'))
+    plot_datas.append(stats_for_avi(model_data, 'MLM-MSMarco'))
 
     del model_data
     gc.collect()
 
     ner = {
         'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/ner/',
-        'name': 'NER-CONLL'
+        'name': 'NER-CoNLL'
     }
     model_data = smart_load_data(ner['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'NER-CONLL'))
+    plot_datas.append(stats_for_avi(model_data, 'NER-CoNLL'))
 
     del model_data
     gc.collect()

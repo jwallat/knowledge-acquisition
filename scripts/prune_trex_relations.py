@@ -43,3 +43,4 @@ def load_file(filename):
 
 if __name__ == "__main__":
     main()
+    print('Pruning done.')

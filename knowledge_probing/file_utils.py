@@ -1,9 +1,6 @@
-from torch.nn.utils.rnn import pad_sequence
-from transformers import BertTokenizer
+from transformers import AutoTokenizer
 from dotmap import DotMap
 import yaml
-import torch
-import pickle
 import json
 import os
 
@@ -47,12 +44,16 @@ def load_vocab(path):
     return vocab
 
 
-def get_vocab(bert_model_type):
-    tokenizer = BertTokenizer.from_pretrained(bert_model_type)
-    tokenizer.save_vocabulary(vocab_path='.')
+def get_vocab(model_type):
+    vocab = None
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(model_type)
+        vocab_path = tokenizer.save_vocabulary(save_directory='.')
 
-    # Load vocabulary
-    vocab = load_vocab('./vocab.txt')
+        # Load vocabulary
+        vocab = load_vocab(vocab_path)
+    except:
+        print('Could not read vocab, will use tokenizer.decode() in datasets.cloze_dataset')
     return vocab
 
 

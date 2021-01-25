@@ -1,17 +1,15 @@
 from torch.utils.data import Dataset
 from transformers import PreTrainedTokenizer
 import os
-import pickle
-import json
-import torch
-from knowledge_probing.datasets.cloze_data_utils import lowercase_samples, filter_samples, get_index_for_mask, parse_template
+from knowledge_probing.models.lightning.base_decoder import BaseDecoder
+from knowledge_probing.datasets.cloze_data_utils import lowercase_samples, filter_samples, parse_template
 from knowledge_probing.file_utils import load_file
 
 # The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
 
 
 class ClozeDataset(Dataset):
-    def __init__(self, tokenizer: PreTrainedTokenizer, args, vocab, block_size=512, output_debug_info=False):
+    def __init__(self, probing_model: BaseDecoder, tokenizer: PreTrainedTokenizer, args, vocab, block_size=512, output_debug_info=False):
         if not os.path.isfile(args.relation_args.dataset_filename):
             print("Could not create features from dataset %s. File not found",
                   args.relation_args.dataset_filename)
@@ -29,7 +27,7 @@ class ClozeDataset(Dataset):
         # Lowercase if needed
         if args.lowercase:
             print("lowercasing all samples...") if output_debug_info else None
-            samples = lowercase_samples(samples, tokenizer.mask_token)
+            samples = lowercase_samples(samples, probing_model.mask_token)
 
         # Filter samples
         print('filtering the samples') if output_debug_info else None
@@ -53,6 +51,8 @@ class ClozeDataset(Dataset):
             all_samples = []
             for fact in facts:
                 sample = {}
+                sub = None
+                obj = None
                 if len(fact) == 2:
                     (sub, obj) = fact
                 elif len(fact) == 3:
@@ -64,7 +64,7 @@ class ClozeDataset(Dataset):
                 # substitute all sentences with a standard template
                 sample["masked_sentences"] = parse_template(
                     args.relation_args.template.strip(
-                    ), sample["sub_label"].strip(), tokenizer.mask_token
+                    ), sample["sub_label"].strip(), probing_model.mask_token
                 )
                 all_samples.append(sample)
             samples = all_samples
@@ -80,11 +80,27 @@ class ClozeDataset(Dataset):
         encoded_samples = []
         for sample in samples:
             encoded_sample = {}
+            # Get the correct mask into the model
+            if '[MASK]' in sample['masked_sentences'][0]:
+                sample['masked_sentences'][0] = sample['masked_sentences'][0].replace(
+                    '[MASK]', probing_model.mask_token)
             encoded_sample['masked_sentences'] = tokenizer.encode_plus(sample['masked_sentences'][0], add_special_tokens=True, return_tensors='pt')[
                 'input_ids'][0]
             encoded_sample['obj_label'] = sample['obj_label']
-            encoded_sample['mask_index'] = get_index_for_mask(
-                encoded_sample['masked_sentences'], tokenizer.mask_token_id)
+
+            if 't5' in args.model_type:
+                encoded_sample['t5_labels'] = probing_model.get_probing_t5_labels(input_ids_tensor=encoded_sample['masked_sentences'],
+                                                                                  obj_label=encoded_sample['obj_label'])
+                # print('Un-Masked sentence: ', sample['masked_sentences'][0])
+                # print('Masked sentence: ', encoded_sample['masked_sentences'])
+                # print('T5 labels: ', encoded_sample['t5_labels'])
+                encoded_sample['mask_index'] = probing_model.get_index_for_masked_token(
+                    encoded_sample['masked_sentences'], encoded_sample['t5_labels'])
+            else:
+                encoded_sample['t5_labels'] = None
+                encoded_sample['mask_index'] = probing_model.get_index_for_masked_token(
+                    encoded_sample['masked_sentences'])
+
             encoded_sample['uuid'] = sample["uuid"]
             if 'judgments' in sample:
                 encoded_sample['judgments'] = sample['judgments']

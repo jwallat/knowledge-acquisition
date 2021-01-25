@@ -1,8 +1,6 @@
-from transformers import BertConfig, BertModel, AutoTokenizer, BertForMaskedLM
-from transformers.activations import gelu, gelu_new, swish
+from transformers.activations import gelu, gelu_new
 from torch import nn
 from torch.nn import CrossEntropyLoss
-from typing import Tuple, List
 import torch
 
 
@@ -11,21 +9,27 @@ def mish(x):
 
 
 ACT2FN = {"gelu": gelu, "relu": torch.nn.functional.relu,
-          "swish": swish, "gelu_new": gelu_new, "mish": mish}
+          "gelu_new": gelu_new, "mish": mish}
 
-BertLayerNorm = torch.nn.LayerNorm
+LayerNorm = torch.nn.LayerNorm
 
 
 class DecoderTransform(nn.Module):
     def __init__(self, config):
         super().__init__()
         self.dense = nn.Linear(config.hidden_size, config.hidden_size)
-        if isinstance(config.hidden_act, str):
-            self.transform_act_fn = ACT2FN[config.hidden_act]
-        else:
-            self.transform_act_fn = config.hidden_act
-        self.LayerNorm = BertLayerNorm(
-            config.hidden_size, eps=config.layer_norm_eps)
+        # if isinstance(config.hidden_act, str):
+        #     self.transform_act_fn = ACT2FN[config.hidden_act]
+        # else:
+        #     self.transform_act_fn = config.hidden_act
+
+        # Use BERT default gelu activation and layer norm eps
+        self.transform_act_fn = gelu
+
+        self.LayerNorm = LayerNorm(
+            config.hidden_size, eps=1e-12)
+        # config.hidden_size, eps=1e-6)
+        # TODO: Only for test t5
 
     def forward(self, hidden_states):
         hidden_states = self.dense(hidden_states)
@@ -56,40 +60,45 @@ class DecoderPredictionHead(nn.Module):
 
 
 class MyDecoderHead(nn.Module):
-    def __init__(self, config):
+    def __init__(self, config, pre_trained_head=None, pre_trained_fc_layer=None):
         super().__init__()
         self.config = config
         self.predictions = DecoderPredictionHead(config)
-
         self.apply(self._init_weights)
 
+        if pre_trained_head:
+            # Replace whole prediction head with a pre-trained one
+            self.predictions = pre_trained_head
+            # self.predictions.train()
+            # self.predictions.requires_grad = True
+            # for param in self.predictions.parameters():
+            #     param.requires_grad = True
+
+        if pre_trained_fc_layer:
+            # Only replace the fc layer
+            self.predictions.decoder = pre_trained_fc_layer
+            print(self.predictions)
+            # self.pre_trained_layer = pre_trained_fc_layer
+
     def forward(self, sequence_output,
-                masked_lm_labels=None,
-                lm_labels=None,):
+                masked_lm_labels):
+        # if self.pre_trained_layer:
+        #     prediction_scores = self.pre_trained_layer(sequence_output)
+        # else:
         prediction_scores = self.predictions(sequence_output)
 
         outputs = (prediction_scores,)
 
-        # Although this may seem awkward, BertForMaskedLM supports two scenarios:
-        # 1. If a tensor that contains the indices of masked labels is provided,
-        #    the cross-entropy is the MLM cross-entropy that measures the likelihood
-        #    of predictions for masked words.
-        # 2. If `lm_labels` is provided we are in a causal scenario where we
-        #    try to predict the next token for each input in the decoder.
-        if masked_lm_labels is not None:
-            loss_fct = CrossEntropyLoss()  # -100 index = padding token
-            masked_lm_loss = loss_fct(
-                prediction_scores.view(-1, self.config.vocab_size), masked_lm_labels.view(-1))
-            outputs = (masked_lm_loss,) + outputs
-
-        # if lm_labels is not None:
-        #     # we are doing next-token prediction; shift prediction scores and input ids by one
-        #     prediction_scores = prediction_scores[:, :-1, :].contiguous()
-        #     lm_labels = lm_labels[:, 1:].contiguous()
-        #     loss_fct = CrossEntropyLoss()
-        #     ltr_lm_loss = loss_fct(
-        #         prediction_scores.view(-1, self.config.vocab_size), lm_labels.view(-1))
-        #     outputs = (ltr_lm_loss,) + outputs
+        # if masked_lm_labels is not None:
+        # -100 index = padding token
+        loss_fct = CrossEntropyLoss(ignore_index=-100)
+        masked_lm_loss = loss_fct(
+            prediction_scores.view(-1, self.config.vocab_size), masked_lm_labels.view(-1))
+        # masked_lm_loss = loss_fct(
+        #     prediction_scores.view(-1, prediction_scores.size(-1)), masked_lm_labels.view(-1))
+        outputs = (masked_lm_loss,) + outputs
+        # else:
+        #     print('No mlm labels in decoding head!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
         return outputs  # (masked_lm_loss), (ltr_lm_loss), prediction_scores
 
@@ -97,8 +106,8 @@ class MyDecoderHead(nn.Module):
         """ Initialize the weights """
         if isinstance(module, (nn.Linear, nn.Embedding)):
             module.weight.data.normal_(
-                mean=0.0, std=self.config.initializer_range)
-        elif isinstance(module, BertLayerNorm):
+                mean=0.0, std=0.02)
+        elif isinstance(module, LayerNorm):
             module.bias.data.zero_()
             module.weight.data.fill_(1.0)
         if isinstance(module, nn.Linear) and module.bias is not None:

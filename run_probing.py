@@ -1,18 +1,15 @@
+from knowledge_probing.models.lightning.og_t5_model import OGT5Model
+from knowledge_probing.models.lightning.t5_decoder import T5Decoder
+from knowledge_probing.models.lightning.bert_decoder import BertDecoder
 from pytorch_lightning import Trainer, seed_everything
 from argparse import ArgumentParser
-from dotmap import DotMap
-from transformers import BertConfig, AutoTokenizer, BertModel
-from knowledge_probing.models.lightning.decoder import Decoder
-from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
 from knowledge_probing.training.training import training
-from knowledge_probing.models.models_helper import get_model
 from knowledge_probing.probing.probing import probing
 from knowledge_probing.config.config_helper import handle_config
+from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 import sys
-from knockknock import telegram_sender
 
 
-@telegram_sender(token="1108631403:AAFSNa2QDLMoxwx--JB9iNfLL8aDKVjNl-0", chat_id=1163370166)
 def main(args):
 
     seed_everything(args.seed)
@@ -20,7 +17,16 @@ def main(args):
     print('Learning rate {}'.format(args.lr))
 
     args = handle_config(args)
-    decoder = get_model(args)
+    if 't5' in args.model_type:
+        print('Using a T5 model')
+        if args.use_original_model:
+            print('Using the original model with the last layer')
+            decoder = OGT5Model(hparams=args)
+        else:
+            decoder = T5Decoder(hparams=args)
+    else:
+        print('Using a BERT model')
+        decoder = BertDecoder(hparams=args)
 
     if args.do_training:
         training(args, decoder)
@@ -34,13 +40,13 @@ def main(args):
 if __name__ == '__main__':
     parser = ArgumentParser(add_help=False)
 
-    parser = Decoder.add_model_specific_args(parser)
+    parser = BaseDecoder.add_model_specific_args(parser)
 
     parser = Trainer.add_argparse_args(parser)
 
     # Decoder
-    parser.add_argument('--decoder_type', required='--do_training' in sys.argv,
-                        choices=['Huggingface_pretrained_decoder', 'Decoder'],
+    parser.add_argument('--decoder_initialization', required='--do_training' in sys.argv,
+                        choices=['pre-trained', 'random'],
                         help='Use either the huggingface_pretrained_decoder, which was used during pre-training of BERT, or a randomly initialized decoder')
 
     # Training
@@ -52,8 +58,11 @@ if __name__ == '__main__':
 
     # Probing
     parser.add_argument('--do_probing', default=False, action='store_true')
-    parser.add_argument('--probing_layer', default=12,
-                        choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], type=int)
+    parser.add_argument('--use_original_model',
+                        default=False, action='store_true')
+    # parser.add_argument('--probing_layer', default=12,
+    #                     choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], type=int)
+    parser.add_argument('--probing_layer', default=12, type=int)
 
     # Other
     parser.add_argument('--run_name', default='',

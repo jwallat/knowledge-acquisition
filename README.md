@@ -2,7 +2,7 @@
 
 ---
 
-Knowledge probing is a framework that allows probing for BERT's world knowledge. It builds on the work and the probing data by Petroni et. al. ([https://github.com/facebookresearch/LAMA](https://github.com/facebookresearch/LAMA)). Unlike others, this framework allows for probing all layers of BERT and fine-tuned BERT-models. To do so, a masked language modeling head is fine-tuned to the embeddings of the probing layer. More details on the methodology can be found in the paper (LINK). 
+Knowledge probing is a framework that allows probing for BERT's world knowledge. It builds on the work and the probing data by Petroni et. al. ([https://github.com/facebookresearch/LAMA](https://github.com/facebookresearch/LAMA)). Unlike others, this framework allows for probing all layers of BERT and fine-tuned BERT-models. To do so, a masked language modeling head is fine-tuned to the embeddings of the probing layer. More details on the methodology can be found in the paper (LINK). While this repository focuses on cloze-statement prediction, there is a [sister repository](https://github.com/jwallat/relation-classifcation) whichs purpose is to do relation classification.
 
 ---
 
@@ -36,7 +36,7 @@ Probing experiments can be configured by specifying the relevant flag to the cal
 
 ```bash
 $ python run_probing.py \
-        --decoder_type random \
+        --decoder_initialization random \
         --do_training \
         --do_probing \
         --probing_layer 10
@@ -88,30 +88,30 @@ Upon probing termination, all results will be written to a json file. Logged met
 ```
 {  
 "Google_RE": {
-	...,
-	   "place_of_birth": [
-	      {
-	         "MRR": ...,
-	         "P_AT_1": ...,
-	         "P_AT_10": ...,
-	         "P_AT_100": ...,
-	         "individual_predictions": [
-	            {
-	               "sample": {
-	                  "masked_sentences": [...],
-	                  "obj_label": ...
-	               },
-	               "P_AT_100": ...,
-	               "P_AT_10": ...,
-	               "P_AT_1": ...,
-	               "MRR": ...,
-	               "top_k_tokens": [...],
-	               "rank": ...
-	            },
-	            ...
-	         ]
-	      }
-	   ]
+		...,
+		"place_of_birth": [
+			{
+				"MRR": ...,
+				"P_AT_1": ...,
+				"P_AT_10": ...,
+				"P_AT_100": ...,
+				"individual_predictions": [
+					{
+					"sample": {
+						"masked_sentences": [...],
+						"obj_label": ...
+					},
+					"P_AT_100": ...,
+					"P_AT_10": ...,
+					"P_AT_1": ...,
+					"MRR": ...,
+					"top_k_tokens": [...],
+					"rank": ...
+					},
+					...
+				]
+			}
+		]
 	}
 }
 ```

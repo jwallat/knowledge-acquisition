@@ -9,6 +9,7 @@ wget https://s3.amazonaws.com/research.metamind.io/wikitext/wikitext-2-raw-v1.zi
 unzip wikitext-2-raw-v1.zip
 rm wikitext-2-raw-v1.zip
 mv wikitext-2-raw/ ../data/training_data/
+mkdir ../data/training_data/full_wikipedia/
 
 
 # Probing data

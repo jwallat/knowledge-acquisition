@@ -3,20 +3,20 @@ from knowledge_probing.file_utils import load_file
 # The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
 
 
-def build_args(dataset_name, lowercase, data_dir, k, bert_model_type='bert-base-uncased'):
+def build_args(dataset_name, lowercase, data_dir, k, model_type='bert-base-uncased'):
     relations, data_path_pre, data_path_post = '', '', ''
     if dataset_name == 'Google_RE':
         relations, data_path_pre, data_path_post = get_GoogleRE_parameters(
             data_dir)
     elif dataset_name == 'Google_RE_UHN':
         relations, data_path_pre, data_path_post = get_GoogleRE_UHN_parameters(
-            data_dir, bert_model_type)
+            data_dir, model_type)
     elif dataset_name == 'TREx':
         relations, data_path_pre, data_path_post = get_TREx_parameters(
             data_dir)
     elif dataset_name == 'TREx_UHN':
         relations, data_path_pre, data_path_post = get_TREx_UHN_parameters(
-            data_dir, bert_model_type)
+            data_dir, model_type)
     elif dataset_name == 'ConceptNet':
         relations, data_path_pre, data_path_post = get_ConceptNet_parameters(
             data_dir)
@@ -53,9 +53,9 @@ def get_TREx_parameters(data_dir):
     return relations, data_path_pre, data_path_post
 
 
-def get_TREx_UHN_parameters(data_dir, bert_model_type):
+def get_TREx_UHN_parameters(data_dir, model_type):
     relations = load_file("{}relations.jsonl".format(data_dir))
-    data_path_pre = "{}TREx_UHN/{}/".format(data_dir, bert_model_type)
+    data_path_pre = "{}TREx_UHN/{}/".format(data_dir, model_type)
     data_path_post = ".jsonl"
     return relations, data_path_pre, data_path_post
 
@@ -83,7 +83,7 @@ def get_GoogleRE_parameters(data_dir):
     return relations, data_path_pre, data_path_post
 
 
-def get_GoogleRE_UHN_parameters(data_dir, bert_model_type):
+def get_GoogleRE_UHN_parameters(data_dir, model_type):
     relations = [
         {
             "relation": "place_of_birth",
@@ -101,7 +101,7 @@ def get_GoogleRE_UHN_parameters(data_dir, bert_model_type):
             "template_negated": "[X] did not die in [Y] .",
         },
     ]
-    data_path_pre = "{}Google_RE_UHN/{}/".format(data_dir, bert_model_type)
+    data_path_pre = "{}Google_RE_UHN/{}/".format(data_dir, model_type)
     data_path_post = "_test.jsonl"
     return relations, data_path_pre, data_path_post
 

@@ -1,6 +1,5 @@
-from torch.utils.data import DataLoader, Dataset, RandomSampler, SequentialSampler
+from torch.utils.data import Dataset
 from transformers import AutoTokenizer
-from tokenizers import BertWordPieceTokenizer
 import os
 import pickle
 from tqdm import tqdm
@@ -14,11 +13,12 @@ class TextDataset(Dataset):
         assert os.path.isfile(file_path)
 
         block_size = block_size - \
-            (tokenizer.max_len - tokenizer.max_len_single_sentence)
+            (tokenizer.model_max_length - tokenizer.max_len_single_sentence)
 
         directory, filename = os.path.split(file_path)
+        model_type_string = args.model_type.replace('/', '-')
         cached_features_file = os.path.join(
-            directory, args.bert_model_type +
+            directory, model_type_string +
             "_cached_lm_" + str(block_size) + "_" + filename
         )
 
@@ -29,11 +29,7 @@ class TextDataset(Dataset):
         else:
             print("Creating features from dataset file at %s", directory)
 
-            # Get the faster tokenizer from tokenizers package
-            tokenizer.save_vocabulary(vocab_path='.')
-            fast_tokenizer = BertWordPieceTokenizer(
-                "vocab.txt", lowercase=args.lowercase)
-            fast_tokenizer.enable_truncation(tokenizer.max_len)
+            tokenizer.save_vocabulary(save_directory='.')
 
             self.examples = []
             with open(file_path, encoding="utf-8") as f:
@@ -42,17 +38,11 @@ class TextDataset(Dataset):
             text_chunks = list(chunks(text, 300000))
 
             for chunk in tqdm(text_chunks):
-                batch = fast_tokenizer.encode(chunk)
-                self.examples.append(batch.ids)
+                batch = tokenizer(
+                    chunk, truncation=True, padding='max_length', return_overflowing_tokens=True)
 
-                for encoding in batch.overflowing:
-                    # if len(encoding.ids) == tokenizer.max_len:
-                    self.examples.append(encoding.ids)
-
-            # tokenized_text = tokenizer.convert_tokens_to_ids(tokenizer.tokenize(text))
-
-            # for i in range(0, len(tokenized_text) - block_size + 1, block_size):  # Truncate in block of block_size
-            #     self.examples.append(tokenizer.build_inputs_with_special_tokens(tokenized_text[i : i + block_size]))
+                for ids in batch['input_ids']:
+                    self.examples.append(ids)
 
             print("Saving features into cached file %s", cached_features_file)
             with open(cached_features_file, "wb") as handle:

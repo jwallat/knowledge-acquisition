@@ -6,7 +6,7 @@ import os
 
 
 def handle_config(args):
-    # The idea is to handle all necessary implications (e.g. lowercase True/False from bert_model_type)
+    # The idea is to handle all necessary implications (e.g. lowercase True/False from model_type)
     args.device = torch.device("cuda" if torch.cuda.is_available() else 'cpu')
 
     args.run_identifier = build_run_identifier(args)
@@ -27,7 +27,7 @@ def handle_config(args):
         assert os.path.exists(args.model_dir)
 
     args.lowercase = False
-    if 'uncased' in args.bert_model_type:
+    if 'uncased' in args.model_type:
         args.lowercase = True
 
     return args
@@ -39,10 +39,10 @@ def build_run_identifier(args):
     timestamp = '{}_{}_{}__{}-{}'.format(time.day,
                                          time.month, time.year, time.hour + 1, time.minute)
 
-    model_type_postfix = args.bert_model_type.split('-')[-1]
+    # model_type_postfix = args.model_type.split('-')[-1]
 
     run_identifier = '{}_{}_trained-{}_{}_{}'.format(
-        args.run_name, model_type_postfix, args.do_training, args.decoder_type, timestamp)
+        args.run_name, args.model_type, args.do_training, args.decoder_initialization, timestamp)
 
     print('Run identifier: ', run_identifier)
     return run_identifier

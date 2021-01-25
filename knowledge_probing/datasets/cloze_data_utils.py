@@ -1,5 +1,5 @@
 from torch.nn.utils.rnn import pad_sequence
-from transformers import BertTokenizer
+from transformers import AutoTokenizer
 import torch
 import functools
 
@@ -32,7 +32,7 @@ def lowercase_samples(samples, mask, use_negated_probes=False):
             lower_masked_sentences = []
             for sentence in sample["masked_sentences"]:
                 sentence = sentence.lower()
-                sentence = sentence.replace("[MASK]".lower(), mask)
+                sentence = sentence.replace(mask.lower(), mask)
                 lower_masked_sentences.append(sentence)
             sample["masked_sentences"] = lower_masked_sentences
 
@@ -48,7 +48,7 @@ def lowercase_samples(samples, mask, use_negated_probes=False):
 
 
 # The data loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
-def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
+def filter_samples(samples, tokenizer: AutoTokenizer, vocab, template):
     msg = ""
     new_samples = []
     samples_exluded = 0
@@ -59,17 +59,22 @@ def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
             obj_label_ids = tokenizer.encode(
                 sample["obj_label"], add_special_tokens=False)
             if obj_label_ids:
-                recostructed_word = " ".join(
-                    [vocab[x] for x in obj_label_ids]
-                ).strip()
+                # reconstructed_word = " ".join(
+                #     [vocab[x] for x in obj_label_ids]
+                # ).strip()
+                reconstructed_word = tokenizer.decode(obj_label_ids)
+
+                if len(obj_label_ids) > 1:
+                    reconstructed_word = None
+                # TODO: Find good solution for comparing two models
             else:
-                recostructed_word = None
+                reconstructed_word = None
 
             excluded = False
             if not template or len(template) == 0:
                 masked_sentences = sample["masked_sentences"]
                 text = " ".join(masked_sentences)
-                if len(text.split()) > tokenizer.max_len:
+                if len(text.split()) > tokenizer.model_max_length:
                     msg += "\tEXCLUDED for exeeding max sentence length: {}\n".format(
                         masked_sentences
                     )
@@ -86,7 +91,7 @@ def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
                     sample["obj_label"]
                 )
                 samples_exluded += 1
-            elif not recostructed_word or recostructed_word != sample["obj_label"]:
+            elif not reconstructed_word or reconstructed_word != sample["obj_label"]:
                 msg += "\tEXCLUDED object label {} not in model vocabulary\n".format(
                     sample["obj_label"]
                 )
@@ -114,40 +119,6 @@ def filter_samples(samples, tokenizer: BertTokenizer, vocab, template):
             samples_exluded += 1
     msg += "samples exluded  : {}\n".format(samples_exluded)
     return new_samples, msg
-
-
-def collate(examples, tokenizer):
-    ''' 
-    This is a function that makes sure all entries in the batch are padded 
-    to the correct length.
-    '''
-    masked_sentences = [x['masked_sentences'] for x in examples]
-    uuids = [x['uuid'] for x in examples]
-    obj_labels = [x['obj_label'] for x in examples]
-    mask_indices = [x['mask_index'] for x in examples]
-
-    padded_sentences = pad_sequence(
-        masked_sentences, batch_first=True, padding_value=tokenizer.pad_token_id)
-    attention_mask = padded_sentences.clone()
-    attention_mask[attention_mask != tokenizer.pad_token_id] = 1
-    attention_mask[attention_mask == tokenizer.pad_token_id] = 0
-
-    examples_batch = {
-        "masked_sentences": padded_sentences,
-        "attention_mask": attention_mask,
-        "obj_label": obj_labels,
-        "uuid": uuids,
-        "mask_index": mask_indices
-    }
-
-    if 'judgments' in examples[0]:
-        examples_batch['judgments'] = [x['judgments'] for x in examples]
-
-    return examples_batch
-
-
-def get_index_for_mask(tensor: torch.Tensor, mask_token_id):
-    return tensor.numpy().tolist().index(mask_token_id)
 
 
 def parse_template(template, subject_label, object_label):

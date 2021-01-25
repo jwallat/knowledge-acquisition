@@ -1,8 +1,7 @@
 import os
 import torch
 import streamlit as st
-from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
-from transformers import AutoTokenizer, BertConfig, BertModel
+from transformers import AutoTokenizer, AutoConfig, AutoModel
 from knowledge_probing.datasets.cloze_data_utils import topk
 from dotmap import DotMap
 
@@ -12,7 +11,7 @@ def main():
     # MODEL
     st.subheader('Model Selection')
 
-    bert_model_type = st.selectbox(
+    model_type = st.selectbox(
         'Select model type', ['bert-base-uncased', 'bert-base-cased'], 0)
 
     st.write('When querying a model, you have the option to either use a standard BERT model or select your own model with a trained masked language modeling head')
@@ -37,14 +36,14 @@ def main():
             trained_decoder_path = None
 
         decoder = get_model(
-            bert_model_type, decoder_path=trained_decoder_path, model_dir=bert_model_path)
+            model_type, decoder_path=trained_decoder_path, model_dir=bert_model_path)
 
     else:
-        decoder = get_model(bert_model_type)
+        decoder = get_model(model_type)
 
     st.write('--> Selected model: ')
     if not use_own_model:
-        st.write('Standard pre-trained BERT ' + bert_model_type)
+        st.write('Standard pre-trained BERT ' + model_type)
     else:
         if use_own_bert and use_own_decoder:
             st.write('Own BERT and MLM head as supplied')
@@ -53,7 +52,7 @@ def main():
         elif not use_own_bert and use_own_decoder:
             st.write('standard pre-trained BERT and own MLM head')
         else:
-            st.write('Standard pre-trained BERT ' + bert_model_type)
+            st.write('Standard pre-trained BERT ' + model_type)
     # INPUT
     st.subheader('Input')
     masked_sentence = st.text_input(
@@ -134,22 +133,22 @@ def decode_predictions(scores, tokenizer):
 
 
 @st.cache
-def get_model(bert_model_type, decoder_path=None, model_dir=None):
+def get_model(model_type, decoder_path=None, model_dir=None):
     # Get config for Decoder
-    config = BertConfig.from_pretrained(bert_model_type)
+    config = AutoConfig.from_pretrained(model_type)
     config.output_hidden_states = True
 
     if model_dir is not None:
-        bert = BertModel.from_pretrained(model_dir, config=config)
+        bert = AutoModel.from_pretrained(model_dir, config=config)
     else:
-        bert = BertModel.from_pretrained(bert_model_type, config=config)
+        bert = AutoModel.from_pretrained(model_type, config=config)
 
     if decoder_path is not None:
         decoder = HuggingDecoder.load_from_checkpoint(
             decoder_path, bert=bert, config=config)
     else:
         hparams = DotMap()
-        hparams.bert_model_type = bert_model_type
+        hparams.model_type = model_type
         decoder = HuggingDecoder(hparams=hparams, bert=bert, config=config)
     return decoder
 

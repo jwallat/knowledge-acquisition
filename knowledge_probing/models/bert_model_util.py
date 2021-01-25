@@ -1,14 +1,20 @@
+from argparse import Namespace
 import torch
-from typing import Tuple, List
-from transformers import AutoTokenizer
-import functools
-from torch.nn.utils.rnn import pad_sequence
+from typing import Tuple
+from transformers import AutoTokenizer, AutoConfig
 
 
-def chunks(lst, n):
-    """Yield successive n-sized chunks from lst."""
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
+def prepare_model(hparams : Namespace):
+    print('sime')
+
+def saved_model_has_mlm_head(path):
+        if path is not None:
+            config = AutoConfig.from_pretrained(path)
+
+            if config.architectures[0] == 'BertForMaskedLM':
+                return True
+
+        return False
 
 
 def mask_tokens(inputs: torch.Tensor, tokenizer: AutoTokenizer, args) -> Tuple[torch.Tensor, torch.Tensor]:

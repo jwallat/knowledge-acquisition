@@ -1,15 +1,12 @@
+from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
-from pytorch_lightning.profiler import AdvancedProfiler
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
-import torch
 from knowledge_probing.file_utils import write_to_execution_log
-from knowledge_probing.models.models_helper import load_best_model_checkpoint
-import wandb
 import sys
 
 
-def training(args, decoder):
+def training(args, decoder: BaseDecoder):
     checkpoint_callback = ModelCheckpoint(
         filepath=args.decoder_save_dir,
         save_top_k=1,
@@ -36,13 +33,18 @@ def training(args, decoder):
         logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
     trainer = Trainer.from_argparse_args(
-        args, checkpoint_callback=checkpoint_callback, early_stop_callback=early_stop_callback, logger=logger)
+        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger)
 
     write_to_execution_log('Run: {} \nArgs: {}\n'.format(
         args.run_identifier, args), path=args.execution_log)
 
+    decoder.set_to_train()
+
+    # try:
     trainer.fit(decoder)
 
-    decoder = load_best_model_checkpoint(decoder, args)
+    decoder = decoder.load_best_model_checkpoint(hparams=args)
+    # except:
+    # print('Skipped training')
 
     trainer.test(decoder)

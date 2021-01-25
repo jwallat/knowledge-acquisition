@@ -1,8 +1,6 @@
 import sys
 from pytorch_lightning import Trainer
-from knowledge_probing.models.lightning.decoder import Decoder
-from knowledge_probing.models.lightning.hugging_decoder import HuggingDecoder
-from transformers import BertConfig, AutoTokenizer, BertForMaskedLM
+from transformers import AutoConfig, AutoTokenizer, BertForMaskedLM
 from argparse import ArgumentParser
 
 
@@ -15,7 +13,7 @@ def main(args):
     model_dir = '/home/wallat/squad_mlm/models/mlm/'  # old squad mlm
 
     # get the right decoder
-    config = BertConfig.from_pretrained(args.bert_model_type)
+    config = AutoConfig.from_pretrained(args.model_type)
 
     trained_lm = BertForMaskedLM.from_pretrained(model_dir, config=config)
     # trained_lm = BertForMaskedLM.from_pretrained(
@@ -38,7 +36,7 @@ if __name__ == "__main__":
     parser = Trainer.add_argparse_args(parser)
 
     # Decoder
-    parser.add_argument('--decoder_type', required='--do_training' in sys.argv,
+    parser.add_argument('--decoder_initialization', required='--do_training' in sys.argv,
                         choices=['Huggingface_pretrained_decoder', 'Decoder'],
                         help='Use either the huggingface_pretrained_decoder, which was used during pre-training of BERT, or a randomly initialized decoder')
 
@@ -53,8 +51,6 @@ if __name__ == "__main__":
     parser.add_argument('--do_probing', default=False, action='store_true')
     parser.add_argument('--probing_layer', default=12,
                         choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], type=int)
-    parser.add_argument('--probe_all_layers',
-                        default=False, action='store_true')
 
     # Other
     parser.add_argument('--run_name', default='',

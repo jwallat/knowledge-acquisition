@@ -1,10 +1,11 @@
-from knowledge_probing.datasets.cloze_data_utils import collate
+from argparse import Namespace
+from transformers.models.auto.tokenization_auto import AutoTokenizer
+from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 from knowledge_probing.datasets.cloze_dataset import ClozeDataset
 from knowledge_probing.probing.metrics import calculate_metrics, mean_precisions, aggregate_metrics_elements
 from knowledge_probing.probing.probing_args import build_args
 from knowledge_probing.plotting.plots import handle_mean_values_string
 from knowledge_probing.file_utils import write_metrics, write_to_execution_log, stringify_dotmap, get_vocab
-from transformers import BertTokenizer, BertForMaskedLM
 from dotmap import DotMap
 from torch.utils.data import DataLoader, Dataset, RandomSampler, SequentialSampler
 from tqdm import tqdm
@@ -20,7 +21,7 @@ def probing(args, decoder):
     probing_model, tokenizer = get_probing_model(args, decoder)
 
     # TODO: Compute the shared vocab between models with different vocabs (e.g. for comparison of BERT and ELECTRA)
-    vocab = get_vocab(args.bert_model_type)
+    vocab = get_vocab(args.model_type)
 
     # Choose datasets to probe
     # The dataset loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
@@ -28,11 +29,11 @@ def probing(args, decoder):
     dataset_args.append(('Google_RE', build_args(
         'Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('Google_RE_UHN', build_args(
-    #     'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
+    #     'Google_RE_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, model_type=args.model_type)))
     dataset_args.append(('TREx', build_args(
         'TREx', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     # dataset_args.append(('TREx_UHN', build_args(
-    #     'TREx_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, bert_model_type=args.bert_model_type)))
+    #     'TREx_UHN', args.lowercase, args.probing_data_dir, args.precision_at_k, model_type=args.model_type)))
     dataset_args.append(('ConceptNet', build_args(
         'ConceptNet', args.lowercase, args.probing_data_dir, args.precision_at_k)))
     dataset_args.append(('Squad', build_args(
@@ -53,11 +54,12 @@ def get_probing_model(args, decoder):
 
     probing_model.to(args.device)
     probing_model.zero_grad()
+    probing_model.set_to_eval()
 
     return probing_model, tokenizer
 
 
-def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
+def probe(args: Namespace, probing_model: BaseDecoder, tokenizer: AutoTokenizer, dataset_args, layer: int, vocab):
     write_to_execution_log(
         100 * '+' + '\t Probing layer: {} \t'.format(layer) + 100 * '+', append_newlines=True, path=args.execution_log)
     print('##################################      Layer: {}      #########################################'.format(layer))
@@ -67,10 +69,11 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
     google_re_metrices = []
     trex_metrices = []
 
-    my_collate = functools.partial(collate, tokenizer=tokenizer)
+    my_collate = functools.partial(
+        probing_model.cloze_collate, tokenizer=tokenizer)
 
     print('$$$$$$$$$$$$$$$$$$$$$$$    Probing model of type: {}      $$$$$$$$$$$$$$$$$$$$$$$$'.format(
-        args.bert_model_type))
+        args.model_type))
     for ele in dataset_args:
         ds_name, relation_args_list = ele
 
@@ -88,8 +91,8 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
 
             layer_data[ds_name][args.relation_args.relation] = []
 
-            dataset = ClozeDataset(
-                tokenizer, args, vocab, tokenizer.max_len, output_debug_info=False)
+            dataset = ClozeDataset(probing_model, tokenizer, args, vocab,
+                                   tokenizer.model_max_length, output_debug_info=False)
 
             # Create dataloader
             sampler = RandomSampler(dataset)
@@ -97,36 +100,12 @@ def probe(args, probing_model, tokenizer, dataset_args, layer, vocab):
                 dataset, sampler=sampler, batch_size=args.probing_batch_size, collate_fn=my_collate)
 
             metrics_elements = []
-            input_ids_batch = None
-            outputs = None
-            batch_prediction_scores = None
-            prediction_scores = None
 
             for _, batch in enumerate(tqdm(dataloader)):
-                input_ids_batch = batch['masked_sentences']
-                attention_mask_batch = batch['attention_mask']
+                metrics_elements_from_batch = probing_model.probe(
+                    batch, layer=layer, relation_args=relation_args)
+                metrics_elements.extend(metrics_elements_from_batch)
 
-                input_ids_batch = input_ids_batch.to(args.device)
-                attention_mask_batch = attention_mask_batch.to(args.device)
-
-                # Get predictions from models
-                outputs = probing_model(
-                    input_ids_batch, masked_lm_labels=input_ids_batch, attention_mask=attention_mask_batch, layer=layer)
-
-                batch_prediction_scores = outputs[1]
-
-                for i, prediction_scores in enumerate(batch_prediction_scores):
-                    prediction_scores = prediction_scores[None, :, :]
-                    metrics_element = calculate_metrics(
-                        batch, i, prediction_scores, precision_at_k=args.relation_args.precision_at_k, tokenizer=tokenizer)
-
-                    metrics_elements.append(metrics_element)
-
-                # Reset vars and clear memory - avoid crashes
-                del input_ids_batch
-                del outputs
-                del batch_prediction_scores
-                del prediction_scores
                 gc.collect()
 
             print('Number metrics elements: {}'.format(len(metrics_elements)))
