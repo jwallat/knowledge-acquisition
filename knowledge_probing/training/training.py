@@ -38,13 +38,15 @@ def training(args, decoder: BaseDecoder):
     write_to_execution_log('Run: {} \nArgs: {}\n'.format(
         args.run_identifier, args), path=args.execution_log)
 
-    decoder.set_to_train()
+    if not args.use_original_model:
+        decoder.set_to_train()
 
-    trainer.fit(decoder)
-    decoder = decoder.load_best_model_checkpoint(hparams=args)
-    # try:
-    #     trainer.fit(decoder)
-    # except:
-    #     print('Training failed for some reason')
+        trainer.fit(decoder)
+        decoder = decoder.load_best_model_checkpoint(hparams=args)
+    else:
+        try:
+            trainer.fit(decoder)
+        except:
+            print('Training failed for some reason')
 
     trainer.test(decoder)
