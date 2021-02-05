@@ -8,12 +8,15 @@ from knowledge_probing.probing.probing import probing
 from knowledge_probing.config.config_helper import handle_config
 from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 import sys
+import torch
 
 
 def main(args):
 
     seed_everything(args.seed)
 
+    print('GPU Memory of {} availiable: {}'.format(
+        torch.cuda.get_device_name(), torch.cuda.get_device_properties(0).total_memory))
     print('Learning rate {}'.format(args.lr))
 
     args = handle_config(args)
@@ -51,7 +54,7 @@ if __name__ == '__main__':
 
     # Training
     parser.add_argument('--do_training', default=False, action='store_true')
-    parser.add_argument('--training_early_stop_delta', default=0.01, type=int,
+    parser.add_argument('--training_early_stop_delta', default=0.01, type=float,
                         help='The minimum validation-loss-delta between #patience iterations that has to happen for the computation not to stop')
     parser.add_argument('--training_early_stop_patience', default=15, type=int,
                         help='The patience for the models validation loss to improve by [training_early_stop_delta] for the computation not to stop')
