@@ -28,8 +28,12 @@ class T5Decoder(BaseDecoder):
         self.model, self.config, self.decoder = self.prepare_model(
             hparams=self.hparams)
 
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.hparams.model_type, config=self.config)
+        if self.hparams.model_type == 'castorini/monot5-base-msmarco':
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                't5-base', config=self.config)
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                self.hparams.model_type, config=self.config)
 
         self.total_num_training_steps = 0
         self.collate = functools.partial(
@@ -304,11 +308,10 @@ class T5Decoder(BaseDecoder):
 
         if self.total_num_training_steps % 90 == 0:
             # Print some statistics
-            # Print information
-            print('Encoder decoder mode: probe_encoder: ', self.probe_encoder)
-            print('Input sentence: ', self.tokenizer.decode(
-                input_ids[0], clean_up_tokenization_spaces=False))
-            print('Encoder attention mask: ', encoder_attention_mask[0])
+            # print('Encoder decoder mode: probe_encoder: ', self.probe_encoder)
+            # print('Input sentence: ', self.tokenizer.decode(
+            #     input_ids[0], clean_up_tokenization_spaces=False))
+            # print('Encoder attention mask: ', encoder_attention_mask[0])
             # mlm_labels = masked_lm_labels[0].clone()
             # mlm_labels[mlm_labels ==
             #            -100] = self.tokenizer.pad_token_id
@@ -316,18 +319,18 @@ class T5Decoder(BaseDecoder):
                 if self.probe_encoder:
                     mask_idx = self.get_index_for_masked_token(
                         input_ids[0].cpu(), masked_lm_labels[0].cpu(), mask_token='<extra_id_10>')
-                    print('Found an encoder mask index: ', mask_idx)
+                    # print('Found an encoder mask index: ', mask_idx)
                     # model_outputs = encoder_outputs
                 else:
-                    print('Decoder input ids: ', decoder_input_ids[0])
-                    print('Decoder attention mask: ',
-                          decoder_attention_mask[0])
+                    # print('Decoder input ids: ', decoder_input_ids[0])
+                    # print('Decoder attention mask: ',
+                    #       decoder_attention_mask[0])
                     mask_idx = self.get_index_for_masked_token(
                         input_ids[0].cpu(), t5_labels[0].cpu(), mask_token='<extra_id_10>')
-                    print('Found an decoder mask index: ', mask_idx)
+                    # print('Found an decoder mask index: ', mask_idx)
                     # model_outputs = decoder_outputs
 
-                print('Classifying head labels: ', labels[0])
+                # print('Classifying head labels: ', labels[0])
 
                 print('Ground-truth answer: ',
                       self.tokenizer.decode([labels[0][mask_idx]]))
@@ -527,23 +530,32 @@ class T5Decoder(BaseDecoder):
         self.log('test_loss', loss)
 
     def configure_optimizers(self):
-        adafactor = Adafactor([p for p in self.parameters(
-        ) if p.requires_grad], relative_step=True, warmup_init=True, scale_parameter=True)  # lr=self.hparams.lr,
+        if self.hparams.use_adafactor:
+            adafactor = Adafactor([p for p in self.parameters(
+            ) if p.requires_grad], relative_step=self.hparams.adafactor_relative_step, warmup_init=self.hparams.adafactor_warmup, scale_parameter=self.hparams.adafactor_scale_params)  # lr=self.hparams.lr,
 
-        # print('Configuring optimizer, total number steps: ',
-        #       self.total_num_training_steps)
-        # scheduler = get_linear_schedule_with_warmup(
-        #     adam, num_warmup_steps=self.hparams.warmup_steps, num_training_steps=self.hparams.total_steps)
+            return [adafactor]
+        else:
+            adam = AdamW([p for p in self.parameters()
+                          if p.requires_grad], lr=self.hparams.lr, eps=1e-08)
 
-        # scheduler = ReduceLROnPlateau(adam, mode='min')
+            scheduler = get_linear_schedule_with_warmup(
+                adam, num_warmup_steps=self.hparams.warmup_steps, num_training_steps=self.hparams.total_steps)
 
-        return [adafactor]
+            return [adam], [{"scheduler": scheduler, "interval": "step"}]
 
-    # def configure_optimizers(self):
-    #     adam = AdamW([p for p in self.parameters()
-    #                   if p.requires_grad], lr=self.hparams.lr, eps=1e-08)
-
-    #     scheduler = get_linear_schedule_with_warmup(
-    #         adam, num_warmup_steps=self.hparams.warmup_steps, num_training_steps=self.hparams.total_steps)
-
-    #     return [adam], [{"scheduler": scheduler, "interval": "step"}]
+    # @staticmethod
+    # def add_model_specific_args(parent_parser):
+    #     """
+    #     Specify the hyperparams for this LightningModule
+    #     """
+    #     # MODEL specific
+    #     parser = ArgumentParser(parents=[parent_parser], add_help=False)
+    #     parser.add_argument('--use_adafactor',
+    #                         default=False, action='store_true')
+    #     parser.add_argument('--adafactor_relative_step',
+    #                         default=False, action='store_true')
+    #     parser.add_argument('--adafactor_warmup',
+    #                         default=False, action='store_true')
+    #     parser.add_argument('--adafactor_scale_params',
+    #                         default=False, action='store_true')

@@ -197,7 +197,8 @@ class BaseDecoder(LightningModule):
         parser.add_argument(
             '--model_dir', required='--use_model_from_dir' in sys.argv)
         parser.add_argument('--model_type', default='bert-base-uncased',
-                            choices=['bert-base-uncased', 'bert-base-cased', 't5-small', 't5-base', 'google/t5-v1_1-small', 'google/t5-v1_1-base'],)
+                            choices=['bert-base-uncased', 'bert-base-cased', 't5-small', 't5-base',
+                                     'google/t5-v1_1-small', 'google/t5-v1_1-base', 'castorini/monot5-base-msmarco', 'valhalla/t5-base-squad'])
         parser.add_argument('--unfreeze_transformer',
                             default=False, action='store_true')
         parser.add_argument('--use_full_wiki',
@@ -215,5 +216,14 @@ class BaseDecoder(LightningModule):
         parser.add_argument('--probing_batch_size', default=16, type=int)
         parser.add_argument('--precision_at_k', default=100, type=int,
                             help='When probing, we compute precision at 1, 10, and k. Feel free to set the k here')
+
+        parser.add_argument('--use_adafactor',
+                            default=False, action='store_true')
+        parser.add_argument('--adafactor_relative_step',
+                            default=False, action='store_true')
+        parser.add_argument('--adafactor_warmup',
+                            default=False, action='store_true')
+        parser.add_argument('--adafactor_scale_params',
+                            default=False, action='store_true')
 
         return parser

@@ -27,8 +27,12 @@ class OGT5Model(BaseDecoder):
         self.model, self.config = self.prepare_model(
             hparams=self.hparams)
 
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.hparams.model_type, config=self.config)
+        if self.hparams.model_type == 'castorini/monot5-base-msmarco':
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                't5-base', config=self.config)
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                self.hparams.model_type, config=self.config)
 
         self.total_num_training_steps = 0
         self.collate = functools.partial(

@@ -16,6 +16,7 @@ class T5DecoderHead(nn.Module):
         self.apply(self._init_weights)
 
         if pre_trained_lm_layer:
+            print('Found a pre-trained layer that is not None')
             self.lm_head = pre_trained_lm_layer
 
     def forward(self, hidden_states, labels):

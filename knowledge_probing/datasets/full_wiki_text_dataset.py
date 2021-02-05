@@ -22,7 +22,7 @@ class FullWikiTextDataset(Dataset):
         model_type_string = args.model_type.replace('/', '-')
         cached_features_file = os.path.join(
             cache_dir, model_type_string +
-            "_cached_lm_" + str(block_size) + "_" + 'fullwiki'
+            "_cached_lm_" + str(block_size) + '_fullwiki_' + mode
         )
 
         if os.path.exists(cached_features_file):
