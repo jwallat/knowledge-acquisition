@@ -40,9 +40,10 @@ def build_run_identifier(args):
                                          time.month, time.year, time.hour + 1, time.minute)
 
     # model_type_postfix = args.model_type.split('-')[-1]
+    model_type_string = args.model_type.replace('/', '-')
 
     run_identifier = '{}_{}_trained-{}_{}_{}'.format(
-        args.run_name, args.model_type, args.do_training, args.decoder_initialization, timestamp)
+        args.run_name, model_type_string, args.do_training, args.decoder_initialization, timestamp)
 
     print('Run identifier: ', run_identifier)
     return run_identifier
