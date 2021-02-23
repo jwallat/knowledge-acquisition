@@ -13,7 +13,6 @@ import os
 
 def main(args):
 
-
     seed_everything(args.seed)
     print('PID: ', os.getpid())
 
@@ -29,8 +28,6 @@ def main(args):
     else:
         print('Using a BERT model')
         decoder = BertDecoder(hparams=args)
-
-    print('Got a model')
 
     if args.do_training:
         training(args, decoder)
@@ -73,7 +70,6 @@ if __name__ == '__main__':
                         help='Path to the output dir that will contain the logs and trained models')
     parser.add_argument('--seed', default=42, type=int)
     parser.add_argument('--select_specific_gpu_id', type=str)
-    
 
     # Wandb
     parser.add_argument('--use_wandb_logging', default=False, action='store_true',
