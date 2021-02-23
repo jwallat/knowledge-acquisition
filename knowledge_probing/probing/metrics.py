@@ -21,11 +21,8 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer
     metrics_element['PERPLEXITY'] = None
 
     # get topk predictions
-    print('Masked sentence: ', tokenizer.convert_ids_to_tokens(
-        batch['masked_sentences'][index]))
     topk_tokens = topk(prediction_scores,
                        batch['mask_index'][index], k=total_top_k_words, tokenizer=tokenizer)
-    print('topk tokens: ', topk_tokens[:10])
 
     # Might need to be done for T5 as it adds a \u2581 (_) to all tokens
     for i, token in enumerate(topk_tokens):
@@ -78,6 +75,11 @@ def calculate_metrics(batch, index, prediction_scores, precision_at_k, tokenizer
             metrics_element['sample']['judgment'] = 'negative'
 
     # print(metrics_element)
+
+    print('Masked sentence: ', metrics_element['sample']['masked_sentences'])
+    print('Answer: ', metrics_element['sample']['obj_label'])
+    print('Top predictions: ', metrics_element['top_k_tokens'][:10])
+    print('Rank of GT: ', metrics_element['rank'])
 
     return metrics_element
 

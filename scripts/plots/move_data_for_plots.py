@@ -14,12 +14,25 @@ def main(data_dir):
 
     # For ever folder like *layer_X*
     # Find json file in it
-    for layer in range(1, 13):
-        json_file = get_json_data_file_for_layer(data_dir, layer)
-        # Move to layerdata/layer_X/data.json
-        layer_folder = '{}layer_{}'.format(layer_data_dir, layer)
-        os.mkdir(layer_folder)
-        shutil.move(json_file, layer_folder)
+
+    if args.mode_24:
+        for layer in range(1, 25):
+            try:
+                json_file = get_json_data_file_for_layer(data_dir, layer)
+                # Move to layerdata/layer_X/data.json
+                layer_folder = '{}layer_{}'.format(layer_data_dir, layer)
+                os.mkdir(layer_folder)
+                shutil.move(json_file, layer_folder)
+            except Exception as e:
+                print('Could not find layerdata for layer ', layer)
+                print(e)
+    else:
+        for layer in range(1, 13):
+            json_file = get_json_data_file_for_layer(data_dir, layer)
+            # Move to layerdata/layer_X/data.json
+            layer_folder = '{}layer_{}'.format(layer_data_dir, layer)
+            os.mkdir(layer_folder)
+            shutil.move(json_file, layer_folder)
 
     # Tar/zip the folder with layerdata
     archive = shutil.make_archive('{}_layer_data'.format(model_name), 'zip',
@@ -70,6 +83,7 @@ def get_json_data_file_for_layer(dir, layer):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('--data_dir', required=True, type=str)
+    parser.add_argument('--mode_24', default=False, action='store_true')
 
     args = parser.parse_args()
 
