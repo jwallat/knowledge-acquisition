@@ -13,7 +13,7 @@ nice_metric_names = {
 layer_range = range(1, 13)
 
 
-output_dir = '/home/jonas/git/knowledge-probing/data/plots/stats_for_avi/'
+output_dir = '/home/jonas/git/knowledge-probing-private/data/plots/stats_for_avi/'
 
 
 def test_individual_prediction_order_constant(model_data):
@@ -301,7 +301,8 @@ def do_wide_bar_chart(plot_datas):
         'MLM-SQuAD': ['rgba(117, 0, 0, 0.6)', 'rgba(117, 0, 0, 0.45)'],
         'RANK-MSMarco': ['rgba(0, 0, 255, 0.6)', 'rgba(0, 0, 255, 0.45)'],
         'MLM-MSMarco': ['rgba(30, 144,255, 0.6)', 'rgba(30, 144,255, 0.45)'],
-        'NER-CoNLL': ['rgba(160,32,240, 0.6)', 'rgba(160,32,240, 0.45)']
+        'NER-CoNLL': ['rgba(160,32,240, 0.6)', 'rgba(160,32,240, 0.45)'],
+        'T5-Small': ['rgba(255, 127, 80, 0.6)', 'rgba(255, 127, 80, 0.45)']
     }
 
     model_offset_index = {
@@ -311,7 +312,8 @@ def do_wide_bar_chart(plot_datas):
         'MLM-SQuAD': 4,
         'MLM-MSMarco': 5,
         'RANK-MSMarco': 6,
-        'NER-CoNLL': 7
+        'NER-CoNLL': 7,
+        'T5-Small': 8
     }
 
     for offsetgroup_index, data in enumerate(plot_datas):
@@ -396,7 +398,7 @@ if __name__ == "__main__":
     # plot_datas.append(stats_for_avi(model_data, 'Default'))
 
     default = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/bert/',
+        'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/bert/',
         'name': 'BERT'
     }
 
@@ -413,18 +415,18 @@ if __name__ == "__main__":
     del model_data
     gc.collect()
 
-    squad_uncased = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_1/',
-        'name': 'QA-SQuAD-1'
-    }
-    model_data = smart_load_data(squad_uncased['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'QA-SQuAD-1'))
+    # squad_uncased = {
+    #     'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/squad_qa_1/',
+    #     'name': 'QA-SQuAD-1'
+    # }
+    # model_data = smart_load_data(squad_uncased['data_dir'])
+    # plot_datas.append(stats_for_avi(model_data, 'QA-SQuAD-1'))
 
-    del model_data
-    gc.collect()
+    # del model_data
+    # gc.collect()
 
     squad_2_uncased = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_qa_2/',
+        'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/squad_qa_2/',
         'name': 'QA-SQuAD-2'
     }
     model_data = smart_load_data(squad_2_uncased['data_dir'])
@@ -433,18 +435,18 @@ if __name__ == "__main__":
     del model_data
     gc.collect()
 
-    squad_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/squad_mlm_lens/10/',
-        'name': 'MLM-SQuAD'
-    }
-    model_data = smart_load_data(squad_mlm['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'MLM-SQuAD'))
+    # squad_mlm = {
+    #     'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/squad_mlm_lens/10/',
+    #     'name': 'MLM-SQuAD'
+    # }
+    # model_data = smart_load_data(squad_mlm['data_dir'])
+    # plot_datas.append(stats_for_avi(model_data, 'MLM-SQuAD'))
 
-    del model_data
-    gc.collect()
+    # del model_data
+    # gc.collect()
 
     msmarco_ranking = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_rank/',
+        'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/marco_rank/',
         'name': ' RANK-MSMarco'
     }
     model_data = smart_load_data(msmarco_ranking['data_dir'])
@@ -453,22 +455,31 @@ if __name__ == "__main__":
     del model_data
     gc.collect()
 
-    msmarco_mlm = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/marco_mlm/',
-        'name': 'MLM-MSMarco'
-    }
-    model_data = smart_load_data(msmarco_mlm['data_dir'])
-    plot_datas.append(stats_for_avi(model_data, 'MLM-MSMarco'))
+    # msmarco_mlm = {
+    #     'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/marco_mlm/',
+    #     'name': 'MLM-MSMarco'
+    # }
+    # model_data = smart_load_data(msmarco_mlm['data_dir'])
+    # plot_datas.append(stats_for_avi(model_data, 'MLM-MSMarco'))
 
-    del model_data
-    gc.collect()
+    # del model_data
+    # gc.collect()
 
     ner = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/ner/',
+        'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/ner/',
         'name': 'NER-CoNLL'
     }
     model_data = smart_load_data(ner['data_dir'])
     plot_datas.append(stats_for_avi(model_data, 'NER-CoNLL'))
+
+    t5_small = {
+        'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_small_og_ll/',
+        'name': 'T5-Small',
+        'marker': 'diamond',
+        'color': 'darkred'
+    }
+    model_data = smart_load_data(t5_small['data_dir'])
+    plot_datas.append(stats_for_avi(model_data, 'T5-Small'))
 
     del model_data
     gc.collect()

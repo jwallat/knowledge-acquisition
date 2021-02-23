@@ -1,9 +1,11 @@
 import os
 import json
 import gc
+from numpy.core.numeric import NaN
 from tqdm import tqdm
 from plotly import graph_objects as go
 from scipy import stats
+# from knowledge_probing.plotting.output_file_utils import handle_mean_values_string, make_plots_dir, get_json_data_file_for_layer, load_json_data
 
 metrics = ['P_AT_1', 'P_AT_10', 'P_AT_K']
 nice_metric_names = {
@@ -49,7 +51,8 @@ relation_group_order_map = {
     'P463': "7",
 }
 
-layer_range = range(1, 13)
+# layer_range = range(1, 13)
+layer_range = range(1, 25)
 
 
 font_size_wide_plots = 30
@@ -57,7 +60,7 @@ font_size_wide_plots = 30
 font_size_legend_text = 27  # 32
 # font_size_legend_text = 20
 # output_dir = '/home/jonas/git/knowledge-probing/data/plots/new/default_font/default/'
-output_dir = '/home/jonas/git/knowledge-probing/data/plots/poster_new_parallel_plot/'
+output_dir = '/home/jonas/git/knowledge-probing-private/data/plots/Bert_t5_small_t5_base/'
 # output_dir = '/home/jonas/git/knowledge-probing/data/plots/mlm_vs_mlm_long/'
 
 
@@ -71,7 +74,7 @@ def main():
         model['data'] = smart_load_data(model['data_dir'])
 
         # print_win_loss_statistics(model)
-        print_double_last_layer_statistics(model)
+        # print_double_last_layer_statistics(model)
 
     # all_data = smart_load_data()
 
@@ -90,6 +93,7 @@ def main():
 
             else:
                 do_layer_plots(selected_models, dataset, relation)
+                # pass
 
     do_parallel_plots(selected_models)
     do_multiple_means_plot(selected_models)
@@ -120,10 +124,15 @@ def do_parallel_plots(models):
                             }
 
                             for layer in layer_range:
-                                relations_item['p_{}'.format(
-                                    layer + 1)] = model['data'][str(layer)][dataset][relation][0][metric] * 100
-                                relations_item['precision'].append(
-                                    model['data'][str(layer)][dataset][relation][0][metric] * 100)
+                                layer_data = model['data'][str(layer)]
+
+                                if layer_data is not None:
+                                    relations_item['p_{}'.format(
+                                        layer + 1)] = layer_data[dataset][relation][0][metric] * 100
+                                    relations_item['precision'].append(
+                                        layer_data[dataset][relation][0][metric] * 100)
+                                else:
+                                    relations_item['precision'].append(NaN)
 
                             relations_data.append(relations_item)
 
@@ -135,11 +144,11 @@ def do_parallel_plots(models):
                     relation_label_map[x['relation']]), reverse=True)
 
                 for item in relations_data:
-                    fig.add_trace(go.Scatter(
-                        x=list(layer_range), y=item['precision'], name=relation_label_map[item['relation']], hoverinfo=['all'], mode='lines+markers', marker=dict(
-                            symbol=relation_marker_map[item['relation']],
-                            size=12
-                        )))
+                    fig.add_trace(go.Scatter(connectgaps=True,
+                                             x=list(layer_range), y=item['precision'], name=relation_label_map[item['relation']], hoverinfo=['all'], mode='lines+markers', marker=dict(
+                                                 symbol=relation_marker_map[item['relation']],
+                                                 size=12
+                                             )))
 
                 fig.update_layout(legend=dict(bgcolor="rgba(255,255,255,0)"))
 
@@ -271,16 +280,86 @@ def smart_load_data(dir):
     all_data = {}
 
     for layer in tqdm(layer_range):
-        print('Loading layer file: ', layer)
-        data_file = get_json_data_file_for_layer(
-            dir, layer)
-        layer_data = load_json_data(data_file)
-
-        layer_data = compute_error_values(layer_data)
-
-        all_data[str(layer)] = layer_data
+        try:
+            print('Loading layer file: ', layer)
+            data_file = get_json_data_file_for_layer(
+                dir, layer)
+            layer_data = load_json_data(data_file)
+            layer_data = compute_error_values(layer_data)
+            all_data[str(layer)] = layer_data
+        except:
+            print('No data found for layer ', layer)
+            print('-> will be skipped')
+            all_data[str(layer)] = None
 
     return all_data
+
+
+def handle_mean_values_string(mean_vals_string):
+    values_string = mean_vals_string.split(':')[1]
+
+    values = values_string.split(',')
+
+    numeric_vals = []
+
+    for val in values:
+        val = val.strip()
+        numeric_vals.append(float(val))
+
+    return numeric_vals
+
+
+def make_plots_dir(output_dir):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+
+def get_sample_data_file(dir):
+    json_file = get_json_data_file_for_layer(dir, layer=12)
+    sample_data = load_json_data(json_file)
+
+    return sample_data
+
+
+def get_subfolders(path):
+    return [f.path for f in os.scandir(path) if f.is_dir()]
+
+
+def load_json_data(file):
+    with open(file) as json_data:
+        data = json.load(json_data)
+    return data
+
+
+def get_layer_folder(data_base_dir, layer):
+    list_subfolders_with_paths = get_subfolders(data_base_dir)
+    matching = [
+        s for s in list_subfolders_with_paths if "layer_{}".format(layer) in s]
+
+    for match in matching:
+        file_name = os.path.basename(os.path.normpath(match))
+        if file_name == 'layer_{}'.format(layer):
+            print(f'Found the right folder: {match}')
+            return match
+
+    raise Exception('Could not find folder for layer {layer}')
+
+
+def get_files_in_folder(dir):
+    return [f.path for f in os.scandir(dir) if f.is_file()]
+
+
+def get_json_data_file_for_layer(dir, layer):
+    layer_dir = get_layer_folder(dir, layer)
+    all_files = get_files_in_folder(layer_dir)
+    json_files = [f for f in all_files if ".json" in f]
+    if len(json_files) > 1:
+        print('Found more than one json data file in dir. Using this one: {}'.format(
+            json_files[0]))
+    if len(json_files) == 0:
+        print('No json files found in {}'.format(layer_dir))
+        return None
+    return json_files[0]
 
 
 def compute_error_values(layer_data):
@@ -321,11 +400,14 @@ def do_mean_plot(models, dataset, relation):
             for layer in layer_range:
                 layer_data = model_data[str(layer)]
 
-                means_string = layer_data[dataset]['means'][0]
-                mean_values = handle_mean_values_string(means_string)
-                model_mean_values.append(mean_values[metric_index] * 100)
+                if layer_data is not None:
+                    means_string = layer_data[dataset]['means'][0]
+                    mean_values = handle_mean_values_string(means_string)
+                    model_mean_values.append(mean_values[metric_index] * 100)
+                else:
+                    model_mean_values.append(NaN)
 
-            fig.add_trace(go.Scatter(x=list(layer_range),
+            fig.add_trace(go.Scatter(x=list(layer_range), connectgaps=True,
                                      y=model_mean_values, name=model['name'], hoverinfo=['all'], mode='lines+markers', line_color=model['color'], marker=dict(
                 color=model['color'],
                 symbol=model['marker'],
@@ -376,20 +458,26 @@ def do_multiple_means_plot(models):
                     for layer in layer_range:
                         layer_data = model_data[str(layer)]
                         # print(layer_data)
-
-                        means_string = layer_data[dataset]['means'][0]
-                        mean_values = handle_mean_values_string(means_string)
-                        dataset_mean_values.append(
-                            mean_values[metric_index] * 100)
+                        if layer_data is not None:
+                            means_string = layer_data[dataset]['means'][0]
+                            mean_values = handle_mean_values_string(
+                                means_string)
+                            dataset_mean_values.append(
+                                mean_values[metric_index] * 100)
+                        else:
+                            dataset_mean_values.append(NaN)
                 else:
                     relation = 'test'
                     for layer in layer_range:
                         layer_data = model_data[str(layer)]
 
-                        dataset_mean_values.append(
-                            layer_data[dataset][relation][0][metric] * 100)
+                        if layer_data is not None:
+                            dataset_mean_values.append(
+                                layer_data[dataset][relation][0][metric] * 100)
+                        else:
+                            dataset_mean_values.append(NaN)
 
-                fig.add_trace(go.Scatter(x=list(layer_range),
+                fig.add_trace(go.Scatter(x=list(layer_range), connectgaps=True,
                                          y=dataset_mean_values, name=nice_dataset_names[dataset], hoverinfo=['all'], mode='lines+markers', marker=dict(
                     symbol=dataset_marker_map[dataset],
                     size=12
@@ -419,17 +507,20 @@ def do_layer_plots(models, dataset, relation):
             for layer in layer_range:
                 layer_data = model_data[str(layer)]
 
-                model_values.append(
-                    layer_data[dataset][relation][0][metric] * 100)
+                if layer_data is not None:
+                    model_values.append(
+                        layer_data[dataset][relation][0][metric] * 100)
+                else:
+                    model_values.append(NaN)
 
-            fig.add_trace(go.Scatter(x=list(layer_range),
+            fig.add_trace(go.Scatter(x=list(layer_range), connectgaps=True,
                                      y=model_values, name=model['name'], hoverinfo=['all'], mode='lines+markers', line_color=model['color'], marker=dict(
                 color=model['color'],
                 symbol=model['marker'],
                 size=12
             )))
 
-        do_narrow_plot(fig, output_dir + 'narrow/', dataset, relation, metric)
+        # do_narrow_plot(fig, output_dir + 'narrow/', dataset, relation, metric)
 
         do_wide_plot(fig, output_dir, dataset, relation, metric)
 
@@ -494,75 +585,11 @@ def do_wide_plot(fig, output_dir, dataset, relation, metric):
         "{}/{}_{}_{}.png".format(output_dir, dataset, relation, metric))
 
 
-def handle_mean_values_string(mean_vals_string):
-    values_string = mean_vals_string.split(':')[1]
-
-    values = values_string.split(',')
-
-    numeric_vals = []
-
-    for val in values:
-        val = val.strip()
-        numeric_vals.append(float(val))
-
-    return numeric_vals
-
-
-def make_plots_dir(output_dir):
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-
-
-def get_sample_data_file(dir):
-    json_file = get_json_data_file_for_layer(dir, layer=12)
-    sample_data = load_json_data(json_file)
-
-    return sample_data
-
-
-def get_subfolders(path):
-    return [f.path for f in os.scandir(path) if f.is_dir()]
-
-
-def load_json_data(file):
-    with open(file) as json_data:
-        data = json.load(json_data)
-    return data
-
-
-def get_layer_folder(data_base_dir, layer):
-    list_subfolders_with_paths = get_subfolders(data_base_dir)
-    matching = [
-        s for s in list_subfolders_with_paths if "layer_{}".format(layer) in s]
-
-    if len(matching) > 1:
-        print('Found more than one dir with for layer {}. Using this one: {}'.format(
-            layer, sorted(matching)[0]))
-    return sorted(matching)[0]
-
-
-def get_files_in_folder(dir):
-    return [f.path for f in os.scandir(dir) if f.is_file()]
-
-
-def get_json_data_file_for_layer(dir, layer):
-    layer_dir = get_layer_folder(dir, layer)
-    all_files = get_files_in_folder(layer_dir)
-    json_files = [f for f in all_files if ".json" in f]
-    if len(json_files) > 1:
-        print('Found more than one json data file in dir. Using this one: {}'.format(
-            json_files[0]))
-    if len(json_files) == 0:
-        print('No json files found in {}'.format(layer_dir))
-        return None
-    return json_files[0]
-
-
 def select_model_for_comparison():
     selected_models = []
 
     default = {
-        'data_dir': '/home/jonas/git/knowledge-probing/data/outputs/bert/',
+        'data_dir': '/media/jonas/TOSHIBA EXT/latest_knowledge_probing/outputs/bert/',
         'name': 'BERT',
         'marker': 'circle',
         'color': 'black'
@@ -706,6 +733,70 @@ def select_model_for_comparison():
     #     'color': 'purple'
     # }
     # selected_models.append(old_marco_mlm)
+
+    # t5_small_last_layer_trained = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_small/',
+    #     'name': 'T5-Small-trained_last_layer',
+    #     'marker': 'pentagon-open',
+    #     'color': 'purple'
+    # }
+    # selected_models.append(t5_small_last_layer_trained)
+
+    t5_small = {
+        'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_small_og_ll/',
+        'name': 'T5-Small',
+        'marker': 'diamond',
+        'color': 'darkred'
+    }
+    selected_models.append(t5_small)
+
+    t5_base = {
+        'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_base_og_ll/',
+        'name': 'T5-BASE',
+        'marker': 'circle',
+        'color': 'green'
+    }
+    selected_models.append(t5_base)
+
+    # t5_base_last_layer_trained = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_base/',
+    #     'name': 'T5-Base-trained_last_layer',
+    #     'marker': 'diamond',
+    #     'color': 'blue'
+    # }
+    # selected_models.append(t5_base_og_ll)
+
+    # t5_rank = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_rank/og_last_layer/',
+    #     'name': 'T5-RANK',
+    #     'marker': 'triangle-down',
+    #     'color': 'purple'
+    # }
+    # selected_models.append(t5_rank)
+
+    # t5_rank_trained_ll = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_rank/',
+    #     'name': 'T5-RANK-Trained-Last-Layer',
+    #     'marker': 'pentagon-open',
+    #     'color': 'brown'
+    # }
+    # selected_models.append(t5_rank_trained_ll)
+
+    # t5_qa = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_qa/og_last_layer',
+    #     'name': 'T5-QA',
+    #     'marker': 'pentagon-open',
+    #     'color': 'coral'
+    # }
+    # selected_models.append(t5_qa)
+
+    # t5_qa_trained_ll = {
+    #     'data_dir': '/home/jonas/git/knowledge-probing-private/data/outputs/t5_qa/',
+    #     'name': 'T5-QA-Trained-Last-Layer',
+    #     'marker': 'pentagon-open',
+    #     'color': 'blue'
+    # }
+    # selected_models.append(t5_qa_trained_ll)
 
     return selected_models
 

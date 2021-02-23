@@ -6,6 +6,8 @@ dotmap
 pandas
 plotly
 tqdm
-sklearn
+# sklearn
 streamlit 
 datasets
+wordcloud
+mathplotlib
