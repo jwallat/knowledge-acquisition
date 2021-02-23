@@ -17,5 +17,6 @@ condor_out
 
 *.submit
 *.ini
+*.output
 
 wandb

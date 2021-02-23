@@ -4,6 +4,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 from pytorch_lightning.loggers import TensorBoardLogger, WandbLogger
 from knowledge_probing.file_utils import write_to_execution_log
 import sys
+import torch
 
 
 def training(args, decoder: BaseDecoder):
@@ -32,8 +33,13 @@ def training(args, decoder: BaseDecoder):
     else:
         logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
+    if 'select_specific_gpu_id' in args:
+         gpu_selection = args.select_specific_gpu_id
+    else: 
+        gpu_selection = args.gpus
+
     trainer = Trainer.from_argparse_args(
-        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger)
+        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger, gpus=gpu_selection) #
 
     write_to_execution_log('Run: {} \nArgs: {}\n'.format(
         args.run_identifier, args), path=args.execution_log)

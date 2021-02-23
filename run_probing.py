@@ -8,18 +8,17 @@ from knowledge_probing.probing.probing import probing
 from knowledge_probing.config.config_helper import handle_config
 from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 import sys
-import torch
+import os
 
 
 def main(args):
 
-    seed_everything(args.seed)
 
-    print('GPU Memory of {} availiable: {}'.format(
-        torch.cuda.get_device_name(), torch.cuda.get_device_properties(0).total_memory))
-    print('Learning rate {}'.format(args.lr))
+    seed_everything(args.seed)
+    print('PID: ', os.getpid())
 
     args = handle_config(args)
+    print('Config handled')
     if 't5' in args.model_type:
         print('Using a T5 model')
         if args.use_original_model:
@@ -30,6 +29,8 @@ def main(args):
     else:
         print('Using a BERT model')
         decoder = BertDecoder(hparams=args)
+
+    print('Got a model')
 
     if args.do_training:
         training(args, decoder)
@@ -42,9 +43,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = ArgumentParser(add_help=False)
-
     parser = BaseDecoder.add_model_specific_args(parser)
-
     parser = Trainer.add_argparse_args(parser)
 
     # Decoder
@@ -73,6 +72,8 @@ if __name__ == '__main__':
     parser.add_argument('--output_base_dir', default='data/outputs/',
                         help='Path to the output dir that will contain the logs and trained models')
     parser.add_argument('--seed', default=42, type=int)
+    parser.add_argument('--select_specific_gpu_id', type=str)
+    
 
     # Wandb
     parser.add_argument('--use_wandb_logging', default=False, action='store_true',
