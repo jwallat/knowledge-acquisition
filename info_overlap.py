@@ -30,9 +30,12 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
+import spacy
 
 
 nltk.download('stopwords')
+
+print_every_n = 1000
 
 
 def prepare_dataset_for_indexing(dataset):
@@ -58,25 +61,39 @@ def prepare_dataset_for_indexing(dataset):
     return patches
 
 
+# def old_remove_stopwords_and_stem(data):
+#     # ps = PorterStemmer()
+#     lemm = WordNetLemmatizer()
+#     stem = Stemmer()
+
+#     filtered_data = []
+#     for i, text in enumerate(tqdm(data, miniters=100)):
+#         tokens = word_tokenize(text)
+
+#         filtered_tokens = [
+#             token for token in tokens if not token in stopwords.words()]
+#         stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
+#         filtered_data.append(stemmed_tokens)
+
+#     return filtered_data
+
+
 def remove_stopwords_and_stem(data):
-    # ps = PorterStemmer()
-    lemm = WordNetLemmatizer()
-    stem = Stemmer()
+    nlp = spacy.load('en_core_web_sm')
 
     filtered_data = []
-    for i, text in enumerate(tqdm(data)):
-        tokens = word_tokenize(text)
-
+    for i, text in enumerate(tqdm(data, miniters=100)):
+        doc = nlp(text)
         filtered_tokens = [
-            token for token in tokens if not token in stopwords.words()]
-        stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
-        filtered_data.append(stemmed_tokens)
+            token.lemma_ for token in doc if not (token.is_stop or token.is_punct())]
+        filtered_data.append(filtered_tokens)
 
     return filtered_data
 
 
-def get_inverted_index(dataset, num_proccesses, dataset_name):
-    inv_index_file = 'inv_index_{}.json'.format(dataset_name)
+def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
+    inv_index_file = args.output_base_dir + \
+        '/inv_index_{}.json'.format(dataset_name)
 
     if os.path.isfile(inv_index_file):
         with open(inv_index_file, 'r') as json_file:
@@ -84,14 +101,11 @@ def get_inverted_index(dataset, num_proccesses, dataset_name):
             return inv_index
 
     text_dataset = prepare_dataset_for_indexing(dataset)
-    print(text_dataset[8])
-    # text_dataset = text_dataset[:1000]
-    print('Remove punctuation')
-    text_dataset = remove_punctuation(text_dataset)
+    # print('Remove punctuation')
+    # text_dataset = remove_punctuation(text_dataset)
 
     sample_chunks = chunkIt(text_dataset, num_proccesses)
 
-    pool = mp.Pool(num_proccesses)
     results = pool.map(remove_stopwords_and_stem, sample_chunks)
 
     results_from_mp = []
@@ -99,24 +113,55 @@ def get_inverted_index(dataset, num_proccesses, dataset_name):
         results_from_mp.extend(res)
 
     print('Build index')
-    inv_index = compute_inverted_index(results_from_mp)
+    inv_index = compute_inverted_index(results_from_mp, num_proccesses)
 
     # Safe inverted index
     with open(inv_index_file, 'w') as outfile:
         json.dump(inv_index, outfile)
     # print(inv_index)
 
+    return inv_index
 
-def compute_inverted_index(tokens_dataset):
+
+def compute_inverted_index(tokens_dataset, num_proccesses):
+    # data_chunks = chunkIt(tokens_dataset, num_proccesses)
+
+    # pool = mp.Pool(num_proccesses)
+    # results = pool.map(proccess_tokens_dataset, data_chunks)
+
+    # final_inv_index = {}
+    # for chunk_inv_index in results:
+    #     for token in chunk_inv_index.keys():
+    #         if token not in final_inv_index:
+    #             final_inv_index[token] = chunk_inv_index[token]
+    #         else:
+    #             final_inv_index[token].extend(chunk_inv_index[token])
+    # inv_index = {}
+
+    # for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
+    #     for token in document:
+    #         if token not in inv_index:
+    #             inv_index[token] = [document_idx]
+    #         else:
+    #             if document_idx not in inv_index[token]:
+    #                 inv_index[token].append(document_idx)
+
+    # return inv_index
+
+    # Changed index structure
     inv_index = {}
 
-    for document_idx, document in enumerate(tqdm(tokens_dataset)):
+    for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
         for token in document:
             if token not in inv_index:
-                inv_index[token] = [document_idx]
+                inv_index[token] = {}
+                inv_index[token][str(document_idx)] = 1
             else:
-                if document_idx not in inv_index[token]:
-                    inv_index[token].append(document_idx)
+                if str(document_idx) not in inv_index[token].keys():
+                    inv_index[token][str(document_idx)] = 1
+                else:
+                    inv_index[token][str(document_idx)] = inv_index[token][str(
+                        document_idx)] + 1
 
     return inv_index
 
@@ -137,26 +182,31 @@ def remove_punctuation(data):
 
 
 def main(args):
+    if args.use_wandb_logging:
+        print('Using Weights & Biases logging')
+        print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
+        sys.executable = args.python_executable
+        wandb.init(project=args.wandb_project_name, name=args.wandb_run_name)
 
-    wandb.init(project='Info-Overlap', name='Wiki')
+    # probing_data_dir = '/home/jonas/git/knowledge-probing-private/data/probing_data/'
+    # dataset_name = 'wikitext-2'
+    # num_proccesses = 9
 
-    probing_data_dir = '/home/jonas/git/knowledge-probing-private/data/probing_data/'
-
-    dataset_name = 'squad'
-
-    num_proccesses = 9
+    pool = mp.Pool(args.num_proccesses)
+    nlp = spacy.load('en_core_web_sm')
 
     # Dataset to ceck against
     # dataset = load_dataset(
     #     'wikitext', 'wikitext-103-raw-v1', split='train')
-    # dataset = load_dataset(
-    #     'wikitext', 'wikitext-2-raw-v1', split='train')
+    dataset = load_dataset(
+        'wikitext', 'wikitext-2-raw-v1', split='train')
 
-    dataset = load_dataset(dataset_name, split='train')
+    # dataset = load_dataset(dataset_name, split='train')
     # dataset = load_dataset('ms_marco', 'v2.1')['train']
 
     # Prepare dataset for matching
-    inv_index = get_inverted_index(dataset, num_proccesses, dataset_name)
+    inv_index = get_inverted_index(
+        dataset, args.num_proccesses, args.dataset_name, args, pool)
     # return
 
     # dataset = prepare_dataset_for_matching(dataset)
@@ -167,13 +217,13 @@ def main(args):
     # Get probing data stuff
     dataset_args = []
     dataset_args.append(('Google_RE', build_args(
-        'Google_RE', False, probing_data_dir, 0)))
+        'Google_RE', False, args.probing_data_dir, 0)))
     dataset_args.append(('TREx', build_args(
-        'TREx', False, probing_data_dir, 0)))
+        'TREx', False, args.probing_data_dir, 0)))
     # dataset_args.append(('ConceptNet', build_args(
     #     'ConceptNet', False, probing_data_dir, 0)))
     dataset_args.append(('Squad', build_args(
-        'Squad', False, probing_data_dir, 0)))
+        'Squad', False, args.probing_data_dir, 0)))
 
     occurrences = {}
 
@@ -198,12 +248,11 @@ def main(args):
             occurrences[ds_name][relation_args['relation']] = []
 
             # handle multiprocessing
-            sample_chunks = chunkIt(samples, num_proccesses)
+            sample_chunks = chunkIt(samples, args.num_proccesses)
 
             partial_handle = functools.partial(
-                handle_samples, args=args, dataset=dataset, inv_index=inv_index)
+                handle_samples, args=args, dataset=dataset, nlp=nlp, inv_index=inv_index)
 
-            pool = mp.Pool(num_proccesses)
             results = pool.map(partial_handle, sample_chunks)
 
             results_from_mp = []
@@ -219,7 +268,7 @@ def main(args):
     print_global_stats(occurrences)
 
     # Safe the accumulated data
-    with open('overlap_{}_data.json'.format(dataset_name), 'w') as outfile:
+    with open(args.output_base_dir + '/overlap_{}_data.json'.format(args.dataset_name), 'w') as outfile:
         json.dump(occurrences, outfile)
 
 
@@ -251,10 +300,10 @@ def print_global_stats(data):
             {'Dataset': dataset, 'Dataset_Overlap': (sum_aggregates_overlap_percentages/num_relations)})
 
 
-def handle_samples(samples, args, dataset, inv_index=None):
+def handle_samples(samples, args, dataset, nlp, inv_index=None):
     items = []
 
-    for sample in tqdm(samples):
+    for sample in tqdm(samples, miniters=100):
         template_sentence = parse_template(
             args.relation_args.template.strip(
             ), sample["sub_label"].strip(), sample['obj_label'].strip()
@@ -272,7 +321,7 @@ def handle_samples(samples, args, dataset, inv_index=None):
 
         # search in inverted index
         fact_occurrences = search_in_index(
-            dataset, sample['sub_label'], sample['obj_label'], inv_index)
+            dataset, sample['sub_label'], sample['obj_label'], inv_index, nlp)
 
         # Add occurence to item
         item['occ'] = fact_occurrences
@@ -281,10 +330,49 @@ def handle_samples(samples, args, dataset, inv_index=None):
     return items
 
 
-def search_in_index(dataset, sub, obj, inv_index):
+# def old_search_in_index(dataset, sub, obj, inv_index):
+#     # get stemmed tokens for the inverted index searching
+#     sub_tokens = make_words_index_searchable(sub)
+#     obj_token = make_words_index_searchable(obj)
+
+#     if len(sub_tokens) == 0 or len(obj_token) == 0:
+#         return []
+
+#     sub_tokens.extend(obj_token)
+#     search_tokens = sub_tokens[1:]
+#     # print(sub_tokens)
+#     # print('modded sub: ', sub_tokens[1:])
+#     # print(obj_token)
+#     # print('Search tokens', search_tokens)
+#     if sub_tokens[0] in inv_index:
+#         potential_documents = inv_index[sub_tokens[0]]
+#         for token in search_tokens:
+#             if token in inv_index:
+#                 token_documents = inv_index[token]
+#                 # Filter out all documents for that do not have both tokens in them
+#                 potential_documents = [
+#                     value for value in potential_documents if value in token_documents]
+#             else:
+#                 # print('Token < {} > not in inverted index, aborting'.format(token))
+#                 return []
+#         # Found documents that contain all tokens
+#         # Now find the fulltext in the dataset
+#         # print('{} documents left after filtering'.format(
+#         #     len(potential_documents)))
+#         occs = []
+#         for doc in potential_documents:
+#             occs.append(get_text_from_dataset(dataset, doc))
+#         return occs
+#     else:
+#         # print('First Token < {} > not in inverted index, aborting'.format(
+#         # sub_tokens[0]))
+#         return []
+
+
+def search_in_index(dataset, sub, obj, inv_index, nlp):
     # get stemmed tokens for the inverted index searching
-    sub_tokens = make_words_index_searchable(sub)
-    obj_token = make_words_index_searchable(obj)
+    sub_tokens = make_words_index_searchable(sub, nlp)
+    obj_token = make_words_index_searchable(obj, nlp)
 
     if len(sub_tokens) == 0 or len(obj_token) == 0:
         return []
@@ -296,23 +384,24 @@ def search_in_index(dataset, sub, obj, inv_index):
     # print(obj_token)
     # print('Search tokens', search_tokens)
     if sub_tokens[0] in inv_index:
-        potential_documents = inv_index[sub_tokens[0]]
+        potential_documents = inv_index[sub_tokens[0]].keys()
         for token in search_tokens:
             if token in inv_index:
-                token_documents = inv_index[token]
+                token_documents = inv_index[token].keys()
                 # Filter out all documents for that do not have both tokens in them
                 potential_documents = [
                     value for value in potential_documents if value in token_documents]
             else:
-                # print('Token < {} > not in inverted index, aborting'.format(token))
                 return []
         # Found documents that contain all tokens
         # Now find the fulltext in the dataset
-        # print('{} documents left after filtering'.format(
-        #     len(potential_documents)))
-        occs = []
-        for doc in potential_documents:
-            occs.append(get_text_from_dataset(dataset, doc))
+
+        # occs = []
+        # for doc in potential_documents:
+            # occs.append(get_text_from_dataset(dataset, int(doc)))
+
+        occs = potential_documents
+
         return occs
     else:
         # print('First Token < {} > not in inverted index, aborting'.format(
@@ -361,7 +450,7 @@ def chunkIt(seq, num):
     return out
 
 
-def make_words_index_searchable(text):
+def make_words_index_searchable(text, nlp):
     lemm = WordNetLemmatizer()
     stem = Stemmer()
 
@@ -373,7 +462,22 @@ def make_words_index_searchable(text):
         token for token in tokens if not token in stopwords.words()]
     stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
 
-    return stemmed_tokens
+    # print('Text to tokenize: ', text)
+    # print('Version one: ', stemmed_tokens)
+
+    # return stemmed_tokens
+
+    doc = nlp(text)
+    filtered_tokens = [
+        token.lemma_ for token in doc if not token.is_stop == True]
+
+    # print('Version two: ', filtered_tokens)
+
+    if set(stemmed_tokens) != set(filtered_tokens):
+        print('<no_match> for text {} with v1 {} and v2 {}'.format(
+            text, stemmed_tokens, filtered_tokens))
+
+    return filtered_tokens
 
 
 def find_occurrence(dataset, sub, obj):
@@ -402,6 +506,9 @@ if __name__ == '__main__':
     parser = ArgumentParser(add_help=True)
 
     parser = BaseDecoder.add_model_specific_args(parser)
+
+    parser.add_argument('--dataset_name', required=True)
+    parser.add_argument('--num_proccesses', type=int, required=True)
 
     parser = Trainer.add_argparse_args(parser)
 
