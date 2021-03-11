@@ -50,10 +50,9 @@ def prepare_dataset_for_indexing(dataset):
             # Squad
             text = ele['question'] + ' ' + ele['context']
         elif 'query' in ele.keys() and 'passages' in ele.keys():
-            concatenated_passages = ''
             for passage in ele['passages']['passage_text']:
-                concatenated_passages = concatenated_passages + " " + passage
-            text = ele['query'] + concatenated_passages
+                patches.append(ele['query'] + ' ' + passage)
+            continue
         else:
             print('Could not find something in the dataset element: ', ele)
         patches.append(text)
@@ -61,34 +60,26 @@ def prepare_dataset_for_indexing(dataset):
     return patches
 
 
-# def old_remove_stopwords_and_stem(data):
-#     # ps = PorterStemmer()
-#     lemm = WordNetLemmatizer()
-#     stem = Stemmer()
-
-#     filtered_data = []
-#     for i, text in enumerate(tqdm(data, miniters=100)):
-#         tokens = word_tokenize(text)
-
-#         filtered_tokens = [
-#             token for token in tokens if not token in stopwords.words()]
-#         stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
-#         filtered_data.append(stemmed_tokens)
-
-#     return filtered_data
-
-
-def remove_stopwords_and_stem(data):
+def prepare_data(data):
+    '''
+    This function does tokenization, stopword removal as well as punctuation removal
+    '''
     nlp = spacy.load('en_core_web_sm')
 
     filtered_data = []
-    for i, text in enumerate(tqdm(data, miniters=100)):
-        doc = nlp(text)
-        filtered_tokens = [
-            token.lemma_ for token in doc if not (token.is_stop or token.is_punct())]
+    for text in tqdm(data, miniters=100):
+        filtered_tokens = tokenize_stopwords_punctuation(text, nlp)
         filtered_data.append(filtered_tokens)
 
     return filtered_data
+
+
+def tokenize_stopwords_punctuation(text, nlp):
+    doc = nlp(text)
+    filtered_tokens = [
+        token.lemma_ for token in doc if not (token.is_stop or token.is_punct)]
+
+    return filtered_tokens
 
 
 def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
@@ -100,20 +91,16 @@ def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
             inv_index = json.load(json_file)
             return inv_index
 
-    text_dataset = prepare_dataset_for_indexing(dataset)
-    # print('Remove punctuation')
-    # text_dataset = remove_punctuation(text_dataset)
+    sample_chunks = chunkIt(dataset, num_proccesses)
 
-    sample_chunks = chunkIt(text_dataset, num_proccesses)
-
-    results = pool.map(remove_stopwords_and_stem, sample_chunks)
+    results = pool.map(prepare_data, sample_chunks)
 
     results_from_mp = []
     for res in results:
         results_from_mp.extend(res)
 
     print('Build index')
-    inv_index = compute_inverted_index(results_from_mp, num_proccesses)
+    inv_index = compute_inverted_index(results_from_mp)
 
     # Safe inverted index
     with open(inv_index_file, 'w') as outfile:
@@ -123,32 +110,7 @@ def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
     return inv_index
 
 
-def compute_inverted_index(tokens_dataset, num_proccesses):
-    # data_chunks = chunkIt(tokens_dataset, num_proccesses)
-
-    # pool = mp.Pool(num_proccesses)
-    # results = pool.map(proccess_tokens_dataset, data_chunks)
-
-    # final_inv_index = {}
-    # for chunk_inv_index in results:
-    #     for token in chunk_inv_index.keys():
-    #         if token not in final_inv_index:
-    #             final_inv_index[token] = chunk_inv_index[token]
-    #         else:
-    #             final_inv_index[token].extend(chunk_inv_index[token])
-    # inv_index = {}
-
-    # for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
-    #     for token in document:
-    #         if token not in inv_index:
-    #             inv_index[token] = [document_idx]
-    #         else:
-    #             if document_idx not in inv_index[token]:
-    #                 inv_index[token].append(document_idx)
-
-    # return inv_index
-
-    # Changed index structure
+def compute_inverted_index(tokens_dataset):
     inv_index = {}
 
     for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
@@ -166,21 +128,6 @@ def compute_inverted_index(tokens_dataset, num_proccesses):
     return inv_index
 
 
-def remove_punctuation(data):
-    punc = '''!()-[]{};:'"\, <>./?@#$%^&*_~='''
-
-    for i, text in enumerate(tqdm(data)):
-        # print(text)
-        for ele in text:
-            if ele in punc:
-                # print('Ele is in punc: ', ele)
-                text = text.replace(ele, " ")
-
-        data[i] = text.lower()
-
-    return data
-
-
 def main(args):
     if args.use_wandb_logging:
         print('Using Weights & Biases logging')
@@ -188,31 +135,24 @@ def main(args):
         sys.executable = args.python_executable
         wandb.init(project=args.wandb_project_name, name=args.wandb_run_name)
 
-    # probing_data_dir = '/home/jonas/git/knowledge-probing-private/data/probing_data/'
-    # dataset_name = 'wikitext-2'
-    # num_proccesses = 9
-
     pool = mp.Pool(args.num_proccesses)
     nlp = spacy.load('en_core_web_sm')
 
     # Dataset to ceck against
     # dataset = load_dataset(
     #     'wikitext', 'wikitext-103-raw-v1', split='train')
-    dataset = load_dataset(
-        'wikitext', 'wikitext-2-raw-v1', split='train')
+    # dataset = load_dataset(
+    #     'wikitext', 'wikitext-2-raw-v1', split='train')
 
     # dataset = load_dataset(dataset_name, split='train')
-    # dataset = load_dataset('ms_marco', 'v2.1')['train']
+    dataset = load_dataset('ms_marco', 'v2.1')['test']
+
+    # Build the dataset e.g., by appending the context to the question for squad
+    dataset = prepare_dataset_for_indexing(dataset)
 
     # Prepare dataset for matching
     inv_index = get_inverted_index(
         dataset, args.num_proccesses, args.dataset_name, args, pool)
-    # return
-
-    # dataset = prepare_dataset_for_matching(dataset)
-
-    # Get the stuff the we need for the script
-    # print(args)
 
     # Get probing data stuff
     dataset_args = []
@@ -398,7 +338,7 @@ def search_in_index(dataset, sub, obj, inv_index, nlp):
 
         # occs = []
         # for doc in potential_documents:
-            # occs.append(get_text_from_dataset(dataset, int(doc)))
+        #     occs.append(get_text_from_dataset(dataset, int(doc)))
 
         occs = potential_documents
 
@@ -410,15 +350,18 @@ def search_in_index(dataset, sub, obj, inv_index, nlp):
 
 
 def get_text_from_dataset(dataset, doc_id):
-    if 'text' in dataset[doc_id].keys():
-        # Wiki
-        text = dataset[doc_id]['text']
-    elif 'context' in dataset[doc_id].keys() and 'question' in dataset[doc_id].keys():
-        # Squad
-        text = dataset[doc_id]['question'] + ' ' + dataset[doc_id]['context']
-    elif 'query' in dataset[doc_id].keys() and 'passages' in dataset[doc_id].keys():
-        # TODO: Decide if I want to add a the query in front of all passages or not
-        concatenated_passages = ''
+    # if 'text' in dataset[doc_id].keys():
+    #     # Wiki
+    #     text = dataset[doc_id]['text']
+    # elif 'context' in dataset[doc_id].keys() and 'question' in dataset[doc_id].keys():
+    #     # Squad
+    #     text = dataset[doc_id]['question'] + ' ' + dataset[doc_id]['context']
+    # elif 'query' in dataset[doc_id].keys() and 'passages' in dataset[doc_id].keys():
+    #     # TODO: Decide if I want to add a the query in front of all passages or not
+    #     concatenated_passages = ''
+
+    # Currently, we just need to return the item at the specified index:
+    return dataset[doc_id]
 
 
 def print_statistics(items):
@@ -451,31 +394,22 @@ def chunkIt(seq, num):
 
 
 def make_words_index_searchable(text, nlp):
-    lemm = WordNetLemmatizer()
-    stem = Stemmer()
+    # lemm = WordNetLemmatizer()
+    # stem = Stemmer()
 
-    text = text.lower()
+    # text = text.lower()
 
-    tokens = word_tokenize(text)
+    # tokens = word_tokenize(text)
 
-    filtered_tokens = [
-        token for token in tokens if not token in stopwords.words()]
-    stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
+    # filtered_tokens = [
+    #     token for token in tokens if not token in stopwords.words()]
+    # stemmed_tokens = [lemm.lemmatize(token) for token in filtered_tokens]
 
-    # print('Text to tokenize: ', text)
-    # print('Version one: ', stemmed_tokens)
+    filtered_tokens = tokenize_stopwords_punctuation(text, nlp)
 
-    # return stemmed_tokens
-
-    doc = nlp(text)
-    filtered_tokens = [
-        token.lemma_ for token in doc if not token.is_stop == True]
-
-    # print('Version two: ', filtered_tokens)
-
-    if set(stemmed_tokens) != set(filtered_tokens):
-        print('<no_match> for text {} with v1 {} and v2 {}'.format(
-            text, stemmed_tokens, filtered_tokens))
+    # if set(stemmed_tokens) != set(filtered_tokens):
+    #     print('<no_match> for text {} with v1 {} and v2 {}'.format(
+    #         text, stemmed_tokens, filtered_tokens))
 
     return filtered_tokens
 
