@@ -1,5 +1,5 @@
 from argparse import Namespace
-from transformers.models.auto.tokenization_auto import AutoTokenizer
+from transformers import AutoTokenizer
 from knowledge_probing.models.lightning.base_decoder import BaseDecoder
 from knowledge_probing.datasets.cloze_dataset import ClozeDataset
 from knowledge_probing.probing.metrics import calculate_metrics, mean_precisions, aggregate_metrics_elements
@@ -23,8 +23,22 @@ def probing(args, decoder):
     # TODO: Compute the shared vocab between models with different vocabs (e.g. for comparison of BERT and ELECTRA)
     vocab = get_vocab(args.model_type)
 
-    # Choose datasets to probe
-    # The dataset loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
+    dataset_args = get_probing_dataset_args(args)
+
+    # Do the probing
+    data = probe(args, probing_model, tokenizer,
+                 dataset_args, layer=args.probing_layer, vocab=vocab)
+
+    save_probing_data(args, data)
+
+    return
+
+
+def get_probing_dataset_args(args):
+    """
+    Choose datasets to probe
+    The dataset loading is adapted from the LAMA repository by Petroni et. al. (https://github.com/facebookresearch/LAMA)
+    """
     dataset_args = []
     dataset_args.append(('Google_RE', build_args(
         'Google_RE', args.lowercase, args.probing_data_dir, args.precision_at_k)))
@@ -39,13 +53,7 @@ def probing(args, decoder):
     dataset_args.append(('Squad', build_args(
         'Squad', args.lowercase, args.probing_data_dir, args.precision_at_k)))
 
-    # Do the probing
-    data = probe(args, probing_model, tokenizer,
-                 dataset_args, layer=args.probing_layer, vocab=vocab)
-
-    save_probing_data(args, data)
-
-    return
+    return dataset_args
 
 
 def get_probing_model(args, decoder):
