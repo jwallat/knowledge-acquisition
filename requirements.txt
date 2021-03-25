@@ -1,6 +1,6 @@
 # pip install torch==1.7.1+cu101 torchvision==0.8.2+cu101 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
-pytorch-lightning>=1.1.6
-transformers==4.1.1
+pytorch-lightning==1.1.6
+transformers==4.2.2
 # tokenizers==0.5.2
 dotmap
 pandas
@@ -10,4 +10,9 @@ tqdm
 streamlit 
 datasets
 wordcloud
-mathplotlib
+# mathplotlib
+nltk 
+krovetzstemmer
+spacy
+scipy
+wandb
