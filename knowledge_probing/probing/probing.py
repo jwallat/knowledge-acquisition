@@ -144,7 +144,8 @@ def probe(args: Namespace, probing_model: BaseDecoder, tokenizer: AutoTokenizer,
         220 * '-', append_newlines=True, path=args.execution_log)
 
     if args.use_wandb_logging:
-        wandb.init(name=args.wandb_run_name, project=args.wandb_project_name)
+        wandb.init(name=args.wandb_run_name, project=args.wandb_project_name,
+                   settings=wandb.Settings(start_method='thread'))
         wandb_log_metrics(layer_data, layer)
 
     return layer_data

@@ -45,48 +45,49 @@ def main(args):
 
     #########################################################################################################################
 
-    checkpoint_callback = ModelCheckpoint(
-        filepath=args.decoder_save_dir,
-        save_top_k=1,
-        verbose=True,
-        monitor='val_loss',
-        mode='min',
-        prefix=''
-    )
+    if args.do_training:
+        checkpoint_callback = ModelCheckpoint(
+            dirpath=args.decoder_save_dir,
+            save_top_k=1,
+            verbose=True,
+            monitor='val_loss',
+            mode='min',
+            prefix=''
+        )
 
-    early_stop_callback = EarlyStopping(
-        monitor='val_loss',
-        min_delta=args.training_early_stop_delta,
-        patience=args.training_early_stop_patience,
-        verbose=True,
-        mode='min'
-    )
+        early_stop_callback = EarlyStopping(
+            monitor='val_loss',
+            min_delta=args.training_early_stop_delta,
+            patience=args.training_early_stop_patience,
+            verbose=True,
+            mode='min'
+        )
 
-    if args.use_wandb_logging:
-        print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
-        sys.executable = args.python_executable
-        logger = WandbLogger(project=args.wandb_project_name,
-                             name=args.wandb_run_name)
-    else:
-        logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
+        if args.use_wandb_logging:
+            print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
+            sys.executable = args.python_executable
+            logger = WandbLogger(project=args.wandb_project_name,
+                                 name=args.wandb_run_name)
+        else:
+            logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
-    # if 'select_specific_gpu_id' in args:
-    #     gpu_selection = args.select_specific_gpu_id
-    # else:
-    #     gpu_selection = args.gpus
+        # if 'select_specific_gpu_id' in args:
+        #     gpu_selection = args.select_specific_gpu_id
+        # else:
+        #     gpu_selection = args.gpus
 
-    trainer = Trainer.from_argparse_args(
-        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger, gpus=args.gpus)
+        trainer = Trainer.from_argparse_args(
+            args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger, gpus=args.gpus)
 
-    write_to_execution_log('Run: {} \nArgs: {}\n'.format(
-        args.run_identifier, args), path=args.execution_log)
+        write_to_execution_log('Run: {} \nArgs: {}\n'.format(
+            args.run_identifier, args), path=args.execution_log)
 
-    model.set_to_train()
+        model.set_to_train()
 
-    trainer.fit(model)
-    model = model.load_best_model_checkpoint(hparams=args)
+        trainer.fit(model)
+        # model = model.load_best_model_checkpoint(hparams=args)
 
-    trainer.test(model)
+        trainer.test(model)
 
     ###########################################################################################################################################
 

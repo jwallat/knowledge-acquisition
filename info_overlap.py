@@ -18,8 +18,8 @@ from krovetzstemmer import Stemmer
 import sys
 import os
 import torch
-import functools
 import multiprocessing as mp
+import torch.multiprocessing as mp
 import json
 from tqdm import tqdm
 from knowledge_probing.file_utils import load_file
@@ -31,6 +31,11 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 import spacy
+import gc
+import functools
+import logging
+import struct
+import sys
 
 
 nltk.download('stopwords')
@@ -38,97 +43,10 @@ nltk.download('stopwords')
 print_every_n = 1000
 
 
-def prepare_dataset_for_indexing(dataset):
-    patches = []
-    print('prepare dataset')
-    for ele in tqdm(dataset):
-        text = ''
-        if 'text' in ele.keys():
-            # Wiki
-            text = ele['text']
-        elif 'context' in ele.keys() and 'question' in ele.keys():
-            # Squad
-            text = ele['question'] + ' ' + ele['context']
-        elif 'query' in ele.keys() and 'passages' in ele.keys():
-            for passage in ele['passages']['passage_text']:
-                patches.append(ele['query'] + ' ' + passage)
-            continue
-        else:
-            print('Could not find something in the dataset element: ', ele)
-        patches.append(text)
-
-    return patches
-
-
-def prepare_data(data):
-    '''
-    This function does tokenization, stopword removal as well as punctuation removal
-    '''
-    nlp = spacy.load('en_core_web_sm')
-
-    filtered_data = []
-    for text in tqdm(data, miniters=100):
-        filtered_tokens = tokenize_stopwords_punctuation(text, nlp)
-        filtered_data.append(filtered_tokens)
-
-    return filtered_data
-
-
-def tokenize_stopwords_punctuation(text, nlp):
-    doc = nlp(text)
-    filtered_tokens = [
-        token.lemma_ for token in doc if not (token.is_stop or token.is_punct)]
-
-    return filtered_tokens
-
-
-def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
-    inv_index_file = args.output_base_dir + \
-        '/inv_index_{}.json'.format(dataset_name)
-
-    if os.path.isfile(inv_index_file):
-        with open(inv_index_file, 'r') as json_file:
-            inv_index = json.load(json_file)
-            return inv_index
-
-    sample_chunks = chunkIt(dataset, num_proccesses)
-
-    results = pool.map(prepare_data, sample_chunks)
-
-    results_from_mp = []
-    for res in results:
-        results_from_mp.extend(res)
-
-    print('Build index')
-    inv_index = compute_inverted_index(results_from_mp)
-
-    # Safe inverted index
-    with open(inv_index_file, 'w') as outfile:
-        json.dump(inv_index, outfile)
-    # print(inv_index)
-
-    return inv_index
-
-
-def compute_inverted_index(tokens_dataset):
-    inv_index = {}
-
-    for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
-        for token in document:
-            if token not in inv_index:
-                inv_index[token] = {}
-                inv_index[token][str(document_idx)] = 1
-            else:
-                if str(document_idx) not in inv_index[token].keys():
-                    inv_index[token][str(document_idx)] = 1
-                else:
-                    inv_index[token][str(document_idx)] = inv_index[token][str(
-                        document_idx)] + 1
-
-    return inv_index
-
-
 def main(args):
+
+    patch_mp_connection_bpo_17560()
+
     if args.use_wandb_logging:
         print('Using Weights & Biases logging')
         print('If you are having issues with wandb, make sure to give the correct python executable to --python_executable')
@@ -144,11 +62,15 @@ def main(args):
     # dataset = load_dataset(
     #     'wikitext', 'wikitext-2-raw-v1', split='train')
 
+    initial_dataset = load_dataset('squad')['train']
     # dataset = load_dataset(dataset_name, split='train')
-    dataset = load_dataset('ms_marco', 'v2.1')['test']
+    # initial_dataset = load_dataset('ms_marco', 'v2.1')['train']
 
     # Build the dataset e.g., by appending the context to the question for squad
-    dataset = prepare_dataset_for_indexing(dataset)
+    dataset = prepare_dataset_for_indexing(initial_dataset)
+
+    del initial_dataset
+    gc.collect()
 
     # Prepare dataset for matching
     inv_index = get_inverted_index(
@@ -187,17 +109,21 @@ def main(args):
 
             occurrences[ds_name][relation_args['relation']] = []
 
-            # handle multiprocessing
-            sample_chunks = chunkIt(samples, args.num_proccesses)
+            if args.mp_relations:
+                # handle multiprocessing
+                sample_chunks = chunkIt(samples, args.num_proccesses)
 
-            partial_handle = functools.partial(
-                handle_samples, args=args, dataset=dataset, nlp=nlp, inv_index=inv_index)
+                partial_handle = functools.partial(
+                    handle_samples, args=args, dataset=dataset, nlp=nlp, inv_index=inv_index)
 
-            results = pool.map(partial_handle, sample_chunks)
+                results = pool.map(partial_handle, sample_chunks)
 
-            results_from_mp = []
-            for res in results:
-                results_from_mp.extend(res)
+                results_from_mp = []
+                for res in results:
+                    results_from_mp.extend(res)
+            else:
+                results_from_mp = handle_samples(
+                    samples=samples, args=args, dataset=dataset, nlp=nlp, inv_index=inv_index)
 
             occurrences[ds_name][relation_args['relation']] = results_from_mp
 
@@ -210,6 +136,99 @@ def main(args):
     # Safe the accumulated data
     with open(args.output_base_dir + '/overlap_{}_data.json'.format(args.dataset_name), 'w') as outfile:
         json.dump(occurrences, outfile)
+
+
+def prepare_dataset_for_indexing(dataset):
+    patches = []
+    print('prepare dataset')
+    for ele in tqdm(dataset, miniters=1000):
+        text = ''
+        if 'text' in ele.keys():
+            # Wiki
+            text = ele['text']
+        elif 'context' in ele.keys() and 'question' in ele.keys():
+            # Squad
+            text = ele['question'] + ' ' + ele['context']
+        elif 'query' in ele.keys() and 'passages' in ele.keys():
+            for passage in ele['passages']['passage_text']:
+                patches.append(ele['query'] + ' ' + passage)
+            continue
+        else:
+            print('Could not find something in the dataset element: ', ele)
+        patches.append(text)
+
+    return patches
+
+
+def prepare_data(data):
+    '''
+    This function does tokenization, stopword removal as well as punctuation removal
+    '''
+    nlp = spacy.load('en_core_web_sm')
+
+    filtered_data = []
+    for text in tqdm(data, miniters=1000):
+        filtered_tokens = tokenize_stopwords_punctuation(text, nlp)
+        filtered_data.append(filtered_tokens)
+
+    return filtered_data
+
+
+def tokenize_stopwords_punctuation(text, nlp):
+    doc = nlp(text)
+    filtered_tokens = [
+        token.lemma_ for token in doc if not (token.is_stop or token.is_punct)]
+
+    return filtered_tokens
+
+
+def get_inverted_index(dataset, num_proccesses, dataset_name, args, pool):
+    inv_index_file = args.output_base_dir + \
+        '/inv_index_{}.json'.format(dataset_name)
+
+    if os.path.isfile(inv_index_file):
+        print('\n\nLoading inverted index from saved file: ', inv_index_file)
+        with open(inv_index_file, 'r') as json_file:
+            inv_index = json.load(json_file)
+            print('Finished loading index!')
+            return inv_index
+
+    sample_chunks = chunkIt(dataset, num_proccesses)
+
+    print('Prepare for index (tokenize, stopwords, punctuation)')
+    results = pool.map(prepare_data, sample_chunks)
+
+    results_from_mp = []
+    for res in results:
+        results_from_mp.extend(res)
+
+    print('Build index')
+    inv_index = compute_inverted_index(results_from_mp)
+
+    # Safe inverted index
+    with open(inv_index_file, 'w') as outfile:
+        json.dump(inv_index, outfile)
+    # print(inv_index)
+
+    return inv_index
+
+
+def compute_inverted_index(tokens_dataset):
+    inv_index = {}
+
+    for document_idx, document in enumerate(tqdm(tokens_dataset, miniters=100)):
+        for token in document:
+            if token not in inv_index:
+                inv_index[token] = {}
+                inv_index[token][str(document_idx)] = 1
+            else:
+                if str(document_idx) not in inv_index[token].keys():
+                    inv_index[token][str(document_idx)] = 1
+                else:
+                    inv_index[token][str(document_idx)] = inv_index[token][str(
+                        document_idx)] + 1
+
+    return inv_index
 
 
 def print_global_stats(data):
@@ -243,7 +262,7 @@ def print_global_stats(data):
 def handle_samples(samples, args, dataset, nlp, inv_index=None):
     items = []
 
-    for sample in tqdm(samples, miniters=100):
+    for sample in tqdm(samples, miniters=1):
         template_sentence = parse_template(
             args.relation_args.template.strip(
             ), sample["sub_label"].strip(), sample['obj_label'].strip()
@@ -268,45 +287,6 @@ def handle_samples(samples, args, dataset, nlp, inv_index=None):
         items.append(item)
 
     return items
-
-
-# def old_search_in_index(dataset, sub, obj, inv_index):
-#     # get stemmed tokens for the inverted index searching
-#     sub_tokens = make_words_index_searchable(sub)
-#     obj_token = make_words_index_searchable(obj)
-
-#     if len(sub_tokens) == 0 or len(obj_token) == 0:
-#         return []
-
-#     sub_tokens.extend(obj_token)
-#     search_tokens = sub_tokens[1:]
-#     # print(sub_tokens)
-#     # print('modded sub: ', sub_tokens[1:])
-#     # print(obj_token)
-#     # print('Search tokens', search_tokens)
-#     if sub_tokens[0] in inv_index:
-#         potential_documents = inv_index[sub_tokens[0]]
-#         for token in search_tokens:
-#             if token in inv_index:
-#                 token_documents = inv_index[token]
-#                 # Filter out all documents for that do not have both tokens in them
-#                 potential_documents = [
-#                     value for value in potential_documents if value in token_documents]
-#             else:
-#                 # print('Token < {} > not in inverted index, aborting'.format(token))
-#                 return []
-#         # Found documents that contain all tokens
-#         # Now find the fulltext in the dataset
-#         # print('{} documents left after filtering'.format(
-#         #     len(potential_documents)))
-#         occs = []
-#         for doc in potential_documents:
-#             occs.append(get_text_from_dataset(dataset, doc))
-#         return occs
-#     else:
-#         # print('First Token < {} > not in inverted index, aborting'.format(
-#         # sub_tokens[0]))
-#         return []
 
 
 def search_in_index(dataset, sub, obj, inv_index, nlp):
@@ -414,6 +394,64 @@ def make_words_index_searchable(text, nlp):
     return filtered_tokens
 
 
+def patch_mp_connection_bpo_17560():
+    """Apply PR-10305 / bpo-17560 connection send/receive max size update
+
+    See the original issue at https://bugs.python.org/issue17560 and 
+    https://github.com/python/cpython/pull/10305 for the pull request.
+
+    This only supports Python versions 3.3 - 3.7, this function
+    does nothing for Python versions outside of that range.
+
+    """
+    patchname = "Multiprocessing connection patch for bpo-17560"
+    if not (3, 3) < sys.version_info < (3, 8):
+        print(
+            patchname + " not applied, not an applicable Python version: %s",
+            sys.version
+        )
+        return
+
+    from multiprocessing.connection import Connection
+
+    orig_send_bytes = Connection._send_bytes
+    orig_recv_bytes = Connection._recv_bytes
+    if (
+        orig_send_bytes.__code__.co_filename == __file__
+        and orig_recv_bytes.__code__.co_filename == __file__
+    ):
+        print(patchname + " already applied, skipping")
+        return
+
+    @functools.wraps(orig_send_bytes)
+    def send_bytes(self, buf):
+        n = len(buf)
+        if n > 0x7fffffff:
+            pre_header = struct.pack("!i", -1)
+            header = struct.pack("!Q", n)
+            self._send(pre_header)
+            self._send(header)
+            self._send(buf)
+        else:
+            orig_send_bytes(self, buf)
+
+    @functools.wraps(orig_recv_bytes)
+    def recv_bytes(self, maxsize=None):
+        buf = self._recv(4)
+        size, = struct.unpack("!i", buf.getvalue())
+        if size == -1:
+            buf = self._recv(8)
+            size, = struct.unpack("!Q", buf.getvalue())
+        if maxsize is not None and size > maxsize:
+            return None
+        return self._recv(size)
+
+    Connection._send_bytes = send_bytes
+    Connection._recv_bytes = recv_bytes
+
+    print(patchname + " applied")
+
+
 def find_occurrence(dataset, sub, obj):
     occurrences = []
     avg_word_len = 7
@@ -443,6 +481,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--dataset_name', required=True)
     parser.add_argument('--num_proccesses', type=int, required=True)
+    parser.add_argument('--mp_relations', default=False, action='store_true')
 
     parser = Trainer.add_argparse_args(parser)
 
