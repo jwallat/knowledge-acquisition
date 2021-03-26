@@ -119,8 +119,13 @@ class TrainClozeDataset(Dataset):
                         args.relation_args.template.strip(
                         ), sample["sub_label"].strip(), probing_model.mask_token
                     )[0]
-                    smp['evidence'] = sample['evidences'][0]['considered_sentences'][0]
-                    masked_evidence = sample['masked_sentences'][0]
+                    considered_sentences = ''
+                    for sent in sample['evidences'][0]['considered_sentences']:
+                        considered_sentences = considered_sentences + " " + sent
+                    smp['evidence'] = considered_sentences
+                    masked_evidence = ''  # sample['masked_sentences'][0]
+                    for sent in sample['masked_sentences']:
+                        masked_evidence = masked_evidence + " " + sent
                     masked_evidence = masked_evidence.replace(
                         '[MASK]', probing_model.mask_token)
                     smp['masked_evidence'] = masked_evidence
