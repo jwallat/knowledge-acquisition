@@ -67,7 +67,7 @@ class TrainClozeDataset(Dataset):
                 # elif 'random' in args.capacity_masking_mode:
 
             elif 'evidence' in args.capacity_text_mode:
-                elem['sequence'] = tokenizer.encode_plus(elem['evidence'], add_special_tokens=True, return_tensors='pt')[
+                elem['sequence'] = tokenizer.encode_plus(elem['evidence'], add_special_tokens=True, return_tensors='pt', truncation=True)[
                     'input_ids'][0]
 
             else:
@@ -163,7 +163,7 @@ class TrainClozeDataset(Dataset):
                         args.relation_args.template.strip(
                         ), sample["sub_label"].strip(), probing_model.mask_token
                     )[0]
-                    evidence = sample['evidences'][0]['masked_sentence'][0]
+                    evidence = sample['evidences'][0]['masked_sentence']
                     smp['evidence'] = evidence.replace(
                         '[MASK]', sample['obj_label'])
                     masked_evidence = evidence.replace(
