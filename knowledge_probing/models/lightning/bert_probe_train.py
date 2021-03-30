@@ -192,8 +192,15 @@ class BertProbeTrain(BaseDecoder):
             obj_label_id = tokenizer.convert_tokens_to_ids(obj_label)
 
             if 'object' in hparams.capacity_masking_mode:
-                obj_index = input_ids.tolist().index(obj_label_id)
-                input_ids[obj_index] = tokenizer.mask_token_id
+                # print('Sentence: ', self.tokenizer.decode(input_ids))
+                # print('Input ids: ', input_ids.tolist())
+                # print('Obj: ', obj_label)
+                # print('Looking for the index: ', obj_label_id)
+                try:
+                    obj_index = input_ids.tolist().index(obj_label_id)
+                    input_ids[obj_index] = tokenizer.mask_token_id
+                except:
+                    print('****************** obj label not in input ids!!!!!!!!!!!!!')
             elif 'random' in hparams.capacity_masking_mode:
                 random_index = random.randint(0, len(input_ids) - 1)
                 input_ids[random_index] = tokenizer.mask_token_id
