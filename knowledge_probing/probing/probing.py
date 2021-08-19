@@ -162,13 +162,29 @@ def wandb_log_metrics(layer_data, layer):
     wandb.log(
         {'layer': layer, 'ConceptNet P@1': layer_data['ConceptNet']['test'][0]['P_AT_1']})
     wandb.log(
+        {'layer': layer, 'ConceptNet P@10': layer_data['ConceptNet']['test'][0]['P_AT_10']})
+    wandb.log(
+        {'layer': layer, 'ConceptNet P@100': layer_data['ConceptNet']['test'][0]['P_AT_K']})
+    wandb.log(
         {'layer': layer, 'Squad P@1': layer_data['Squad']['test'][0]['P_AT_1']})
+    wandb.log(
+        {'layer': layer, 'Squad P@10': layer_data['Squad']['test'][0]['P_AT_10']})
+    wandb.log(
+        {'layer': layer, 'Squad P@100': layer_data['Squad']['test'][0]['P_AT_K']})
 
     # log dataset with messy means
     # Google_RE
     p1 = handle_mean_values_string(layer_data['Google_RE']['means'][0])[0]
     wandb.log({'layer': layer, 'Google_RE P@1': p1})
+    p10 = handle_mean_values_string(layer_data['Google_RE']['means'][0])[1]
+    wandb.log({'layer': layer, 'Google_RE P@10': p10})
+    pk = handle_mean_values_string(layer_data['Google_RE']['means'][0])[2]
+    wandb.log({'layer': layer, 'Google_RE P@100': pk})
 
     # TREx
     p1 = handle_mean_values_string(layer_data['TREx']['means'][0])[0]
     wandb.log({'layer': layer, 'TREx P@1': p1})
+    p10 = handle_mean_values_string(layer_data['TREx']['means'][0])[1]
+    wandb.log({'layer': layer, 'TREx P@10': p10})
+    pk = handle_mean_values_string(layer_data['TREx']['means'][0])[2]
+    wandb.log({'layer': layer, 'TREx P@100': pk})

@@ -9,7 +9,7 @@ import torch
 
 def training(args, decoder: BaseDecoder):
     checkpoint_callback = ModelCheckpoint(
-        filepath=args.decoder_save_dir,
+        dirpath=args.decoder_save_dir,
         save_top_k=1,
         verbose=True,
         monitor='val_loss',
@@ -33,13 +33,13 @@ def training(args, decoder: BaseDecoder):
     else:
         logger = TensorBoardLogger("{}/tb_logs".format(args.output_dir))
 
-    if 'select_specific_gpu_id' in args:
-         gpu_selection = args.select_specific_gpu_id
-    else: 
-        gpu_selection = args.gpus
+    # if 'select_specific_gpu_id' in args:
+    #     gpu_selection = args.select_specific_gpu_id
+    # else:
+    gpu_selection = args.gpus
 
     trainer = Trainer.from_argparse_args(
-        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger, gpus=gpu_selection) #
+        args, checkpoint_callback=checkpoint_callback, callbacks=[early_stop_callback], logger=logger, gpus=gpu_selection)
 
     write_to_execution_log('Run: {} \nArgs: {}\n'.format(
         args.run_identifier, args), path=args.execution_log)

@@ -84,7 +84,10 @@ def main(args):
 
         model.set_to_train()
 
-        trainer.fit(model)
+        try:
+            trainer.fit(model)
+        except:
+            print('Skip training')
         # model = model.load_best_model_checkpoint(hparams=args)
 
         trainer.test(model)

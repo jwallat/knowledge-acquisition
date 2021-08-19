@@ -245,7 +245,7 @@ class BertProbeTrain(BaseDecoder):
     def train_dataloader(self):
         print('Using my train dataloader')
         train_dataloader = DataLoader(
-            self.train_dataset, batch_size=self.hparams.probing_batch_size, collate_fn=self.probe_cloze_collate, pin_memory=False, num_workers=self.hparams.num_workers)
+            self.train_dataset, batch_size=self.hparams.batch_size, collate_fn=self.probe_cloze_collate, pin_memory=False, num_workers=self.hparams.num_workers)
 
         return train_dataloader
 

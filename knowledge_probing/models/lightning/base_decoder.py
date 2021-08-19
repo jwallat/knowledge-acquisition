@@ -198,7 +198,7 @@ class BaseDecoder(LightningModule):
             '--model_dir', required='--use_model_from_dir' in sys.argv)
         parser.add_argument('--model_type', default='bert-base-uncased',
                             choices=['bert-base-uncased', 'bert-base-cased', 't5-small', 't5-base',
-                                     'google/t5-v1_1-small', 'google/t5-v1_1-base', 'castorini/monot5-base-msmarco', 'valhalla/t5-base-squad'])
+                                     'google/t5-v1_1-small', 'google/t5-v1_1-base', 'castorini/monot5-base-msmarco', 'valhalla/t5-base-squad', 'dslim/bert-base-NER'])
         parser.add_argument('--unfreeze_transformer',
                             default=False, action='store_true')
         parser.add_argument('--use_full_wiki',
