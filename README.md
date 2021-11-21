@@ -8,6 +8,7 @@ Knowledge probing is a framework that allows probing for T5's world knowledge. I
 We borrowed passages and QA-pairs from the 65 Million Probably Asked Questions (PAQ) dataset ([https://github.com/facebookresearch/PAQ](https://github.com/facebookresearch/PAQ)). for pre-training and fine-tuning, respectively.
 
 ---
+![image](https://user-images.githubusercontent.com/52611192/142775232-31151150-5b6b-4434-a565-fad9084b05c4.png)
 
 ## Getting Started
 
