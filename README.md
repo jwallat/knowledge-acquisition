@@ -90,7 +90,7 @@ To probe own models, make sure to set the according flag when running the scirpt
 
 ### QA-pairs.jsonl
 
-Please store QA-pairs in the jsonl file like this.
+Please store QA-pairs in the jsonl file like this:
 ```python
 {"question": "Who is the president of the United States?", "answer": ["Joseph Robinette Biden Jr.", "Joe Biden"], "passage_id": "2114", "subsets": "L4"}
 ```
