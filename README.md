@@ -38,6 +38,7 @@ $ python pretraining_probing.py\
       -- pmi_path = .../pmi_dict_2000k_M.pkl \
  ```
 Or you can collect PMI vocabulary from other corpora based on the original [PMI-Masking paper](https://arxiv.org/pdf/2010.01825.pdf).
+
 That's it! Run your experiments!
 
 ### Implement Experiments
