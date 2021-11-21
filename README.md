@@ -32,12 +32,12 @@ We borrowed passages and QA-pairs from the 65 Million Probably Asked Questions (
     ```
 Please download the PAQ dataset by yourself. Passages and corresponding QA-pairs can be obtained from preprocessed Wikipedia dump and PAQ QA-pair metadata ([https://github.com/facebookresearch/PAQ](https://github.com/facebookresearch/PAQ)).
 
-6. Download the ([PMI vocabulary](https://drive.google.com/file/d/14lnHwUjoAXQS6vNsSMjfpJuzXEkKikSB/view?usp=sharing)) of Wikipeadia + Bookcorpus. When using the PMI-masking strategy, please use flags:
+6. Download the [PMI vocabulary](https://drive.google.com/file/d/14lnHwUjoAXQS6vNsSMjfpJuzXEkKikSB/view?usp=sharing) of Wikipeadia + Bookcorpus. When using the PMI-masking strategy, please use flags:
 ```bash 
 $ python pretraining_probing.py\
       -- pmi_path = .../pmi_dict_2000k_M.pkl \
  ```
-Or you can collect PMI vocabulary from other corpora based on the original ([PMI paper](https://arxiv.org/pdf/2010.01825.pdf)).
+Or you can collect PMI vocabulary from other corpora based on the original [PMI paper](https://arxiv.org/pdf/2010.01825.pdf).
 That's it! Run your experiments!
 
 ### Implement Experiments
