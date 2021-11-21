@@ -34,9 +34,9 @@ Please download the PAQ dataset by yourself. Passages and corresponding QA-pairs
 
 6. That's it! Run your experiments!
 
-### Configure Experiments
+### Implement Experiments
 
-Probing experiments can be configured by specifying the relevant flag to the call. If you want to mplement pre-training + fine-tuning with EWC algorithm, you can do like this:
+If you want to implement the pipeline of pre-training + fine-tuning with EWC algorithm, you can do like this:
 
 ```bash
 $ bash pipeline_EWC.sh
@@ -84,7 +84,7 @@ To probe own models, make sure to set the according flag when running the scirpt
 
 Please store QA-pairs in the jsonl file like this.
 ```python
-{"question": "what music did einstein play at age 17?", "answer": ["Beethoven's violin sonatas"], "passage_id": "2114", "subsets": "L4"}
+{"question": "Who is the president of the United States?", "answer": ["Joseph Robinette Biden Jr.", "Joe Biden"], "passage_id": "2114", "subsets": "L4"}
 ```
 
 ## Reference
