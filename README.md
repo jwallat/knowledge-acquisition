@@ -37,7 +37,7 @@ Please download the PAQ dataset by yourself. Passages and corresponding QA-pairs
 6. Download the [PMI vocabulary](https://drive.google.com/file/d/14lnHwUjoAXQS6vNsSMjfpJuzXEkKikSB/view?usp=sharing) of Wikipeadia + Bookcorpus. When using the PMI-masking strategy, please use flags:
 ```bash 
 $ python pretraining_probing.py\
-      -- pmi_path = .../pmi_dict_2000k_M.pkl \
+      -- pmi_path = .data/pmi_dict_2000k_M.pkl \
  ```
 Or you can collect PMI vocabulary from other corpora based on the original [PMI-Masking paper](https://arxiv.org/pdf/2010.01825.pdf).
 
@@ -56,7 +56,7 @@ If you have run pipeline_EWC.sh with a certain masking strategy, the multitask t
 Run the pipeline of multitask training:
 
 ```bash
-$ bash pipeline_multi.sh
+$ bash pipeline_multitask.sh
 ```
 
 ### Weights and Biases Integration
