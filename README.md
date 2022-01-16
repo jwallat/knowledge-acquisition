@@ -52,7 +52,7 @@ $ bash pipeline_EWC.sh
 ```
 You can also set related parameters and masking strategies in the PT_EWC.sh and FT_EWC.sh files. 
 
-If you have run pipeline_EWC.sh with a certain masking strategy, the multitask training with this masking strategy can be implemented directly. Otherwise, please use the text_dataset.py file to generate the pickling file separately.
+If you have run pipeline_EWC.sh with a certain masking strategy, the multitask training with this masking strategy can be implemented directly.
 Run the pipeline of multitask training:
 
 ```bash
@@ -95,6 +95,34 @@ Please store QA-pairs in the jsonl file like this:
 ```python
 {"question": "Who is the president of the United States?", "answer": ["Joseph Robinette Biden Jr.", "Joe Biden"], "passage_id": "2114", "subsets": "L4"}
 ```
+## How to reproduce our experiments
+
+Here you can [download](https://drive.google.com/drive/folders/1rkusTS0aPm54yTcGENbUDr9RASt0_lPe?usp=sharing) some of the subsets of PAQ datasets we have processed.
+If additional data sets are required please handle them yourself.
+
+Training the baseline model. This means that there is no additional pre-training, only a fine-tuning process on the QA-set dataset. The QA-pair dataset can be set by modifying flags  "FT_train/valid/dev_file".
+
+```bash
+$ bash baseline_ft.sh 
+```
+Standard additional pretraining with different masking strategies → Standard fine-tuning → Test (Probe knowledge).
+The masking strategy can be set by modifying the flag "mask_strategy" in the pipeline_EWC.sh file.
+
+```bash
+$ bash pipeline_EWC.sh 0 0    # The first parameter is set to 0 in order to avoid using the EWC algorithm. The second parameter does not matter here.
+```
+
+Standard additional pretraining with different masking strategies → Fine-tuning with EWC algorithm → Test (Probe knowledge).
+
+```bash 
+$ bash pipeline_EWC.sh 1 1000 # Using EWC algorithm, and the scale foctor of EWC is set as 1000 (adjustable).
+```
+Multitask training → Standard fine-tuning → Test (Probe knowledge).
+
+```bash
+$ bash pipeline_multitask.sh 
+```
+Note: All settings can be customised in the individual .sh files.
 
 ## Reference
 
