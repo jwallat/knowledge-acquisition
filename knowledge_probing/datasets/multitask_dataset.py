@@ -8,7 +8,7 @@ from transformers import AutoTokenizer
 # Noted that before using MultitaskDataset, please use TextDataset to pickling each data set separately.
 class MultitaskDataset(Dataset):
     def __init__(self, tokenizer: AutoTokenizer, args, file_path: str, block_size=512):
-        self.args = args
+        #self.args = args
         file_paths = file_path.split('&&')
         samples_set = []
         for file in file_paths:

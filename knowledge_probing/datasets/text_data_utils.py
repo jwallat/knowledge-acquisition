@@ -4,6 +4,7 @@ from transformers import AutoTokenizer
 import os, sys
 from random import choice
 import pickle5 as pickle
+from knowledge_probing.datasets.text_dataset import TextDataset
 from tqdm import tqdm
 
 
@@ -101,8 +102,14 @@ def datasets_handle(file_path, args, tokenizer, block_size=512):
                                             model_type_string + "_cached_lm_" + str(block_size) + "_" + filename)
     if os.path.exists(cached_features_file):
         print("Loading features from cached file %s", cached_features_file)
-        with open(cached_features_file, "rb") as handle:
-            examples = pickle.load(handle)
+
+    else:
+        TextDataset(tokenizer, args, file_path=file_path,
+                    block_size=tokenizer.model_max_length)
+    assert os.path.isfile(cached_features_file)
+    with open(cached_features_file, "rb") as handle:
+        examples = pickle.load(handle)
+
     return examples
 
 
