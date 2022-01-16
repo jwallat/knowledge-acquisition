@@ -1,19 +1,23 @@
 #!/bin/bash
 export TOKENIZERS_PARALLELISM=true
 export CUDA_VISIBLE_DEVICES=0,1,2,3
+echo "Pipeline：$0"
 gpus=4
 pt_seed=111
 let ft_seed=$pt_seed+222
-pt_bs=8
-pt_ac=4
-ft_bs=64
-ft_ac=2
-train_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq_train_10k.tsv&&/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq10kunc_train.jsonl"
-valid_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq_valid_10k.tsv"
-test_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq_test_10k.tsv"
-FT_train_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq10kunc_train.jsonl"
-FT_valid_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq10kunc_valid.jsonl"
-FT_test_file="/home/tzhang/tmp/nlp/knowledge-probing-private/data/probing_data/QAsets/paq10kunc_dev.jsonl"
+pt_bs=8                                                          # The batch size used during pretraining
+pt_ac=4                                                          # The batches of gradient accumulated during pretraining
+ft_bs=64                                                         # ............. fine-tuning
+ft_ac=2                                                          # ............. fine-tuning
+mask_strategy="ssm"                                              # "norm", "ssm", "pmi"
+train_file="./data/probing_data/QAsets/paq_train_10k.tsv"        # pretraining
+valid_file="./data/probing_data/QAsets/paq_valid_10k.tsv"
+test_file="./data/probing_data/QAsets/paq_test_10k.tsv"
+FT_train_file="./data/probing_data/QAsets/paq10kunc_train.jsonl" # fine-tuning
+FT_valid_file="./data/probing_data/QAsets/paq10kunc_valid.jsonl"
+FT_test_file="./data/probing_data/QAsets/paq10kunc_dev.jsonl"    # probing
+use_ewc=$1                                                      # 0 - "False"  1 - "True"
+ewcLambda=$2                                                 # scale factor of EWC
 run_name="tloss_PMI_EWC1e3_10Kunc_03"
 ft_run_name="tloss_PMI_EWC1e3_10Kunc_03_FT"
 wandb_date="2010_"

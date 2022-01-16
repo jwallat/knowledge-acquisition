@@ -37,8 +37,9 @@ MASTER_ADDR=localhost WORLD_SIZE=4 NODE_RANK=0 LOCAL_RANK=0 python pretraining_p
           --probing_batch_size=32\
           --accelerator='dp'\
           --multitask=True\
-          #--mask_way='ssm' #pmi
-          #--load_model_ckpt_path='/home/tzhang/tmp/nlp/knowledge-probing-private/data/outputs/tloss_PMI_multitask_10kunc_0_t5-base_trained-True_pre-trained_11_10_2021__13-22/decoder'\
+          --mask_way=$mask_strategy\
+          --pmi_path='./data/pmi_dict_2000k_M.pkl'\
+          #--load_model_ckpt_path='./'\
           #--num_workers=16\
           #--use_raw_model\
 

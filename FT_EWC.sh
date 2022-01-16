@@ -40,9 +40,9 @@ MASTER_ADDR=localhost WORLD_SIZE=4 NODE_RANK=0 LOCAL_RANK=0 python ft_probing.py
           --accelerator='dp'\
           --num_sanity_val_steps=0\
           --load_model_ckpt_path=$ckpt_dir\
-          --mask_way='pmi'\
-          --ewc\
-          --ewc_lambda=1000\
+          --mask_way=$mask_strategy\
+          --ewc=$use_ewc\
+          --ewc_lambda=$ewcLambda\
           #--num_workers=16\
 
 
