@@ -1,8 +1,8 @@
-# Knowledge Probing
+# Knowledge Acquisition
 
 ---
 
-Knowledge probing is a framework that allows probing for BERT's world knowledge. It builds on the work and the probing data by Petroni et. al. ([https://github.com/facebookresearch/LAMA](https://github.com/facebookresearch/LAMA)). Unlike others, this framework allows for probing all layers of BERT and fine-tuned BERT-models. To do so, a masked language modeling head is fine-tuned to the embeddings of the probing layer. More details on the methodology can be found in the paper (LINK). While this repository focuses on cloze-statement prediction, there is a [sister repository](https://github.com/jwallat/relation-classifcation) whichs purpose is to do relation classification.
+This is an extension of my Knowledge probing framework, which allowed probing for BERT's world knowledge. It allows for probing not only BERT but also the T5 model, and running the experiments that we detailed in the long version of the BERTnesia paper ((long)[https://arxiv.org/pdf/2106.02902.pdf] and (short)[https://aclanthology.org/2020.blackboxnlp-1.17/] for reference). Therefore, it builds on the (original repository)[https://github.com/jwallat/knowledge-probing].
 
 ---
 
