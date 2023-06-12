@@ -134,7 +134,3 @@ After selecting a model (and optionally a trained decoder for a layer), one can 
 ![Knowledge%20Probing%2068dccc465013400aab7b3b65c2262058/prediction_explorer.png](prediction_explorer.png)
 
 ---
-
-## Reference
-
-Will follow, paper not released yet.
